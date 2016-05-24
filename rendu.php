@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<title>Générateur CVs Lettres de motivation</title>
+</head>
+
+<body>
+
+<h1>Générateur de Cvs et de Lettres de motivation</h1>
+
+<div id="haut">
+<h2>Haut</h2>
+</div>
+
+<div id="milieu">
+<h2>Milieu</h2>
+<p><a href="index.php">CVs</a> | Lettres de motivation</p>
+
+<p>Rendu CV...</p>
+
+<div id="menu_gauche">
+<p>Modifications...</p>
+<ul>
+	<li>Police<br><select id="police"><option>Arial</option><option>Courrier</option><option>Times</option></select></li>
+	<li>Couleurs<br><select id="couleurs"><option selected="selected">Noir</option><option>Bleu</option></select></li>
+	<li>Bandeaux</li>
+	<li>Modèle (mise en page)</li>
+	<li>Position du titre</li>
+	<li>Style de titre</li>
+	<li>Mise en page des colonnes</li>
+	<li>...</li>
+</ul>
+</div>
+
+<div id="rendu_cv">
+
+<div id="coordonnees">
+BILLETTE Benjamin<br />
+17 rue Capron, Bat D, Appt 063<br />
+75018 PARIS<br />
+06 74 22 43 22<br />
+benjamin.billette@hotmail.fr<br />
+</div>
+
+<div id="titre_objectif">
+<span id="titre">CISP</span>
+<span id="objectif">Trouver un poste dans le domaine de...</span>
+</div>
+
+<div id="competences" class="partie">
+<span class="titre_partie">Compétences</span>
+<ul>
+	<li>Manger</li>
+	<li>Boire</li>
+	<li>Dormir</li>
+</ul>
+</div>
+
+<div id="experiences" class="partie">
+<span class="titre_partie">Expériences professionnelles</span>
+	<table class="tableau">
+		<tr>
+			<td>2016</td>
+			<td>CISP</td>
+			<td>ML Seinoise, Deuil (95)</td>
+		</tr>
+		<tr>
+			<td>2015</td>
+			<td>CISP</td>
+			<td>ML Seinoise, Deuil (95)</td>
+		</tr>
+	</table>
+	
+</div>
+
+<div id="formation" class="partie">
+<span class="titre_partie">Formation</span>
+		<table class="tableau">
+		<tr>
+			<td>2012</td>
+			<td>Psychologie</td>
+			<td>Paris X, Nanterre (92)</td>
+		</tr>
+		<tr>
+			<td>2009</td>
+			<td>Bac S</td>
+			<td>Lycée Condorcet, Limay (78)</td>
+		</tr>
+	</table>
+</div>
+
+<div id="informations" class="partie">
+<span class="titre_partie">Informations complémentaires</span>
+<p>Langues : Anglais (niveau universitaire), Allemand (notions)</p>
+<p>Centres d'intérêt : Musique.</p>
+<p>Loisirs : Ecriture.</p>
+</div>
+
+
+</div>
+</div>
+
+
+
+<script type="text/javascript">
+
+//DRAG AND DROP
+
+
+
+var parties = document.getElementsByTagName('div');
+for (var i = 0; i < parties.length; i++) {
+	if (parties[i].className == "partie") {
+		console.log("trouvé !");
+		console.log(this.offsetParent);
+		console.log(this.offsetTop);
+	}
+}
+
+
+var rendu_cv = document.getElementById("rendu_cv");
+
+
+
+	var couleurs = document.getElementById("couleurs");
+	couleurs.addEventListener("change", function() {
+		if (couleurs.value == "Bleu") {	rendu_cv.style.color = "blue";}
+		else { rendu_cv.style.color = "black";}
+	});
+</script>
+
+</body>
+</html>

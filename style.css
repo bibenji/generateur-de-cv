@@ -1,0 +1,134 @@
+body {
+text-align: center;
+margin: 0px 200px;
+}
+
+h1 {
+color: blue;
+}
+
+form {
+text-align: left;
+background-color: grey;
+}
+
+.rubrique
+{
+border: solid blue 1px;
+padding: 10px;
+display: block;
+}
+
+.rubrique_hidden
+{
+border: solid blue 1px;
+padding: 10px;
+display: none;
+}
+
+.rubrique li
+{
+list-style-type: none;
+text-align: left;
+}
+
+/*___rendu.php___*/
+#menu_gauche
+{
+width: 20%;
+background-color: orange;
+float: left;
+}
+
+#menu_gauche li
+{
+text-align: left;
+list-style-type: circle;
+list-style-position: inside;
+/*list-style-image: url("boite-outils.jpg");*/
+}
+
+#rendu_cv
+{
+width: 70%;
+
+float: left;
+margin-left: 10px;
+border: solid black 1px;
+padding-top: 10px;
+
+}
+
+#coordonnees
+{
+position: relative;
+left: 10px;
+text-align: left;
+background-color: orange;
+width: 50%;
+}
+
+#titre_objectif
+{
+background-color: DarkOrange;
+}
+
+#titre_objectif #titre
+{
+display: block;
+border: solid black 1px;
+width: 50%;
+text-decoration: underline;
+margin: 10px auto;
+padding: 10px;
+font-size: 150%;
+}
+
+.partie
+{
+padding: 0px 5%;
+text-align: left;
+}
+
+.titre_partie
+{
+border: solid black 1px;
+background-color: grey;
+display: block;
+margin: 10px auto;
+text-align: center;
+text-transform: uppercase;
+}
+
+#competences
+{
+background-color: coral;
+}
+
+#experiences
+{
+background-color: chocolate;
+}
+
+.tableau
+{
+margin: 0px auto;
+width: 90%;
+}
+
+.tableau tr
+{
+height: 30px;
+}
+
+#formation
+{
+background-color: OrangeRed;
+}
+
+#informations
+{
+background-color: tomato;
+text-align: left;
+
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+
+<html>
+
+<head>
+</head>
+
+<body>
+
+<script type="text/javascript">
+
+//EXERCICE 4
+document.head.innerHTML = '<title>Examen NFA016</title>';
+document.body.setAttribute("style", "font-size:20px;color:blue;text-align:center");
+document.body.innerHTML = '<p id="p1">Le Bouchon de Crystal</p>';
+
+//EXERCICE 5
+var bouton = document.createElement('input');
+bouton.setAttribute("type", "button");
+bouton.setAttribute("value", "Changer");
+bouton.setAttribute("id", "lebouton");
+document.body.appendChild(bouton);
+
+document.getElementById("lebouton").addEventListener("click", function()
+	{
+	document.getElementById('p1').innerText = "Les Dents du Tigre";
+	});
+
+</script>
+
+</body>
+
+</html>

@@ -29,6 +29,8 @@
 	<li>Position du titre</li>
 	<li>Style de titre</li>
 	<li>Mise en page des colonnes</li>
+	<li>Afficher les durées des expériences</li>
+	<li>Supprimer une ligne, une expérience, une formation (ne pas la faire apparaître)</li>
 	<li>...</li>
 </ul>
 </div>
@@ -61,14 +63,29 @@ benjamin.billette@hotmail.fr<br />
 <span class="titre_partie">Expériences professionnelles</span>
 	<table class="tableau">
 		<tr>
-			<td>2016</td>
+			<td>2014-2016</td>
 			<td>CISP</td>
 			<td>ML Seinoise, Deuil (95)</td>
 		</tr>
 		<tr>
-			<td>2015</td>
+			<td>2013</td>
 			<td>CISP</td>
 			<td>ML Seinoise, Deuil (95)</td>
+		</tr>
+		<tr>
+			<td>Aout-Octobre 2012</td>
+			<td>Conseiller bilan stagiaire</td>
+			<td>FOVEA, Paris (75)</td>
+		</tr>
+		<tr>
+			<td>Avril-Juillet 2012</td>
+			<td>Psychologue - Conseiller d'orientation stagiaire</td>
+			<td>SNCF - COSP, Paris (75)</td>
+		</tr>
+		<tr>
+			<td>2010-2012</td>
+			<td>Chargé de recrutement stagiaire</td>
+			<td>AURA, Poissy (78)</td>
 		</tr>
 	</table>
 	
@@ -78,12 +95,17 @@ benjamin.billette@hotmail.fr<br />
 <span class="titre_partie">Formation</span>
 		<table class="tableau">
 		<tr>
-			<td>2012</td>
+			<td>2006/2012</td>
 			<td>Psychologie</td>
 			<td>Paris X, Nanterre (92)</td>
 		</tr>
 		<tr>
-			<td>2009</td>
+			<td>2005/2006</td>
+			<td>Première année de Médecine</td>
+			<td>Université de Poitiers (86)</td>
+		</tr>
+		<tr>
+			<td>2004/2005</td>
 			<td>Bac S</td>
 			<td>Lycée Condorcet, Limay (78)</td>
 		</tr>
@@ -92,9 +114,10 @@ benjamin.billette@hotmail.fr<br />
 
 <div id="informations" class="partie">
 <span class="titre_partie">Informations complémentaires</span>
+<p>Informatique : Développement web</p>
 <p>Langues : Anglais (niveau universitaire), Allemand (notions)</p>
-<p>Centres d'intérêt : Musique.</p>
-<p>Loisirs : Ecriture.</p>
+<p>Centres d'intérêt : Musique</p>
+<p>Loisirs : Ecriture</p>
 </div>
 
 

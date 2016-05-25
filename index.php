@@ -76,7 +76,26 @@
 
 <div class="rubrique_hidden" id="qua">
 <h3>Qualités</h3>
-	<p>A venir...</p>
+	<p>Choisissez 3 qualités vous correspondant :</p>
+	<p style="-moz-column-count: 4;">
+	<input type="checkbox"> Dynamique<br>
+	<input type="checkbox"> Consciencieux<br>
+	<input type="checkbox"> Motivé<br>
+	<input type="checkbox"> Sociable<br>
+	<input type="checkbox"> Ponctuel<br>
+	<input type="checkbox"> Sens du contact<br>
+	<input type="checkbox"> Bon relationnel<br>
+	<input type="checkbox"> Sérieux<br>
+	<input type="checkbox"> A l'écoute<br>
+	<input type="checkbox"> Créatif<br>
+	<input type="checkbox"> Sang-froid<br>
+	<input type="checkbox"> Bienveillance<br>
+	<input type="checkbox"> Patient<br>
+	<input type="checkbox"> Appliqué<br>
+	<input type="checkbox"> Soigné<br>
+	<input type="checkbox"> Minutieux
+	</p>
+	
 </div>
 
 <div class="rubrique_hidden" id="exp">
@@ -106,7 +125,7 @@
 
 <script type="text/javascript">
 
-//SELECTION DES RUBRIQUES
+//SELECTION DES RUBRIQUES ET AFFICHAGE OU MASQUAGE
 function affiche(elem) {
 	var tempo = document.getElementById(elem);
 	console.log(tempo.className);
@@ -127,20 +146,24 @@ function Verif(form) {
 		
 		//console.log("fonction Verif !");
 		
+		
 		function laVerif(elm) {
 				
 			//input_rub_ide[elm.li].value = "JUZIERS";
 			console.log(elm.lareg);
 			console.log(elm.laval);
-			/*
-			if (/(elm.lareg)/.test(elm.laval)) { console.log("miracle");}
-			else { console.log("horreur");}
-			*/
+			
+	//		if (/(elm.lareg)/.test(elm.laval)) { console.log("miracle");}
+	//		else { console.log("horreur");}
+			
 		}
 		
 		
+//FONCTION DE VERIFICATION DU CHAMP SAISI
 		function leTest(rege, champ) {
-			console.log(rege);
+			//console.log(rege);
+			//console.log(champ);
+			
 			var testreg = new RegExp(rege);
 			//console.log(rege.test(champ));
 			var reretest = testreg.test(champ);
@@ -152,6 +175,7 @@ function Verif(form) {
 		}
 		
 		
+//CONSTRUCTEUR D'OBJET
 		function Elmt(li, lid, laval, lareg) {
 			this.li = li;
 			this.lid = lid;
@@ -161,27 +185,50 @@ function Verif(form) {
 			this.laVerif = laVerif(this);			
 			}
 		
-		
-		
-		var rub_ide = document.getElementById("ide");
-		//console.log(rub_ide);
-		var input_rub_ide = rub_ide.getElementsByTagName("input");
-		//console.log(input_rub_ide);
-		//var p_input_rub_ide = input_rub_ide.parentNode;
-		//console.log(p_input_rub_ide);
-		
-		var pourtest = "[A-Z]{2}";
-		var testi = new Elmt(5, input_rub_ide[5].id, input_rub_ide[5].value, pourtest);
-		testi.laVerif;
-		//letest("[A-Z]", "COCU");
+//TABLEAU POUR STOCKER LES CONSTRUCTEURS D'OBJET AVEC NOM VARIABLE // DONC APPEL : ListElmt[0].letest;
+		var ListElmt = { };
 		
 
 		
+//TABLEAU DES EXPRESSIONS REGULIERS DU FORMULAIRE
+		var tabregs = {
+			nom: '[A-Z]{2,}',
+			prenom: '[A-Z][a-z]{2,}',
+			adresse: '[1-9][0-9]*\s[a-z]*\s[A-za-z]*',
+			ville: '[A-Z]{2,}',
+			codepostal: '^\d{5}$',
+			datenaissance: '^\d{2}\/\d{2}\/\d{4}$',
+		};
+		
+		
+//SELECTION DE TOUS LES INPUTS
+		var rub_ide = document.getElementById("ide");
+		var input_rub_ide = rub_ide.getElementsByTagName("input");
+			//TESTS AVEC UN ELEMENT
+			/*
+			var pourtest = "[A-Z]{2}";
+			var testi = new Elmt(5, input_rub_ide[5].id, input_rub_ide[5].value, pourtest);
+			testi.laVerif;
+			//letest("[A-Z]", "COCU");
+			*/
+				
 		for (var i = 0; i < input_rub_ide.length; i++) {
 			//console.log(input_rub_ide[i].value);
 			var chi = input_rub_ide[i];
 			var par = input_rub_ide[i].parentNode;
 			
+			for (var boite in tabregs) { 
+				if (chi.id == boite) {
+					console.log (chi.id + " == " + boite + " trouvé !");
+					ListElmt[i] = new Elmt(i, chi.id, chi.value, tabregs[boite]); //Lance le truc auto !?!?
+					}
+				}
+			
+			
+			//ListElmt[0].letest;
+			
+			
+			/*
 			if (chi.id == "nom")
 				{
 				if (/[A-Z]{2,}/.test(chi.value)
@@ -198,10 +245,13 @@ function Verif(form) {
 			
 			if (chi.id == "adresse")
 				{
-				if (/[1-9][0-9]*\s[a-z]*\s[A-za-z]*/.test(chi.value)
+				
+				if (/[1-9][0-9]*\s[a-z]*\s[A-za-z]/.test(chi.value) //rajouter une étoile ici avant la barre /
+				
 				) { chi.style.border = "1px green solid"; par.style.border = "0px red solid";}
 				else { par.style.border = "3px red solid";}
 				}
+			*/
 			
 				
 			}
@@ -215,7 +265,7 @@ function Verif(form) {
 	
 	form.addEventListener("submit", Verif, false);		
 		
-
+//-----------------------------------------------------------------------------------------------------------------------------------
 
 //SELECTION DES INPUTS boutons et checkboxes
 var boutons = document.getElementsByTagName("input");
@@ -229,7 +279,7 @@ for (i = 0; i < boutons.length; i++) {
 		boutons[i].checked = false;
 		
 		boutons[i].addEventListener("change", function() {
-			affiche(this.nextSibling.nodeValue.substr(0,3));
+			affiche(this.nextSibling.nodeValue.substr(0,3)); // FONCTION POUR LA SELECTION DES RUBRIQUES ET L'AFFICHAGE OU NON
 	});
 	}
 	

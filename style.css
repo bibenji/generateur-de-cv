@@ -1,10 +1,69 @@
 body {
-text-align: center;
 margin: 0px 200px;
+font-family: Verdana;
+}
+
+header {
+text-align: center;
+margin: 10px 0px;
+
+/*
+border: solid black 1px;
+background: -moz-linear-gradient(bottom right, white, grey);
+*/
 }
 
 h1 {
 color: blue;
+
+padding: 20px 0px;
+margin: 0px;
+}
+
+header nav {
+
+margin: 0px;
+padding: 5px 0px;
+}
+
+section h3 {
+background-color: black;
+color: white;
+margin: 0px;
+text-transform: uppercase;
+padding: 10px;
+}
+
+aside, section {
+float: left;
+border: solid grey 1px;
+}
+
+aside { 
+width: 25%;
+font-size: 80%;
+text-align: left;
+position: relative;
+left: -1px;
+
+}
+
+section {
+width: 70%;
+
+}
+
+section nav {
+width: 100%;
+text-align: center;
+background-color: #A0A0A0;
+padding: 5px 0px;
+}
+
+footer {
+clear: both;
+text-align: center;
+padding-top: 10px;
 }
 
 form {
@@ -14,10 +73,31 @@ background-color: grey;
 
 .rubrique
 {
-border: solid blue 1px;
+
 padding: 10px;
 display: block;
 }
+
+mark
+{
+margin: 10px;
+padding: 5px 10px;
+border-radius: 20px;
+font-weight: bold;
+font-size: 100%;
+}
+
+mark:hover
+{
+background-color: red;
+}
+
+.rubrique table { background-color: #A0A0A0;}
+.rubrique table tr td {
+	padding-right: 10px;
+	text-align: right;
+	
+	}
 
 .rubrique_hidden
 {
@@ -45,7 +125,23 @@ float: left;
 text-align: left;
 list-style-type: circle;
 list-style-position: inside;
+margin-bottom: 10px;
 /*list-style-image: url("boite-outils.jpg");*/
+}
+
+#menu_gauche li:nth-child(even)
+{
+background-color: grey;
+}
+
+#menu_gauche li:nth-child(odd)
+{
+background-color: Darkgrey;
+}
+
+#menu_gauche li select
+{
+width: 90%;
 }
 
 #rendu_cv
@@ -64,13 +160,14 @@ padding-top: 10px;
 position: relative;
 left: 10px;
 text-align: left;
-background-color: orange;
+/*background-color: orange;*/
 width: 50%;
 }
 
 #titre_objectif
 {
-background-color: DarkOrange;
+/*background-color: DarkOrange;*/
+margin: 20px 50px;
 }
 
 #titre_objectif #titre
@@ -79,7 +176,8 @@ display: block;
 border: solid black 1px;
 width: 50%;
 text-decoration: underline;
-margin: 10px auto;
+text-align: center;
+margin: 10px auto 20px auto;
 padding: 10px;
 font-size: 150%;
 }
@@ -102,12 +200,12 @@ text-transform: uppercase;
 
 #competences
 {
-background-color: coral;
+/*background-color: coral;*/
 }
 
 #experiences
 {
-background-color: chocolate;
+/*background-color: chocolate;*/
 }
 
 .tableau
@@ -123,12 +221,72 @@ height: 30px;
 
 #formation
 {
-background-color: OrangeRed;
+/*background-color: OrangeRed;*/
 }
 
 #informations
 {
-background-color: tomato;
+/*background-color: tomato;*/
 text-align: left;
 
+}
+
+#informations p
+{
+margin: 15px 30px;
+}
+
+input[type=text], input[type=date]
+{
+border-radius: 7px;
+
+}
+
+input[type=text]:focus, input[type=date]:focus
+{
+box-shadow: 0px 1px 1px 1px #006fff;
+}
+
+input[type=submit]
+{
+background-color: rgb(37, 167, 80);
+border-radius: 10px;
+padding: 5px 20px;
+border: 1px solid white;
+color: white;
+}
+
+input[type=reset]
+{
+background-color: rgb(197, 146, 26);
+border-radius: 10px;
+padding: 5px 20px;
+border: 1px solid white;
+color: white;
+}
+
+input[type=submit]:hover, input[type=reset]:hover
+{
+background-color: grey;
+}
+
+.correct
+{
+box-shadow: 0px 1px 1px 1px #29b634;
+}
+
+.error
+{
+box-shadow: 0px 1px 1px 1px #bc2a2a;
+}
+
+.lerreur
+{
+background-color: #fbc8c8;
+color: #e63535;
+padding: 5px 10px;
+margin-left: 10px;
+border-radius: 5px;
+font-size: 70%;
+display: none;
 }

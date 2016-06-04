@@ -22,12 +22,85 @@
 <div id="menu_gauche">
 <p>Modifications...</p>
 <ul>
-	<li>Police<br><select id="police"><option>Arial</option><option>Courrier</option><option>Times</option></select></li>
-	<li>Couleurs<br><select id="couleurs"><option selected="selected">Noir</option><option>Bleu</option></select></li>
-	<li>Bandeaux</li>
+	
 	<li>Modèle (mise en page)</li>
+		
+	<li>Couleur du texte<br>
+		<select id="couleurs">
+			<option selected="selected">Black</option>
+			<option>Blue</option>
+		</select>
+	</li>
+
+	<li>Police<br>
+		<select id="police">
+			<option>Arial</option>
+			<option>Courrier</option>
+			<option>Times New Roman</option>
+			<option>Georgia</option>
+			<option>Verdana</option>
+			<option>Palatino</option>
+			<option>Arial Black</option>
+			<option>Times</option>
+			<option>Helvetica</option>
+			<option>Gadget</option>
+			<option>Comic Sans MS</option>
+			<option>Cursive</option>
+			<option>Impact</option>
+			<option>Lucida Sans Unicode</option>
+			<option>Tahoma</option>
+			<option>Trebuchet MS</option>		
+		</select>
+	</li>
+	
 	<li>Position du titre</li>
+	
 	<li>Style de titre</li>
+	
+	<li>Couleur du titre</li>
+	
+	<li>Police du titre</li>
+	
+	<li>Couleur des bandeaux<br>
+		<select id="couleur_bandeaux">
+			<option>None</option>
+			<option>Yellow</option>
+			<option>Green</option>
+		</select>
+	</li>
+	
+	<li>Couleur du texte des bandeaux</li>
+	
+	<li>Police des bandeaux<br>
+		<select id="police_titres">
+			<option>Arial</option>
+			<option>Courrier</option>
+			<option>Times New Roman</option>
+			<option>Georgia</option>
+			<option>Verdana</option>
+			<option>Palatino</option>
+			<option>Arial Black</option>
+			<option>Times</option>
+			<option>Helvetica</option>
+			<option>Gadget</option>
+			<option>Comic Sans MS</option>
+			<option>Cursive</option>
+			<option>Impact</option>
+			<option>Lucida Sans Unicode</option>
+			<option>Tahoma</option>
+			<option>Trebuchet MS</option>		
+		</select>
+	</li>
+	
+	<li>Epaisseur des bandeaux</li>
+		<select id="epaisseur_bandeaux">
+			<option>0</option>
+			<option>5</option>
+			<option>10</option>
+		</select>
+		
+	
+	
 	<li>Mise en page des colonnes</li>
 	<li>Afficher les durées des expériences</li>
 	<li>Supprimer une ligne, une expérience, une formation (ne pas la faire apparaître)</li>
@@ -143,14 +216,39 @@ for (var i = 0; i < parties.length; i++) {
 
 
 var rendu_cv = document.getElementById("rendu_cv");
+var bandeaux = document.getElementsByClassName("titre_partie");
 
-
-
-	var couleurs = document.getElementById("couleurs");
+		var couleurs = document.getElementById("couleurs");
 	couleurs.addEventListener("change", function() {
-		if (couleurs.value == "Bleu") {	rendu_cv.style.color = "blue";}
-		else { rendu_cv.style.color = "black";}
+		rendu_cv.style.color = couleurs.value;
 	});
+	
+	var police = document.getElementById("police");
+	police.addEventListener("change", function() {
+		rendu_cv.style.fontFamily = police.value;
+	});
+	
+	var couleur_b = document.getElementById("couleur_bandeaux");
+	couleur_b.addEventListener("change", function() {
+		for (var i = 0; i < bandeaux.length; i++) {
+		bandeaux[i].style.backgroundColor = couleur_b.value;
+		}
+	});
+	
+	var police_titres = document.getElementById("police_titres");
+	police_titres.addEventListener("change", function() {
+		for (var i = 0; i < bandeaux.length; i++) {
+		bandeaux[i].style.fontFamily = police_titres.value;
+		}
+	});
+	
+	var epaisseur_bandeaux = document.getElementById("epaisseur_bandeaux");
+	epaisseur_bandeaux.addEventListener("change", function() {
+		for (var i = 0; i < bandeaux.length; i++) {
+		bandeaux[i].style.padding = epaisseur_bandeaux.value + "px 0px";
+		}
+	});
+
 </script>
 
 </body>

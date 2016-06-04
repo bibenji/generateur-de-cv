@@ -138,7 +138,7 @@
 		<input type="submit" value="Générer le CV" id="envoi"> <input type="reset" value="Recommencer">
 	</nav>
 	
-<?php include('competences.php'); ?>
+
 
 </form>
 
@@ -146,93 +146,75 @@
 
 <script type="text/javascript">
 
-//FUNCTION DE SUPPRESSION DES PARAGRAPHES COMP, XP, FORMATIONS
+//DECLARATION DES VARIABLES GLOBALES
+var milieu = document.getElementById("milieu");
 
-function suppression(lamark) {
-	var par1 = lamark.parentNode;
-	var par2 = par1.parentNode;
-	var par3 = par2.parentNode;
-	var par4 = par3.parentNode;
-	par4.parentNode.removeChild(par4);
-	console.log("element supprimé !");
+
+//FUNCTION DE SUPPRESSION DES PARAGRAPHES COMP, XP, FORMATIONS = OK
+function suppression(to_suppr) {
+	var found = false;
+	while (found == false) {
+		to_suppr = to_suppr.parentNode;
+		if (to_suppr.nodeName == "P") {
+			to_suppr.parentNode.removeChild(to_suppr);
+			console.log("Suppression ok");
+			found = true;
+		}
+	}
 }
 
 
-//COMPTAGE DES INPUTS
-document.getElementById('comptage').addEventListener("click", function() {
-		var rub_com = document.getElementById("com");
-		var rc_p = rub_com.getElementsByTagName('p');
-		var rub_xp = document.getElementById("exp");
-		var rx_p = rub_xp.getElementsByTagName('p');
-		var rub_for = document.getElementById("for");
-		var rf_p = rub_for.getElementsByTagName('p');
-		console.log(rc_p.length + " " + rx_p.length + " " + rf_p.length);
-		document.getElementById('compteur').innerText = rc_p.length + " compétences, " + rx_p.length + " expériences et " + rf_p.length + " formations"
-});
+//FUNCTION DE COMPTAGE DES P des inputs affichés
+function comptage_p(e) {
+		var lesdivs_aff = comptage();
+		var lesps_par_div = { };
+		for (var i = 0, c = lesdivs_aff.length; i < c; i++) {
+			var lesps = lesdivs_aff[i].getElementsByTagName('p');
+			lesps_par_div[lesdivs_aff[i].id] = lesps.length; // POUR L'INSTANT ENREGISTRE JUSTE LE NOMBRE DE P
+			}		
+					
+		for (var lire in lesps_par_div) {
+			console.log(lire + " : " + lesps_par_div[lire] + "\n");
+			}
+		e.preventDefault();
+	}
 
+// FUNCTION DE COMPTAGE DES INPUTS AFFICHES
+function comptage() {
+		var results_comptage = [ ];
+		var lesdivs = milieu.getElementsByTagName("div");
+		
+		for (var i = 0, j = 0, c = lesdivs.length; i < c; i++) {
+				if (lesdivs[i].getAttribute("class") == "rubrique") {
+					results_comptage[j] = lesdivs[i];
+					j++;
+					
+					}
+				}
+				
+		
+		console.log(results_comptage);
+		return results_comptage;
+		}
+
+
+document.getElementById('comptage').addEventListener("click", comptage_p, false);
 
 //SELECTION DES RUBRIQUES ET AFFICHAGE OU MASQUAGE
 function affiche(elem) {
 	var tempo = document.getElementById(elem);
-	console.log(tempo.className);
 	if (tempo.className == "rubrique") {
-			tempo.className = "rubrique_hidden";
-	}
+		tempo.className = "rubrique_hidden";
+		}
 	else {
 		tempo.className = "rubrique";
-	}
-	console.log(tempo.className);
-	
-};
+		}
+}
 
 //-----------------------------------------------
 
-// VERIFICATION FORMULAIRE
-function Verif(form) {
-	
-	
-		form.preventDefault();
-	
-				
-		function laVerif(elm) {	
-			console.log(elm.lareg);
-			console.log(elm.laval);
-		}
-		
-		
-//FONCTION DE VERIFICATION DU CHAMP SAISI REGHEX... 
-		function leTest(rege, champ) {
-	//console.log(rege);
-	//console.log(champ);
-			
-			var testreg = new RegExp(rege);
-	//console.log(rege.test(champ));
-			var reretest = testreg.test(champ);
-			console.log(reretest);
-			return reretest;
-			/*
-			if (rege.test(champ) == false) { console.log("reg ok"); console.log(champ);}
-			else { console.log("reg pas ok");}
-			*/
-		}
-		
-		
-//CONSTRUCTEUR D'OBJET
-		function Elmt(li, lid, laval, lareg) {
-			this.li = li;
-			this.lid = lid;
-			this.laval = laval;
-			this.lareg = lareg;
-			this.letest = leTest(lareg, laval);
-			this.laVerif = laVerif(this);			
-			}
-		
-//TABLEAU POUR STOCKER LES CONSTRUCTEURS D'OBJET AVEC NOM VARIABLE // DONC APPEL : ListElmt[0].letest;
-		var ListElmt = { };
-		
 
-		
-//TABLEAU DES EXPRESSIONS REGULIERS DU FORMULAIRE
+//TABLEAU DES EXPRESSIONS REGULIERS DU FORMULAIRE = FIXE
 		var tabregs = {
 			nom: '[A-Z]{2,}',
 			prenom: '[A-Z][a-z]{2,}',
@@ -242,15 +224,108 @@ function Verif(form) {
 			datenaissance: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
 			date: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
 		};
-		
+
+//FONCTION DE VERIFICATION DU CHAMP SAISI REGHEX... 
+		function leTest(rege, champ) {
+		//console.log(rege);
+		//console.log(champ);
+			var testreg = new RegExp(rege);
+		//console.log(rege.test(champ));
+			var resultat = testreg.test(champ);
+			console.log(resultat);
+			return resultat;
+			/*
+			if (rege.test(champ) == false) { console.log("reg ok"); console.log(champ);}
+			else { console.log("reg pas ok");}
+			*/
+		}
+
+
+//CONSTRUCTEUR D'OBJET ET VERIFICATION
+		function Elmt(li, lid, laval, lareg) {
+			this.li = li;
+			this.lid = lid;
+			this.laval = laval;
+			this.lareg = lareg;
+			this.letest = leTest(lareg, laval);
+			//this.laVerif = laVerif(this); //enlevé car enlevé plus haut et pas utile;
+			}
 
 		
-//SELECTION DE TOUS LES INPUTS DANS PARTIE IDENTITE
-		var rub_ide = document.getElementById("exp"); //reglé sur les expériences seulement là
+//TABLEAU POUR STOCKER LES CONSTRUCTEURS D'OBJET AVEC NOM VARIABLE // DONC APPEL : ListElmt[0].letest;
+		var ListElmt = [ ];
+
+//FUNCTION TROUVER LE SPAN D'ERREUR
+		function span_erreur(linput) {
+			var pfound = false;
+			var spanfound = false;
+			while (pfound == false) {
+				linput = linput.parentNode;
+				if (linput.nodeName == "P") {
+					while (spanfound == false) {
+						linput = linput.lastChild;
+						if (linput.nodeName == "SPAN") {
+						console.log("span erreur trouvé");
+						spanfound = true;
+						}
+					pfound = true;
+				}
+			}
+		}
+		return linput;
+	}
 		
-		var input_rub_ide = rub_ide.getElementsByTagName("input");
+// VERIFICATION FORMULAIRE FONCTION GENERALE
+function Verif(form) {
+		
+		form.preventDefault();
+	
+		//NE SERT PAS
+		/*
+		function laVerif(elm) {	
+			console.log(elm.lareg);
+			console.log(elm.laval);
+		}
+		*/
+		
+	
+//SELECTION DE TOUS LES INPUTS DANS PARTIE IDENTITE
+		var a_verifier = comptage(); //RENVOI LE TABLEAU DES ADRESSES DES DIV AFFICHEES
+		
+		//PARCOURS DE CE TABLEAU
+		for (var i = 0, c = a_verifier.length; i < c; i++) { // ON BOUCLE LES DIVS
+			var inputs_a_verifier = a_verifier[i].getElementsByTagName("input");
+			for (var j = 0, d = inputs_a_verifier.length; j < d; j++) { //ON BOUCLE LES INPUTS
+						
+						var chi = inputs_a_verifier[j];
+						
+						for (var boite in tabregs) { 
+							if (chi.id.substr(0,3) == boite.substr(0,3)) {
+								console.log ("Une expression régulière trouvée pour : " + chi.id + " == " + boite);
+								var temp = new Elmt(i, chi.id, chi.value, tabregs[boite]); //Lance le truc auto !?!?
+								ListElmt.push(temp);
+							
+								if (temp.letest == true) {
+									chi.classList.add("correct");
+									chi.classList.remove("error");
+									var lerreur = span_erreur(chi);
+									lerreur.style.display = "none";
+									}
+								else {
+									chi.classList.add("error");
+									chi.classList.remove("correct");
+									var lerreur = span_erreur(chi);
+									lerreur.style.display = "inline-block";
+									}
+							
+							}
+						}
+		
+		//var input_rub_ide = rub_ide.getElementsByTagName("input"); //ON EN A PLUS BESOIN
 
 //DETERMINATION DES ENFANTS ET DES PARENTS				
+		
+		/*
 		for (var i = 0; i < input_rub_ide.length; i++) {
 			var chi = input_rub_ide[i];
 			var par = input_rub_ide[i].parentNode;
@@ -260,6 +335,10 @@ function Verif(form) {
 					console.log (chi.id + " == " + boite + " trouvé !");
 					ListElmt[i] = new Elmt(i, chi.id, chi.value, tabregs[boite]); //Lance le truc auto !?!?
 					
+					
+			
+
+			
 					if (par.className.substr(0,2) == "xp") {
 							par.parentNode.parentNode.lastChild.lastChild.lastChild.display = "none";
 							}
@@ -281,12 +360,19 @@ function Verif(form) {
 						disultime = "inline"; //A VOIR, ça va peutêtre faire merdouillis...
 						console.log(disultime);
 						}
+						
+						
 					}
 				}
 
 
-				
+			
+			
 			}
+			*/
+			}
+		}
+		
 		};
 		
 //FIN FONCTION VERIF...		
@@ -348,7 +434,7 @@ for (i = 0; i < boutons.length; i++) {
 			if(parent.id == "com") {
 				nb_comp += 1;		
 				
-				newP.innerHTML = '<mark onclick="suppression(this.parentNode)">-</mark>Compétence n°' + nb_comp + ' : <input id="comp_' + nb_comp + '" name=="comp_' + nb_comp + '" type="text" />';
+				newP.innerHTML = '<mark onclick="suppression(this)">-</mark>Compétence n°' + nb_comp + ' : <input id="comp_' + nb_comp + '" name=="comp_' + nb_comp + '" type="text" />';
 				
 			}
 			else {			

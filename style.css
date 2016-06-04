@@ -1,16 +1,21 @@
 body {
-margin: 0px 200px;
+margin: 0px 50px;
 font-family: Verdana;
 }
 
 header {
 text-align: center;
-margin: 10px 0px;
+margin: 10px 0px 0px;
+left: -1px;
+position: relative;
+border-left: 1px solid grey;
 
 /*
 border: solid black 1px;
 background: -moz-linear-gradient(bottom right, white, grey);
 */
+
+background: -moz-linear-gradient(bottom right, white, #b0a3a3);
 }
 
 h1 {
@@ -26,12 +31,19 @@ margin: 0px;
 padding: 5px 0px;
 }
 
+section {
+	background: -moz-linear-gradient(bottom right, white, #b0a3a3);
+	width: 70%;
+}
+
+
 section h3 {
 background-color: black;
 color: white;
-margin: 0px;
+
 text-transform: uppercase;
 padding: 10px;
+margin: -10px -10px 0px;
 }
 
 aside, section {
@@ -45,13 +57,9 @@ font-size: 80%;
 text-align: left;
 position: relative;
 left: -1px;
-
+background-color: #b0a3a3;
 }
 
-section {
-width: 70%;
-
-}
 
 section nav {
 width: 100%;
@@ -68,7 +76,7 @@ padding-top: 10px;
 
 form {
 text-align: left;
-background-color: grey;
+/*background-color: grey;*/
 }
 
 .rubrique
@@ -76,6 +84,7 @@ background-color: grey;
 
 padding: 10px;
 display: block;
+border: solid 1px grey;
 }
 
 mark
@@ -289,4 +298,6 @@ margin-left: 10px;
 border-radius: 5px;
 font-size: 70%;
 display: none;
+float: right;
+width: 35%;
 }

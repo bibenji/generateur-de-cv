@@ -321,57 +321,8 @@ function Verif(form) {
 							}
 						}
 		
-		//var input_rub_ide = rub_ide.getElementsByTagName("input"); //ON EN A PLUS BESOIN
-
-//DETERMINATION DES ENFANTS ET DES PARENTS				
-		
-		/*
-		for (var i = 0; i < input_rub_ide.length; i++) {
-			var chi = input_rub_ide[i];
-			var par = input_rub_ide[i].parentNode;
-			
-			for (var boite in tabregs) { 
-				if (chi.id.substr(0,3) == boite.substr(0,3)) {
-					console.log (chi.id + " == " + boite + " trouvé !");
-					ListElmt[i] = new Elmt(i, chi.id, chi.value, tabregs[boite]); //Lance le truc auto !?!?
-					
-					
-			
-
-			
-					if (par.className.substr(0,2) == "xp") {
-							par.parentNode.parentNode.lastChild.lastChild.lastChild.display = "none";
-							}
-					else {
-						par.lastChild.style.display = "none"; //comme les champs sont parfois par deux
-						}
-					
-					if (ListElmt[i].letest == true) {
-						chi.classList.add("correct");
-						chi.classList.remove("error");
-						}
-					else {
-						chi.classList.add("error");
-						chi.classList.remove("correct");
-						par.lastChild.style.display = "inline";
-						
-						var ultimechild = par.parentNode.parentNode.lastChild.lastChild.lastChild;
-						var disultime = ultimechild.display;
-						disultime = "inline"; //A VOIR, ça va peutêtre faire merdouillis...
-						console.log(disultime);
-						}
-						
-						
-					}
 				}
-
-
-			
-			
 			}
-			*/
-			}
-		}
 		
 		};
 		
@@ -382,7 +333,8 @@ function Verif(form) {
 	var form = document.getElementById('form');
 	
 	form.addEventListener("submit", Verif, false);		
-		
+
+//REPRENDRE ICI !!
 //-----------------------------------------------------------------------------------------------------------------------------------
 
 //SELECTION DES INPUTS boutons et checkboxes

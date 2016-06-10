@@ -386,7 +386,20 @@ for (i = 0; i < boutons.length; i++) {
 			if(parent.id == "com") {
 				nb_comp += 1;		
 				
-				newP.innerHTML = '<mark onclick="suppression(this)">-</mark>Compétence n°' + nb_comp + ' : <input id="comp_' + nb_comp + '" name=="comp_' + nb_comp + '" type="text" />';
+				var newM = document.createElement("mark");
+				newM.onclick = "suppression(this)";
+				newM.innerHTML = "-";
+				var text1 = document.createTextNode('Compétence n°' + nb_comp + ' :');
+				var newInput = document.createElement("input");
+				newInput.id = newInput.name = 'comp_' + nb_comp;
+				newInput.type = "text";
+				
+				newP.appendChild(newM);
+				newP.appendChild(text1);
+				newP.appendChild(newInput);
+				
+				
+				
 				
 			}
 			else {			

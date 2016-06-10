@@ -387,7 +387,7 @@ for (i = 0; i < boutons.length; i++) {
 				nb_comp += 1;		
 				
 				var newM = document.createElement("mark");
-				newM.onclick = "suppression(this)";
+				
 				newM.innerHTML = "-";
 				var text1 = document.createTextNode('Compétence n°' + nb_comp + ' :');
 				var newInput = document.createElement("input");
@@ -398,8 +398,12 @@ for (i = 0; i < boutons.length; i++) {
 				newP.appendChild(text1);
 				newP.appendChild(newInput);
 				
+				//newP.innerHTML = '<mark onclick="suppression(this)">-</mark>Compétence n°' + nb_comp + ' : <input id="comp_' + nb_comp + '" name=="comp_' + nb_comp + '" type="text" />';
 				
-				
+				newM.addEventListener("click", function() {
+					console.log(this);
+					suppression(this)
+				}); // CHELOU MAIS ça FONCTIONNE
 				
 			}
 			else {			

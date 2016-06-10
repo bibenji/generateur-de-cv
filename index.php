@@ -401,7 +401,6 @@ for (i = 0; i < boutons.length; i++) {
 				//newP.innerHTML = '<mark onclick="suppression(this)">-</mark>Compétence n°' + nb_comp + ' : <input id="comp_' + nb_comp + '" name=="comp_' + nb_comp + '" type="text" />';
 				
 				newM.addEventListener("click", function() {
-					console.log(this);
 					suppression(this)
 				}); // CHELOU MAIS ça FONCTIONNE
 				
@@ -411,38 +410,7 @@ for (i = 0; i < boutons.length; i++) {
 				newP.innerHTML = '<table><caption>' + caption + '</caption><tr><td rowspan="3"><mark onclick="suppression(this.parentNode)">-</mark></td><td class="' + att_name + '">Du :</td><td class="' + att_name + '"><input type="date" id="date_deb_' + att_name + '" name="date_deb_' + att_name +'" /></td><td class="' + att_name + '">Au :</td><td class="' + att_name + '"><input type="date" id="date_fin_' + att_name + '" name="date_fin_' + att_name +'" /></td></tr><tr><td class="' + att_name + '">' + quoi + ' :</td><td class="' + att_name + '"><input type="text" id="pre_quoi_' + att_name + '" name="pre_quoi_' + att_name +'" /></td><td class="' + att_name + '">' + lieu + ' :</td><td class="' + att_name + '"><input type="text" id="nom_ou_' + att_name + '" name="nom_ou_' + att_name +'" /></td></tr><tr><td class="' + att_name + '">Ville :</td><td class="' + att_name + '"><input type="text" id="ville_' + att_name + '" name="ville_' + att_name +'" /></td><td class="' + att_name + '">Département :</td><td class="' + att_name + '"><input type="text" id="code_dep_' + att_name + '" name="code_dep_' + att_name +'" /></td></tr><tr><td colspan="5"><span class="lerreur" margin="10px">Votre ville doit être écrite en majuscules...</span></td></table>';
 			}	
 			
-			
-			/*
-			var newText = document.createTextNode(" Poste occupé : ");
-			newP.appendChild(newText);
-			
-			var newInput = document.createElement("input");
-			newInput.type = "text";
-			newP.appendChild(newInput);
-			
-			var newText = document.createTextNode(" Entreprise : ");
-			newP.appendChild(newText);
-			
-			var newInput = document.createElement("input");
-			newInput.type = "text";
-			newP.appendChild(newInput);
-			
-			var newText = document.createTextNode(" Ville : ");
-			newP.appendChild(newText);
-			
-			var newInput = document.createElement("input");
-			newInput.type = "text";
-			newP.appendChild(newInput);
-			
-			var newText = document.createTextNode(" Département : ");
-			newP.appendChild(newText);
-			
-			var newInput = document.createElement("input");
-			newInput.type = "text";
-			newInput.size = "2";
-			newP.appendChild(newInput);
-			*/
-			
+		
 			parent.appendChild(newP);
 			
 			
@@ -454,14 +422,6 @@ for (i = 0; i < boutons.length; i++) {
 	
 }
 
-
-/*
-var newText = document.createTextNode("Hello World : ");
-var newInput = document.createElement("input");
-newInput.type = "text";
-boutons[i].parentNode.appendChild(newText);
-boutons[i].appendChild(newInput);
-*/
 
 
 </script>

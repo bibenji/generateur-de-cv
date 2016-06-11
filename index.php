@@ -54,16 +54,16 @@
 
 	<div class="rubrique" id="ide">
 		<h3>Identité</h3>
-			<p>Sexe : <input type="radio" name="sexe" id="homme"> <label for="homme">Homme</label> <input type="radio" name="sexe" id="femme"> <label for="femme">Femme</label><span class="lerreur">Champ à renseigner...</span></p>
+			<p>Sexe : <input type="radio" name="sexe" id="homme"> <label for="homme">Homme</label> <input type="radio" name="sexe" id="femme"> <label for="femme">Femme</label><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p>
 
-		<p><label for="nom">NOM :</label> <input type="text" id="nom" name="ide_nom"><span class="lerreur">Votre nom doit être écrit en majuscules et contenir au moins 2 lettres...</span></p>
-		<p><label for="prenom" >Prénom :</label> <input type="text" id="prenom" name="ide_prenom"><span class="lerreur">Votre prénom doit commencer par une majuscule et contenir au moins 2 lettres...</span></p>
-		<p><label for="adresse">Adresse :</label> <input type="text" size="50%" id="adresse" name="ide_adresse"><span class="lerreur">Votre adresse doit être du type : "13 rue des Lavandières"...</span></p>
-		<p><label for="ville">Ville :</label> <input type="text" id="ville" name="ide_ville"><span class="lerreur">Votre ville doit être écrite en majuscules...</span></p>
-		<p><label for="codepostal">Code Postal :</label> <input type="text" id="codepostal" name="ide_codepo"><span class="lerreur">Votre code postal doit être composé de 5 chiffres...</span></p>
-		<p><label for="datenaissance">Date de naissance :</label> <input type="date" id="datenaissance" name="ide_datenaiss"><span class="lerreur">Votre date de naissance doit être indiquée au format 26/03/1987...</span></p>
-		<p><label for="permis">Permis de conduire :</label> <select id="permis" name="ide_permis"><option selected="selected">Pas de permis</option><option>Permis B</option><option>Permis D</option></select><span class="lerreur">Champ à renseigner...</span></p>
-		<p><label for="vehicule">Véhicule :</label> <select id="vehicule" name="ide_vehicule"><option selected="selected">Non</option><option>Oui</option><option>Moto / Scooter</option></select><span class="lerreur">Champ à renseigner...</span></p>
+		<p><label for="nom">NOM :</label> <input type="text" name="" id="ide_nom"><span class="lerreur lerreurstyle1">Votre nom doit être écrit en majuscules et contenir au moins 2 lettres...</span></p>
+		<p><label for="prenom" >Prénom :</label> <input type="text" name="prenom" id="ide_prenom"><span class="lerreur lerreurstyle1">Votre prénom doit commencer par une majuscule et contenir au moins 2 lettres...</span></p>
+		<p><label for="adresse">Adresse :</label> <input type="text" size="50%" name="" id="ide_adresse"><span class="lerreur lerreurstyle1">Votre adresse doit être du type : "13 rue des Lavandières"...</span></p>
+		<p><label for="ville">Ville :</label> <input type="text" name="" id="ide_ville"><span class="lerreur lerreurstyle1">Votre ville doit être écrite en majuscules...</span></p>
+		<p><label for="codepostal">Code Postal :</label> <input type="text" name="" id="ide_codepo"><span class="lerreur lerreurstyle1">Votre code postal doit être composé de 5 chiffres...</span></p>
+		<p><label for="datenaissance">Date de naissance :</label> <input type="date" name="" id="ide_datenaiss"><span class="lerreur lerreurstyle1">Votre date de naissance doit être indiquée au format 26/03/1987...</span></p>
+		<p><label for="permis">Permis de conduire :</label> <select name="" id="ide_permis"><option selected="selected">Pas de permis</option><option>Permis B</option><option>Permis D</option></select><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p>
+		<p><label for="vehicule">Véhicule :</label> <select name="" id="ide_vehicule"><option selected="selected">Non</option><option>Oui</option><option>Moto / Scooter</option></select><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p>
 	</div>
 
 	<div class="rubrique_hidden" id="tit">
@@ -74,7 +74,7 @@
 	<div class="rubrique_hidden" id="obj">
 		<h3>Objectif</h3>
 			<p>Objectif : <select><option>Emploi</option><option>Stage</option></select></p>
-			<p>Mon objectif :<br><textarea cols="50" rows="5" name="objectif">Candidature pour un poste en tant que... Demande de stage en tant que...</textarea></p>
+			<p>Mon objectif :<br><textarea cols="50" rows="5" id="objectif" name="">Candidature pour un poste en tant que... Demande de stage en tant que...</textarea></p>
 	</div>
 
 	<div class="rubrique_hidden" id="com">
@@ -209,21 +209,24 @@ function comptage_p(e) {
 		e.preventDefault();
 	}
 
-// FUNCTION DE COMPTAGE DES INPUTS AFFICHES
+// FUNCTION DE COMPTAGE DES INPUTS AFFICHES ET NON-AFFICHES
 function comptage() {
-		var results_comptage = [ ];
+		var results_comptage = {
+			aff: [ ],
+			nonaff: [ ]
+			};
 		var lesdivs = milieu.getElementsByTagName("div");
 		
 		for (var i = 0, j = 0, c = lesdivs.length; i < c; i++) {
 				if (lesdivs[i].getAttribute("class") == "rubrique") {
-					results_comptage[j] = lesdivs[i];
-					j++;
-					
+					results_comptage.aff.push(lesdivs[i]);
+					}
+				else {
+					results_comptage.nonaff.push(lesdivs[i]);
 					}
 				}
 				
-		
-		console.log(results_comptage);
+				
 		return results_comptage;
 		}
 
@@ -322,17 +325,21 @@ function Verif(form) {
 	
 //SELECTION DE TOUS LES INPUTS DANS PARTIE IDENTITE
 		var a_verifier = comptage(); //RENVOI LE TABLEAU DES ADRESSES DES DIV AFFICHEES
-		
+		var avirer = a_verifier.nonaff;
+				
+		var a_verifier = a_verifier.aff;
+				
 		//PARCOURS DE CE TABLEAU
 		for (var i = 0, c = a_verifier.length; i < c; i++) { // ON BOUCLE LES DIVS
 			var inputs_a_verifier = a_verifier[i].getElementsByTagName("input");
 			for (var j = 0, d = inputs_a_verifier.length; j < d; j++) { //ON BOUCLE LES INPUTS
 						
 						var chi = inputs_a_verifier[j];
+						chi.name = chi.id;
 						
 						
 						for (var boite in tabregs) { 
-							if (chi.id.substr(0,3) == boite.substr(0,3)) {
+							if (chi.id.substr(4,3) == boite.substr(0,3)) {
 								console.log ("Une expression régulière trouvée pour : " + chi.id + " == " + boite);
 								var temp = new Elmt(i, chi.id, chi.value, tabregs[boite]); //Lance le truc auto !?!?
 								ListElmt.push(temp);
@@ -361,6 +368,14 @@ function Verif(form) {
 		
 			if (envoi == true) {
 				console.log("c'est tout bon");
+				
+					for (var i = 0, c = avirer.length; i < c; i++) {
+						var lesinputs = avirer[i].getElementsByTagName("input");
+						for (var j = 0, d = lesinputs.length; j < d; j++) {
+						lesinputs[j]. name = "";
+						}
+					}
+				
 				leform.submit();
 				}
 			else { console.log("c'est pas bon");}
@@ -406,7 +421,7 @@ for (i = 0; i < boutons.length; i++) {
 						
 			if(parent.id == "exp") {
 				nb_xp += 1;
-				var att_name = "xp" + nb_xp;
+				var att_name = "exp_";
 				var caption = "Expérience n°" + nb_xp;
 				var quoi = "Poste occupé";
 				var lieu = "Entreprise";
@@ -414,7 +429,7 @@ for (i = 0; i < boutons.length; i++) {
 			
 			if(parent.id == "for") {
 				nb_for += 1;
-				var att_name = "for" + nb_for;
+				var att_name = "for_";
 				var caption = "Formation n°" + nb_for;
 				var quoi = "Intitulé";
 				var lieu = "Organisme";
@@ -435,12 +450,12 @@ for (i = 0; i < boutons.length; i++) {
 				
 				var text1 = document.createTextNode('Compétence n°' + nb_comp + ' : ');
 				var newInput = document.createElement("input");
-				newInput.id = newInput.name = 'comp_' + nb_comp;
+				newInput.id = 'com_com_' + nb_comp;
 				newInput.type = "text";
 				
 				var newSpan = document.createElement("span");
-				newSpan.className = "lerreur";
-				newSpan.innerHTML = "Erreur d'écriture...";
+				newSpan.className = "lerreur lerreurstyle2";
+				newSpan.innerHTML = "La compétence indiquée ne peut être traitée...";
 				
 								
 				newP.appendChild(newM);
@@ -465,23 +480,23 @@ for (i = 0; i < boutons.length; i++) {
 				newTR.appendChild(newTD);
 				
 				newTD = document.createElement("td");
-				newTD.class = att_name;
+				//newTD.class = att_name;
 				newTD.innerHTML = "Du :";
 				newTR.appendChild(newTD);
 				
 				newTD = document.createElement("td");
-				newTD.class = att_name;
-				newTD.innerHTML = '<input type="date" id="date_deb_' + att_name + '" name="date_deb_' + att_name +'" />';
+				//newTD.class = att_name;
+				newTD.innerHTML = '<input type="date" name="" id="' + att_name + 'datedebut_' + (parent.id == "com" ? nb_comp : nb_xp) + '" />';
 				newTR.appendChild(newTD);
 				
 				newTD = document.createElement("td");
-				newTD.class = att_name;
+				//newTD.class = att_name;
 				newTD.innerHTML = "Au :";
 				newTR.appendChild(newTD);
 				
 				newTD = document.createElement("td");
-				newTD.class = att_name;
-				newTD.innerHTML = '<input type="date" id="date_fin_' + att_name + '" name="date_fin_' + att_name +'" />';
+				//newTD.class = att_name;
+				newTD.innerHTML = '<input type="date" name="" id="' + att_name + 'datefin_' + (parent.id == "com" ?	nb_comp : nb_xp) + '" />';
 				newTR.appendChild(newTD);
 				
 				newT.appendChild(newTR);
@@ -491,13 +506,13 @@ for (i = 0; i < boutons.length; i++) {
 				newTR = document.createElement("tr");
 				
 				newTD = document.createElement("td");
-				newTD.class = att_name;
+				//newTD.class = att_name;
 				newTD.innerHTML = quoi;
 				newTR.appendChild(newTD);
 				
 				newTD = document.createElement("td");
-				newTD.class = att_name;
-				newTD.innerHTML = '<input type="text" id="pre_quoi_' + att_name + '" name="pre_quoi_' + att_name +'" />';
+				//newTD.class = att_name;
+				newTD.innerHTML = '<input type="text" name="" id="' + att_name + 'prequoi_' + (parent.id == "com" ?	nb_comp : nb_xp) + '" />';
 				newTR.appendChild(newTD);
 				
 				newTD = document.createElement("td");
@@ -507,7 +522,7 @@ for (i = 0; i < boutons.length; i++) {
 				
 				newTD = document.createElement("td");
 				newTD.class = att_name;
-				newTD.innerHTML = '<input type="text" id="nom_ou_' + att_name + '" name="nom_ou_' + att_name +'" />';
+				newTD.innerHTML = '<input type="text" name="" id="' + att_name + 'nomou_' + (parent.id == "com" ?	nb_comp : nb_xp) + '" />';
 				newTR.appendChild(newTD);
 				
 				newT.appendChild(newTR);
@@ -523,7 +538,7 @@ for (i = 0; i < boutons.length; i++) {
 				
 				newTD = document.createElement("td");
 				newTD.class = att_name;
-				newTD.innerHTML = '<input type="text" id="ville_' + att_name + '" name="ville_' + att_name +'" />';
+				newTD.innerHTML = '<input type="text" name="" id="' + att_name + 'ville_' + (parent.id == "com" ?	nb_comp : nb_xp) + '" />';
 				newTR.appendChild(newTD);
 				
 				newTD = document.createElement("td");
@@ -533,7 +548,7 @@ for (i = 0; i < boutons.length; i++) {
 				
 				newTD = document.createElement("td");
 				newTD.class = att_name;
-				newTD.innerHTML = '<input type="text" id="code_dep_' + att_name + '" name="code_dep_' + att_name +'" />';
+				newTD.innerHTML = '<input type="text" name="" id="' + att_name + 'codedep_' + (parent.id == "com" ?	nb_comp : nb_xp) + '" />';
 				newTR.appendChild(newTD);
 				
 				newT.appendChild(newTR);
@@ -550,7 +565,7 @@ for (i = 0; i < boutons.length; i++) {
 				newTD.style.textAlign = "left";
 				
 				var newSpan = document.createElement("span");
-				newSpan.className = "lerreur";
+				newSpan.className = "lerreur lerreurstyle2";
 				newSpan.setAttribute("width", "97%"); // NE MARCHE PAS
 				newSpan.innerHTML = "Les dates doivent être indiquées au format 26/03/1987 et correspondrent, l'intitulé doit être renseigné, l'entreprise et la ville écrites en majuscules, enfin le département au format 75018."
 				

@@ -348,18 +348,37 @@ box-shadow: 0px 1px 1px 1px #29b634;
 box-shadow: 0px 1px 1px 1px #bc2a2a;
 }
 
+.lerreurstyle1
+{
+	background-color: #fbc8c8;
+	color: #e63535;
+	padding: 5px 10px;
+	margin-left: 10px;
+	border-radius: 5px;
+	font-size: 60%;
+	border: solid 1px #c9b6b6;
+	float: right;
+	width: 35%;
+	
+}
+
+.lerreurstyle2
+{
+	background-color: #fbc8c8;
+	color: #e63535;
+	padding: 5px 10px;
+	margin-left: 10px;
+	border-radius: 5px;
+	font-size: 70%;
+	border: solid 1px #c9b6b6;
+	margin-top: 3px;
+	margin-bottom: 1px;
+	
+}
+
 .lerreur
 {
-background-color: #fbc8c8;
-color: #e63535;
-padding: 5px 10px;
-margin-left: 10px;
-border-radius: 5px;
-font-size: 70%;
-display: none;
-border: solid 1px #c9b6b6;
-margin-top: 3px;
-margin-bottom: 1px;
+	display: none;
 }
 
 .rub-sel

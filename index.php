@@ -17,6 +17,10 @@
 			<p>
 				<a href="rendu.php"><img src="rendu.png" /><br />Rendu CV</a>
 				<a href="testsphp.php"><img src="tests.png" /><br />Tests PHP</a>
+				<a href="#" onclick="affiche('ide');" class="rub-sel"><img src="rendu.png" /><br />Identité</a>
+				<a href="#"  onclick="affiche('tit');" class="rub-active"><img src="rendu.png" /><br />Titre</a>
+				<a href="#" onclick="affiche('obj');" ><img src="rendu.png" /><br />Objectif</a>
+				<a href="#" onclick="affiche('com');" ><img src="rendu.png" /><br />Compétences</a>
 			</p>
 		
 
@@ -35,17 +39,8 @@
 				<li><input type="checkbox">formation</li>
 				<li><input type="checkbox">informations complémentaires</li>
 			</ul>
-		
-			<ul>
-				<li>Améliorations possibles :</li>
-					<ul>
-						<li>Drag & Drop pour organisation du CV...</li>
-						<li>Modèle de CV</li>
-						<li>Publier mon CV en ligne... anonymement...</li>
-						<li>Être corrigé par un conseiller (payant)</li>
-						<li>Boutons de suppression des expériences/formation/compétences en trop</li>
-					</ul>
-			</ul>
+	
+
 			
 			<div id="compteur">
 				0 compétences, 0 expériences et 0 formations
@@ -61,14 +56,14 @@
 		<h3>Identité</h3>
 			<p>Sexe : <input type="radio" name="sexe" id="homme"> <label for="homme">Homme</label> <input type="radio" name="sexe" id="femme"> <label for="femme">Femme</label><span class="lerreur">Champ à renseigner...</span></p>
 
-		<p><label for="nom">NOM :</label> <input type="text" id="nom"><span class="lerreur">Votre nom doit être écrit en majuscules et contenir au moins 2 lettres...</span></p>
-		<p><label for="prenom" >Prénom :</label> <input type="text" id="prenom"><span class="lerreur">Votre prénom doit commencer par une majuscule et contenir au moins 2 lettres...</span></p>
-		<p><label for="adresse">Adresse :</label> <input type="text" size="50%" id="adresse"><span class="lerreur">Votre adresse doit être du type : "13 rue des Lavandières"...</span></p>
-		<p><label for="ville">Ville :</label> <input type="text" id="ville"><span class="lerreur">Votre ville doit être écrite en majuscules...</span></p>
-		<p><label for="codepostal">Code Postal :</label> <input type="text" id="codepostal"><span class="lerreur">Votre code postal doit être composé de 5 chiffres...</span></p>
-		<p><label for="datenaissance">Date de naissance :</label> <input type="date" id="datenaissance"><span class="lerreur">Votre date de naissance doit être indiquée au format 26/03/1987...</span></p>
-		<p><label for="permis">Permis de conduire :</label> <select id="permis"><option>Pas de permis</option><option>Permis B</option><option>Permis D</option></select><span class="lerreur">Champ à renseigner...</span></p>
-		<p><label for="vehicule">Véhicule :</label> <select id="vehicule"><option>Non</option><option>Oui</option><option>Moto / Scooter</option></select><span class="lerreur">Champ à renseigner...</span></p>
+		<p><label for="nom">NOM :</label> <input type="text" id="nom" name="ide_nom"><span class="lerreur">Votre nom doit être écrit en majuscules et contenir au moins 2 lettres...</span></p>
+		<p><label for="prenom" >Prénom :</label> <input type="text" id="prenom" name="ide_prenom"><span class="lerreur">Votre prénom doit commencer par une majuscule et contenir au moins 2 lettres...</span></p>
+		<p><label for="adresse">Adresse :</label> <input type="text" size="50%" id="adresse" name="ide_adresse"><span class="lerreur">Votre adresse doit être du type : "13 rue des Lavandières"...</span></p>
+		<p><label for="ville">Ville :</label> <input type="text" id="ville" name="ide_ville"><span class="lerreur">Votre ville doit être écrite en majuscules...</span></p>
+		<p><label for="codepostal">Code Postal :</label> <input type="text" id="codepostal" name="ide_codepo"><span class="lerreur">Votre code postal doit être composé de 5 chiffres...</span></p>
+		<p><label for="datenaissance">Date de naissance :</label> <input type="date" id="datenaissance" name="ide_datenaiss"><span class="lerreur">Votre date de naissance doit être indiquée au format 26/03/1987...</span></p>
+		<p><label for="permis">Permis de conduire :</label> <select id="permis" name="ide_permis"><option selected="selected">Pas de permis</option><option>Permis B</option><option>Permis D</option></select><span class="lerreur">Champ à renseigner...</span></p>
+		<p><label for="vehicule">Véhicule :</label> <select id="vehicule" name="ide_vehicule"><option selected="selected">Non</option><option>Oui</option><option>Moto / Scooter</option></select><span class="lerreur">Champ à renseigner...</span></p>
 	</div>
 
 	<div class="rubrique_hidden" id="tit">
@@ -79,7 +74,7 @@
 	<div class="rubrique_hidden" id="obj">
 		<h3>Objectif</h3>
 			<p>Objectif : <select><option>Emploi</option><option>Stage</option></select></p>
-			<p>Mon objectif :<br><textarea cols="50" rows="5">Candidature pour un poste en tant que... Demande de stage en tant que...</textarea></p>
+			<p>Mon objectif :<br><textarea cols="50" rows="5" name="objectif">Candidature pour un poste en tant que... Demande de stage en tant que...</textarea></p>
 	</div>
 
 	<div class="rubrique_hidden" id="com">
@@ -90,24 +85,63 @@
 	<div class="rubrique_hidden" id="qua">
 		<h3>Qualités</h3>
 			<p>Choisissez 3 qualités vous correspondant :</p>
-			<p style="-moz-column-count: 4;">
-			<input type="checkbox"> Dynamique<br>
-			<input type="checkbox"> Consciencieux<br>
-			<input type="checkbox"> Motivé<br>
-			<input type="checkbox"> Sociable<br>
-			<input type="checkbox"> Ponctuel<br>
-			<input type="checkbox"> Sens du contact<br>
-			<input type="checkbox"> Bon relationnel<br>
-			<input type="checkbox"> Sérieux<br>
-			<input type="checkbox"> A l'écoute<br>
-			<input type="checkbox"> Créatif<br>
-			<input type="checkbox"> Sang-froid<br>
-			<input type="checkbox"> Bienveillance<br>
-			<input type="checkbox"> Patient<br>
-			<input type="checkbox"> Appliqué<br>
-			<input type="checkbox"> Soigné<br>
-			<input type="checkbox"> Minutieux
-			</p>	
+			<table>
+			<tr>
+				<td>Qualités</td><td>Ma qualité n°1</td>
+			</tr>
+			<tr>
+				<td>Dynamique</td><td><input type="radio" name="qua1" value="Dynamique"/></td>
+			</tr>
+			<tr>
+					<td>Consciencieux</td><td><input type="radio" name="qua1" value="Consciencieux"/></td>
+			</tr>
+			<tr>
+					 <td>Motivé</td><td><input type="radio" name="qua1" value="Motivé"/></td>
+			</tr>
+			<tr>
+					 <td>Sociable</td><td><input type="radio" name="qua1" value="Sociable"/></td>
+			</tr>
+			<tr>
+					 <td>Ponctuel</td><td><input type="radio" name="qua1" value="Ponctuel"/></td>
+			</tr>
+			<tr>
+					<td>Sens du contact</td><td><input type="radio" name="qua1" value="Sens du contact"/></td>
+			</tr>
+			<tr>
+					 <td>Bon relationnel</td><td><input type="radio" name="qua1" value="Bon relationnel"/></td>
+			</tr>
+			<tr>
+					 <td>Sérieux</td><td><input type="radio" name="qua1" value="Sérieux"/></td>
+			</tr>
+			<tr>
+					 <td>A l'écoute</td><td><input type="radio" name="qua1" value="A l'écoute"/></td>
+			</tr>
+			<tr>
+					 <td>Créatif</td><td><input type="radio" name="qua1" value="Créatif"/></td>
+			</tr>
+			<tr>
+					 <td>Sang-froid</td><td><input type="radio" name="qua1" value="Sang-froid"/></td>
+			</tr>
+			<tr>
+					 <td>Bienveillance</td><td><input type="radio" name="qua1" value="Bienveillance"/></td>
+			</tr>
+			<tr>
+					 <td>Patient</td><td><input type="radio" name="qua1" value="Patient"/></td>
+			</tr>
+			<tr>
+					 <td>Appliqué</td><td><input type="radio" name="qua1" value="Appliqué"/></td>
+			</tr>
+			<tr>
+					 <td>Soigné</td><td><input type="radio" name="qua1" value="Soigné"/></td>
+			</tr>
+			<tr>
+					 <td>Minutieux</td><td><input type="radio" name="qua1" value="Minutieux"/></td>
+				
+				
+			</tr>
+			</table>
+			
+			
 	</div>
 
 	<div class="rubrique_hidden" id="exp">
@@ -219,6 +253,7 @@ function affiche(elem) {
 			codepostal: '^\\d{5}$',
 			datenaissance: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
 			date: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
+			comp: '[A-Z][a-z]+'
 		};
 
 //FONCTION DE VERIFICATION DU CHAMP SAISI REGHEX... 
@@ -283,7 +318,7 @@ function Verif(form) {
 			console.log(elm.laval);
 		}
 		*/
-		
+		envoi = true; //ON INITIALISE ENVOI
 	
 //SELECTION DE TOUS LES INPUTS DANS PARTIE IDENTITE
 		var a_verifier = comptage(); //RENVOI LE TABLEAU DES ADRESSES DES DIV AFFICHEES
@@ -295,7 +330,7 @@ function Verif(form) {
 						
 						var chi = inputs_a_verifier[j];
 						
-						envoi = true; //ON INITIALISE ENVOI
+						
 						for (var boite in tabregs) { 
 							if (chi.id.substr(0,3) == boite.substr(0,3)) {
 								console.log ("Une expression régulière trouvée pour : " + chi.id + " == " + boite);
@@ -324,7 +359,7 @@ function Verif(form) {
 				}
 			}
 		
-			if (envoi) {
+			if (envoi == true) {
 				console.log("c'est tout bon");
 				leform.submit();
 				}
@@ -388,7 +423,7 @@ for (i = 0; i < boutons.length; i++) {
 			
 			var newP = document.createElement("p");		
 			var newM = document.createElement("mark");
-				newM.innerHTML = "-";
+				newM.innerHTML = "X";
 				newM.addEventListener("click", function() {
 					suppression(this)
 				}); // CHELOU MAIS ça FONCTIONNE
@@ -398,15 +433,20 @@ for (i = 0; i < boutons.length; i++) {
 				
 				
 				
-				var text1 = document.createTextNode('Compétence n°' + nb_comp + ' :');
+				var text1 = document.createTextNode('Compétence n°' + nb_comp + ' : ');
 				var newInput = document.createElement("input");
 				newInput.id = newInput.name = 'comp_' + nb_comp;
 				newInput.type = "text";
 				
+				var newSpan = document.createElement("span");
+				newSpan.className = "lerreur";
+				newSpan.innerHTML = "Erreur d'écriture...";
+				
+								
 				newP.appendChild(newM);
 				newP.appendChild(text1);
 				newP.appendChild(newInput);
-				
+				newP.appendChild(newSpan);
 				
 			}
 			else {			
@@ -503,12 +543,16 @@ for (i = 0; i < boutons.length; i++) {
 				newTR = document.createElement("tr");
 				
 				newTD = document.createElement("td");
-				newTD.setAttribute("colspan", "5");
+				newTR.appendChild(newTD);
+				
+				newTD = document.createElement("td");
+				newTD.setAttribute("colspan", "4");
+				newTD.style.textAlign = "left";
 				
 				var newSpan = document.createElement("span");
 				newSpan.className = "lerreur";
-				newSpan.margin = "10px";
-				newSpan.innerHTML = "Votre ville doit être écrite en majuscules..."
+				newSpan.setAttribute("width", "97%"); // NE MARCHE PAS
+				newSpan.innerHTML = "Les dates doivent être indiquées au format 26/03/1987 et correspondrent, l'intitulé doit être renseigné, l'entreprise et la ville écrites en majuscules, enfin le département au format 75018."
 				
 				newTD.appendChild(newSpan);
 				newTR.appendChild(newTD);

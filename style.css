@@ -38,9 +38,10 @@ padding: 5px 0px;
 header nav a
 {
 background-color: #F1A9A0;
-min-height: 100px;
+min-height: 50px;
+width: 100px;
 display: inline-block;
-padding: 20px 20px 0px;
+padding: 10px 20px 5px;
 border: 1px solid #6C7A89;
 border-radius: 20px;
 margin: 0px 2px;
@@ -143,14 +144,22 @@ padding: 5px 10px;
 border-radius: 20px;
 font-weight: bold;
 font-size: 100%;
+background-color: #D91E18;
+color: white;
+cursor: pointer;
 }
 
 mark:hover
 {
-background-color: red;
+background-color: yellow;
 }
 
-.rubrique table { background-color: #A0A0A0;}
+.rubrique table {
+	background-color: #D4D4D4;
+	width: 100%;
+	border: solid grey 1px;
+	box-shadow: 2px 2px 2px grey;
+}
 .rubrique table tr td {
 	padding-right: 10px;
 	text-align: right;
@@ -348,6 +357,17 @@ margin-left: 10px;
 border-radius: 5px;
 font-size: 70%;
 display: none;
-float: right;
-width: 35%;
+border: solid 1px #c9b6b6;
+margin-top: 3px;
+margin-bottom: 1px;
+}
+
+.rub-sel
+{
+	background: #90C695;
+}
+
+.rub-active
+{
+	background: #EB9532;
 }

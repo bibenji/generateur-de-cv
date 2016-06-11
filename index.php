@@ -7,23 +7,19 @@
 
 <body>
 
+<div id="main">
+
 <header>
-	<h1>Générateur de Cvs et de Lettres de motivation</h1>
+	<h1>Curriculum Vite Fait</h1>
+	<span id="soustitre">N°1 sur les CVs en ligne</span>
 
 		<nav id="haut">
 			<p>
-				<a href="rendu.php">CVs</a> | Lettres de motivation
+				<a href="rendu.php"><img src="rendu.png" /><br />Rendu CV</a>
+				<a href="testsphp.php"><img src="tests.png" /><br />Tests PHP</a>
 			</p>
 		
-			<p>
-				<a href="">Identité</a> > 
-				<a href="">Titre</a> > 
-				<a href="">Compétences</a> > 
-				<a href="">Expériences</a> > 
-				<a href="">Formation</a> > 
-				<a href="">Informations complémentaires</a> > 
-				<a href="">Finalisation</a>
-			</p>
+
 		</nav>
 </header>
 
@@ -59,7 +55,7 @@
 
 <section id="milieu">
 
-<form method="post" action="rendu.php" id="form">
+<form method="post" action="testsphp.php" id="form">
 
 	<div class="rubrique" id="ide">
 		<h3>Identité</h3>
@@ -148,7 +144,7 @@
 
 //DECLARATION DES VARIABLES GLOBALES
 var milieu = document.getElementById("milieu");
-
+var envoi; // variable finale de verif
 
 //FUNCTION DE SUPPRESSION DES PARAGRAPHES COMP, XP, FORMATIONS = OK
 function suppression(to_suppr) {
@@ -299,6 +295,7 @@ function Verif(form) {
 						
 						var chi = inputs_a_verifier[j];
 						
+						envoi = true; //ON INITIALISE ENVOI
 						for (var boite in tabregs) { 
 							if (chi.id.substr(0,3) == boite.substr(0,3)) {
 								console.log ("Une expression régulière trouvée pour : " + chi.id + " == " + boite);
@@ -310,19 +307,28 @@ function Verif(form) {
 									chi.classList.remove("error");
 									var lerreur = span_erreur(chi);
 									lerreur.style.display = "none";
+									
 									}
 								else {
 									chi.classList.add("error");
 									chi.classList.remove("correct");
 									var lerreur = span_erreur(chi);
 									lerreur.style.display = "inline-block";
+									envoi = false; //VARIABLE POUR SAVOIR SI ENVOI OU NON DU FORMULAIRE
 									}
 							
 							}
 						}
+						
 		
 				}
 			}
+		
+			if (envoi) {
+				console.log("c'est tout bon");
+				leform.submit();
+				}
+			else { console.log("c'est pas bon");}
 		
 		};
 		
@@ -330,9 +336,9 @@ function Verif(form) {
 		
 
 //APPEL DE LA FONCTION VERIF
-	var form = document.getElementById('form');
+	var leform = document.getElementById('form');
 	
-	form.addEventListener("submit", Verif, false);		
+	leform.addEventListener("submit", Verif, false);		
 
 //REPRENDRE ICI !!
 //-----------------------------------------------------------------------------------------------------------------------------------
@@ -381,14 +387,17 @@ for (i = 0; i < boutons.length; i++) {
 			
 			
 			var newP = document.createElement("p");		
-			
+			var newM = document.createElement("mark");
+				newM.innerHTML = "-";
+				newM.addEventListener("click", function() {
+					suppression(this)
+				}); // CHELOU MAIS ça FONCTIONNE
 			
 			if(parent.id == "com") {
 				nb_comp += 1;		
 				
-				var newM = document.createElement("mark");
 				
-				newM.innerHTML = "-";
+				
 				var text1 = document.createTextNode('Compétence n°' + nb_comp + ' :');
 				var newInput = document.createElement("input");
 				newInput.id = newInput.name = 'comp_' + nb_comp;
@@ -398,16 +407,117 @@ for (i = 0; i < boutons.length; i++) {
 				newP.appendChild(text1);
 				newP.appendChild(newInput);
 				
-				//newP.innerHTML = '<mark onclick="suppression(this)">-</mark>Compétence n°' + nb_comp + ' : <input id="comp_' + nb_comp + '" name=="comp_' + nb_comp + '" type="text" />';
-				
-				newM.addEventListener("click", function() {
-					suppression(this)
-				}); // CHELOU MAIS ça FONCTIONNE
 				
 			}
 			else {			
-			
-				newP.innerHTML = '<table><caption>' + caption + '</caption><tr><td rowspan="3"><mark onclick="suppression(this.parentNode)">-</mark></td><td class="' + att_name + '">Du :</td><td class="' + att_name + '"><input type="date" id="date_deb_' + att_name + '" name="date_deb_' + att_name +'" /></td><td class="' + att_name + '">Au :</td><td class="' + att_name + '"><input type="date" id="date_fin_' + att_name + '" name="date_fin_' + att_name +'" /></td></tr><tr><td class="' + att_name + '">' + quoi + ' :</td><td class="' + att_name + '"><input type="text" id="pre_quoi_' + att_name + '" name="pre_quoi_' + att_name +'" /></td><td class="' + att_name + '">' + lieu + ' :</td><td class="' + att_name + '"><input type="text" id="nom_ou_' + att_name + '" name="nom_ou_' + att_name +'" /></td></tr><tr><td class="' + att_name + '">Ville :</td><td class="' + att_name + '"><input type="text" id="ville_' + att_name + '" name="ville_' + att_name +'" /></td><td class="' + att_name + '">Département :</td><td class="' + att_name + '"><input type="text" id="code_dep_' + att_name + '" name="code_dep_' + att_name +'" /></td></tr><tr><td colspan="5"><span class="lerreur" margin="10px">Votre ville doit être écrite en majuscules...</span></td></table>';
+				
+				var newT = document.createElement("table");
+				var newC = document.createElement("caption");
+				newC.innerHTML = caption;
+				newT.appendChild(newC);
+				
+				//LIGNE 1
+				var newTR = document.createElement("tr");
+				
+				var newTD = document.createElement("td");
+				newTD.setAttribute("rowspan", "3");
+				newTD.appendChild(newM);
+				newTR.appendChild(newTD);
+				
+				newTD = document.createElement("td");
+				newTD.class = att_name;
+				newTD.innerHTML = "Du :";
+				newTR.appendChild(newTD);
+				
+				newTD = document.createElement("td");
+				newTD.class = att_name;
+				newTD.innerHTML = '<input type="date" id="date_deb_' + att_name + '" name="date_deb_' + att_name +'" />';
+				newTR.appendChild(newTD);
+				
+				newTD = document.createElement("td");
+				newTD.class = att_name;
+				newTD.innerHTML = "Au :";
+				newTR.appendChild(newTD);
+				
+				newTD = document.createElement("td");
+				newTD.class = att_name;
+				newTD.innerHTML = '<input type="date" id="date_fin_' + att_name + '" name="date_fin_' + att_name +'" />';
+				newTR.appendChild(newTD);
+				
+				newT.appendChild(newTR);
+				
+				//LIGNE 2
+				
+				newTR = document.createElement("tr");
+				
+				newTD = document.createElement("td");
+				newTD.class = att_name;
+				newTD.innerHTML = quoi;
+				newTR.appendChild(newTD);
+				
+				newTD = document.createElement("td");
+				newTD.class = att_name;
+				newTD.innerHTML = '<input type="text" id="pre_quoi_' + att_name + '" name="pre_quoi_' + att_name +'" />';
+				newTR.appendChild(newTD);
+				
+				newTD = document.createElement("td");
+				newTD.class = att_name;
+				newTD.innerHTML = lieu;
+				newTR.appendChild(newTD);
+				
+				newTD = document.createElement("td");
+				newTD.class = att_name;
+				newTD.innerHTML = '<input type="text" id="nom_ou_' + att_name + '" name="nom_ou_' + att_name +'" />';
+				newTR.appendChild(newTD);
+				
+				newT.appendChild(newTR);
+				
+				//LIGNE 3
+				
+				newTR = document.createElement("tr");
+				
+				newTD = document.createElement("td");
+				newTD.class = att_name;
+				newTD.innerHTML = "Ville :";
+				newTR.appendChild(newTD);
+				
+				newTD = document.createElement("td");
+				newTD.class = att_name;
+				newTD.innerHTML = '<input type="text" id="ville_' + att_name + '" name="ville_' + att_name +'" />';
+				newTR.appendChild(newTD);
+				
+				newTD = document.createElement("td");
+				newTD.class = att_name;
+				newTD.innerHTML = "Département :";
+				newTR.appendChild(newTD);
+				
+				newTD = document.createElement("td");
+				newTD.class = att_name;
+				newTD.innerHTML = '<input type="text" id="code_dep_' + att_name + '" name="code_dep_' + att_name +'" />';
+				newTR.appendChild(newTD);
+				
+				newT.appendChild(newTR);
+				
+				//LIGNE 4
+				
+				newTR = document.createElement("tr");
+				
+				newTD = document.createElement("td");
+				newTD.setAttribute("colspan", "5");
+				
+				var newSpan = document.createElement("span");
+				newSpan.className = "lerreur";
+				newSpan.margin = "10px";
+				newSpan.innerHTML = "Votre ville doit être écrite en majuscules..."
+				
+				newTD.appendChild(newSpan);
+				newTR.appendChild(newTD);
+				newT.appendChild(newTR);
+				
+				//INSERTION FINALE DANS LE PARAGRAPHE
+				newP.appendChild(newT);
+				
+				
 			}	
 			
 		
@@ -429,6 +539,8 @@ for (i = 0; i < boutons.length; i++) {
 <footer>
 	<h2>Propulsé par Dr. B.</h2>
 </footer>
+
+</div>
 
 </body>
 </html>

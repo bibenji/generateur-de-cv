@@ -86,14 +86,7 @@ margin-left: 2%;
 }
 
 
-section h3 {
-color: white;
 
-text-transform: uppercase;
-padding: 10px;
-margin: -10px -10px 0px;
-background-color: #6C7A89;
-}
 
 aside, section {
 float: left;
@@ -109,7 +102,7 @@ background-color: #6C7A89;
 color: white;
 padding: 10px 20px;
 
-
+box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
 
 }
 
@@ -142,13 +135,45 @@ text-align: left;
 
 .rubrique
 {
-padding: 10px;
+padding: 0px;
 display: block;
-
 margin-bottom: 10px;
 overflow: hidden;
 background-color: #DADFE1;
+box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
 }
+
+
+.rubrique h3
+{
+	color: white;
+	padding: 10px;
+	margin: 0px;
+
+	width: 100%;
+	text-transform: uppercase;
+	
+	background-color: #6C7A89;
+	/*background-color: #6C7A89;*/
+}
+
+/*
+.rubrique[id=ide] h3 { background-color: white; color: #3C43A7;}
+.rubrique[id=ide] { background-color: #D6D9FF;}
+
+
+/*background-color: #3C43A7;*/
+/*
+.rubrique[id=tit] h3 { background-color: #3A5DA7;}
+.rubrique[id=tit] { background-color: #D4E2FF;}
+
+.rubrique[id=obj] h3 { background-color: #3A68A7;}
+.rubrique[id=obj] { background-color: #D3E6FF;}
+
+.rubrique[id=com] h3 { background-color: #3977A7;}
+.rubrique[id=com] { background-color: #D2EBFF;}
+
+*/
 
 mark
 {

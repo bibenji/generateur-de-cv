@@ -21,7 +21,7 @@
 				<a href="#" onclick="affiche('ide');" class="rub-sel"><img src="rendu.png" /><br />Identité</a>
 				<a href="#"  onclick="affiche('tit');" class="rub-active"><img src="rendu.png" /><br />Titre</a>
 				<a href="#" onclick="affiche('obj');" ><img src="rendu.png" /><br />Objectif</a>
-				<a href="#" onclick="affiche('com');" ><img src="rendu.png" /><br />Comp?nces</a>
+				<a href="#" onclick="affiche('com');" ><img src="rendu.png" /><br />Compétences</a>
 			</p>
 		</nav>
 	-->
@@ -65,6 +65,7 @@
 		<p><label for="datenaissance">Date de naissance :</label> <input type="date" name="" id="ide_datenaiss"><span class="lerreur lerreurstyle1">Votre date de naissance doit être indiquée au format 26/03/1987...</span></p>
 		<p><label for="permis">Permis de conduire :</label> <select name="" id="ide_permis"><option selected="selected">Pas de permis</option><option>Permis B</option><option>Permis D</option></select><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p>
 		<p><label for="vehicule">Véhicule :</label> <select name="" id="ide_vehicule"><option selected="selected">Non</option><option>Oui</option><option>Moto / Scooter</option></select><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p>
+		
 	</div>
 
 	<div class="rubrique_hidden" id="tit">

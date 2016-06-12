@@ -10,9 +10,10 @@
 <div id="main">
 
 <header>
-	<h1>Curriculum Vite Fait</h1>
-	<span id="soustitre">N°1 sur les CVs en ligne</span>
-
+	<h1>Curriculum</h1>
+	<span id="soustitre">Vite Fait</span>
+	
+	<!--
 		<nav id="haut">
 			<p>
 				<a href="rendu.php"><img src="rendu.png" /><br />Rendu CV</a>
@@ -22,12 +23,12 @@
 				<a href="#" onclick="affiche('obj');" ><img src="rendu.png" /><br />Objectif</a>
 				<a href="#" onclick="affiche('com');" ><img src="rendu.png" /><br />Compétences</a>
 			</p>
-		
-
 		</nav>
+	-->
+	
 </header>
 
-<aside class="rubrique">
+<aside>
 		<p>Quelles parties souhaitez-vous intégrer à votre CV ?</p>
 
 			<ul>

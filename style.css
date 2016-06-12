@@ -6,26 +6,42 @@ padding: 0px;
 
 #main
 {
-	background: transparent -moz-linear-gradient(right bottom , white, rgb(235, 235, 235)) repeat scroll 0% 0%;
-    border-left: 1px solid grey;
+	
+    
 	margin-top: -10px;
 }
 
 header {
 text-align: center;
-margin: 10px 0px 0px;
-left: -1px;
+margin: 0px 0px 20px;
 position: relative;
-border-left: 1px solid grey;
 
-background: -moz-linear-gradient(bottom right, white, #ebebeb);
+
+
+background-color: #FDE3A7;
+width: 98%;
+
+background-image: url('fond.jpg');
+background-size: 100%;
+background-position: 0 267px;
+padding: 20px 0px 50px;
 }
 
 h1 {
-color: #22313F;
-
-padding: 20px 0px;
+color: white;
+font-size: 400%;
+padding: 0px 0px 0px;
 margin: 0px;
+
+}
+
+h1 + span
+{
+	color: white;
+font-size: 200%;
+font-weight: bold;
+position: relative;
+top: -15px;
 }
 
 header nav {
@@ -63,57 +79,55 @@ header nav a img
 }
 
 section {
-	
-	width: 70%;
-	
-	
-	border-radius: 10px;
-	overflow: hidden;
+width: 70%;
+margin-left: 2%;
+
+
 }
 
 
 section h3 {
-background: -moz-linear-gradient(bottom right, white, #b0a3a3);
 color: white;
-border: solid grey 1px;
+
 text-transform: uppercase;
 padding: 10px;
 margin: -10px -10px 0px;
-
+background-color: #6C7A89;
 }
 
 aside, section {
 float: left;
-margin-left: 1%;
+
 }
 
 aside { 
-width: 24%;
+width: 23%;
 font-size: 80%;
 text-align: left;
 position: relative;
-left: -1px;
-background-color: #a0a0a0;
-border-radius: 10px;
-box-shadow: 2px 2px 5px black;
-border: solid grey 1px;
+background-color: #6C7A89;
+color: white;
+padding: 10px 20px;
+
+
+
 }
 
 
 section nav {
-text-align: center;
-background-color: #A0A0A0;
-padding: 5px 0px;
-border-radius: 10px;
-border: solid 1px grey;
+text-align: right;
+padding: 5px 0px 15px;
 margin: 0px auto;
 }
 
 footer {
 clear: both;
 text-align: center;
-background: -moz-linear-gradient(bottom right, white, #ebebeb);
+margin-top: 10px;
 margin-bottom: -20px;
+background-color: #6C7A89;
+color: white;
+font-size: 70%;
 }
 
 footer h2
@@ -128,13 +142,12 @@ text-align: left;
 
 .rubrique
 {
-
 padding: 10px;
 display: block;
-border: solid 1px grey;
-border-radius: 10px;
+
 margin-bottom: 10px;
 overflow: hidden;
+background-color: #DADFE1;
 }
 
 mark
@@ -155,10 +168,9 @@ background-color: yellow;
 }
 
 .rubrique table {
-	background-color: #D4D4D4;
+	
 	width: 100%;
-	border: solid grey 1px;
-	box-shadow: 2px 2px 2px grey;
+	
 }
 .rubrique table tr td {
 	padding-right: 10px;
@@ -173,7 +185,7 @@ padding: 10px;
 display: none;
 }
 
-.rubrique li
+aside li
 {
 list-style-type: none;
 text-align: left;
@@ -305,37 +317,39 @@ margin: 15px 30px;
 
 input[type=text], input[type=date]
 {
-border-radius: 7px;
+
 
 }
 
 input[type=text]:focus, input[type=date]:focus
 {
 /*box-shadow: 0px 1px 1px 1px #006fff;*/
-box-shadow: 0px 0px 3px 1px #006fff;
+/*box-shadow: 0px 0px 3px 1px #006fff;*/
 }
 
 input[type=submit]
 {
-background-color: rgb(37, 167, 80);
-border-radius: 10px;
+background-color: #DADFE1;
+
 padding: 5px 20px;
-border: 1px solid white;
-color: white;
+border: 0px solid white;
+color: #6C7A89;
 }
 
 input[type=reset]
 {
-background-color: rgb(197, 146, 26);
-border-radius: 10px;
+
+background-color: #DADFE1;
 padding: 5px 20px;
-border: 1px solid white;
-color: white;
+border: 0px solid white;
+color: #6C7A89;
 }
 
 input[type=submit]:hover, input[type=reset]:hover
 {
-background-color: grey;
+color: #DADFE1;
+background-color: #6C7A89;
+cursor: pointer;
 }
 
 .correct
@@ -350,13 +364,13 @@ box-shadow: 0px 1px 1px 1px #bc2a2a;
 
 .lerreurstyle1
 {
-	background-color: #fbc8c8;
+	
 	color: #e63535;
 	padding: 5px 10px;
 	margin-left: 10px;
-	border-radius: 5px;
+	
 	font-size: 60%;
-	border: solid 1px #c9b6b6;
+	
 	float: right;
 	width: 35%;
 	
@@ -364,13 +378,13 @@ box-shadow: 0px 1px 1px 1px #bc2a2a;
 
 .lerreurstyle2
 {
-	background-color: #fbc8c8;
+	
 	color: #e63535;
 	padding: 5px 10px;
 	margin-left: 10px;
-	border-radius: 5px;
+	
 	font-size: 70%;
-	border: solid 1px #c9b6b6;
+	
 	margin-top: 3px;
 	margin-bottom: 1px;
 	

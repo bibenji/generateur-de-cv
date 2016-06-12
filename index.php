@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="style.css">
-<title>Générateur CVs Lettres de motivation</title>
+<title>GÃ©nÃ©rateur CVs Lettres de motivation</title>
 </head>
 
 <body>
@@ -18,10 +18,10 @@
 			<p>
 				<a href="rendu.php"><img src="rendu.png" /><br />Rendu CV</a>
 				<a href="testsphp.php"><img src="tests.png" /><br />Tests PHP</a>
-				<a href="#" onclick="affiche('ide');" class="rub-sel"><img src="rendu.png" /><br />Identité</a>
+				<a href="#" onclick="affiche('ide');" class="rub-sel"><img src="rendu.png" /><br />IdentitÃ©</a>
 				<a href="#"  onclick="affiche('tit');" class="rub-active"><img src="rendu.png" /><br />Titre</a>
 				<a href="#" onclick="affiche('obj');" ><img src="rendu.png" /><br />Objectif</a>
-				<a href="#" onclick="affiche('com');" ><img src="rendu.png" /><br />Compétences</a>
+				<a href="#" onclick="affiche('com');" ><img src="rendu.png" /><br />Comp?nces</a>
 			</p>
 		</nav>
 	-->
@@ -29,22 +29,22 @@
 </header>
 
 <aside>
-		<p>Quelles parties souhaitez-vous intégrer à votre CV ?</p>
+		<p>Quelles parties souhaitez-vous intÃ©grer dans votre CV ?</p>
 
 			<ul>
 				<li><input type="checkbox">titre</li>
 				<li><input type="checkbox">objectif</li>
-				<li><input type="checkbox">compétences</li>
-				<li><input type="checkbox">qualités</li>
-				<li><input type="checkbox">expériences professionnelles</li>
+				<li><input type="checkbox">compÃ©tences</li>
+				<li><input type="checkbox">qualitÃ©s</li>
+				<li><input type="checkbox">expÃ©riences professionnelles</li>
 				<li><input type="checkbox">formation</li>
-				<li><input type="checkbox">informations complémentaires</li>
+				<li><input type="checkbox">informations complÃ©mentaires</li>
 			</ul>
 	
 
 			
 			<div id="compteur">
-				0 compétences, 0 expériences et 0 formations
+				0 compÃ©tnces, 0 expÃ©riences et 0 formations
 			</div>
 			<p><a href='#' id="comptage">Compter</a></p>
 	</aside>
@@ -54,22 +54,22 @@
 <form method="post" action="testsphp.php" id="form">
 
 	<div class="rubrique" id="ide">
-		<h3>Identité</h3>
-			<p>Sexe : <input type="radio" name="sexe" id="homme"> <label for="homme">Homme</label> <input type="radio" name="sexe" id="femme"> <label for="femme">Femme</label><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p>
+		<h3>IdentitÃ©</h3>
+			<p>Sexe : <input type="radio" name="sexe" id="homme"> <label for="homme">Homme</label> <input type="radio" name="sexe" id="femme"> <label for="femme">Femme</label><span class="lerreur lerreurstyle1">Champ Ã  renseigner...</span></p>
 
-		<p><label for="nom">NOM :</label> <input type="text" name="" id="ide_nom"><span class="lerreur lerreurstyle1">Votre nom doit être écrit en majuscules et contenir au moins 2 lettres...</span></p>
-		<p><label for="prenom" >Prénom :</label> <input type="text" name="prenom" id="ide_prenom"><span class="lerreur lerreurstyle1">Votre prénom doit commencer par une majuscule et contenir au moins 2 lettres...</span></p>
-		<p><label for="adresse">Adresse :</label> <input type="text" size="50%" name="" id="ide_adresse"><span class="lerreur lerreurstyle1">Votre adresse doit être du type : "13 rue des Lavandières"...</span></p>
-		<p><label for="ville">Ville :</label> <input type="text" name="" id="ide_ville"><span class="lerreur lerreurstyle1">Votre ville doit être écrite en majuscules...</span></p>
-		<p><label for="codepostal">Code Postal :</label> <input type="text" name="" id="ide_codepo"><span class="lerreur lerreurstyle1">Votre code postal doit être composé de 5 chiffres...</span></p>
-		<p><label for="datenaissance">Date de naissance :</label> <input type="date" name="" id="ide_datenaiss"><span class="lerreur lerreurstyle1">Votre date de naissance doit être indiquée au format 26/03/1987...</span></p>
-		<p><label for="permis">Permis de conduire :</label> <select name="" id="ide_permis"><option selected="selected">Pas de permis</option><option>Permis B</option><option>Permis D</option></select><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p>
-		<p><label for="vehicule">Véhicule :</label> <select name="" id="ide_vehicule"><option selected="selected">Non</option><option>Oui</option><option>Moto / Scooter</option></select><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p>
+		<p><label for="nom">NOM :</label> <input type="text" name="" id="ide_nom"><span class="lerreur lerreurstyle1">Votre nom doit Ãªtre Ã©crit en majuscules et contenir au moins 2 lettres...</span></p>
+		<p><label for="prenom" >PrÃ©nom :</label> <input type="text" name="prenom" id="ide_prenom"><span class="lerreur lerreurstyle1">Votre prÃ©nom doit commencer par une majuscule et contenir au moins 2 lettres...</span></p>
+		<p><label for="adresse">Adresse :</label> <input type="text" size="50%" name="" id="ide_adresse"><span class="lerreur lerreurstyle1">Votre adresse doit Ãªtre du type : "13 rue des LavandiÃ¨res"...</span></p>
+		<p><label for="ville">Ville :</label> <input type="text" name="" id="ide_ville"><span class="lerreur lerreurstyle1">Votre ville doit Ãªtre Ã©crite en majuscules...</span></p>
+		<p><label for="codepostal">Code Postal :</label> <input type="text" name="" id="ide_codepo"><span class="lerreur lerreurstyle1">Votre code postal doit Ãªtre composÃ© de 5 chiffres...</span></p>
+		<p><label for="datenaissance">Date de naissance :</label> <input type="date" name="" id="ide_datenaiss"><span class="lerreur lerreurstyle1">Votre date de naissance doit Ãªtre indiquÃ©e au format 26/03/1987...</span></p>
+		<p><label for="permis">Permis de conduire :</label> <select name="" id="ide_permis"><option selected="selected">Pas de permis</option><option>Permis B</option><option>Permis D</option></select><span class="lerreur lerreurstyle1">Champ Ã  renseigner...</span></p>
+		<p><label for="vehicule">VÃ©hicule :</label> <select name="" id="ide_vehicule"><option selected="selected">Non</option><option>Oui</option><option>Moto / Scooter</option></select><span class="lerreur lerreurstyle1">Champ Ã  renseigner...</span></p>
 	</div>
 
 	<div class="rubrique_hidden" id="tit">
 		<h3>Titre</h3>
-			<p>Titre du CV (poste recherché) : <input type="text"></p>
+			<p>Titre du CV (poste recherchÃ©: <input type="text"></p>
 	</div>
 
 	<div class="rubrique_hidden" id="obj">
@@ -79,16 +79,16 @@
 	</div>
 
 	<div class="rubrique_hidden" id="com">
-		<h3>Compétences</h3>
-			<p><input type="button" id="bouton_competences" value="Ajouter une compétence"></p>
+		<h3>CompÃ©tences</h3>
+			<p><input type="button" id="bouton_competences" value="Ajouter une compÃ©tence"></p>
 	</div>
 
 	<div class="rubrique_hidden" id="qua">
-		<h3>Qualités</h3>
-			<p>Choisissez 3 qualités vous correspondant :</p>
+		<h3>QualitÃ©s</h3>
+			<p>Choisissez 3 qualitÃ©s vous correspondant :</p>
 			<table>
 			<tr>
-				<td>Qualités</td><td>Ma qualité n°1</td>
+				<td>QualitÃ©s</td><td>Ma qualitÃ©</td>
 			</tr>
 			<tr>
 				<td>Dynamique</td><td><input type="radio" name="qua1" value="Dynamique"/></td>
@@ -97,7 +97,7 @@
 					<td>Consciencieux</td><td><input type="radio" name="qua1" value="Consciencieux"/></td>
 			</tr>
 			<tr>
-					 <td>Motivé</td><td><input type="radio" name="qua1" value="Motivé"/></td>
+					 <td>MotivÃ©<td><td><input type="radio" name="qua1" value="MotivÃ©></td>
 			</tr>
 			<tr>
 					 <td>Sociable</td><td><input type="radio" name="qua1" value="Sociable"/></td>
@@ -112,13 +112,13 @@
 					 <td>Bon relationnel</td><td><input type="radio" name="qua1" value="Bon relationnel"/></td>
 			</tr>
 			<tr>
-					 <td>Sérieux</td><td><input type="radio" name="qua1" value="Sérieux"/></td>
+					 <td>SÃ©rieux</td><td><input type="radio" name="qua1" value="SÃ©rieux"/></td>
 			</tr>
 			<tr>
-					 <td>A l'écoute</td><td><input type="radio" name="qua1" value="A l'écoute"/></td>
+					 <td>A l'Ã©coute</td><td><input type="radio" name="qua1" value="A l'Ã©coute"/></td>
 			</tr>
 			<tr>
-					 <td>Créatif</td><td><input type="radio" name="qua1" value="Créatif"/></td>
+					 <td>CrÃ©atif</td><td><input type="radio" name="qua1" value="CrÃ©atif"/></td>
 			</tr>
 			<tr>
 					 <td>Sang-froid</td><td><input type="radio" name="qua1" value="Sang-froid"/></td>
@@ -130,10 +130,10 @@
 					 <td>Patient</td><td><input type="radio" name="qua1" value="Patient"/></td>
 			</tr>
 			<tr>
-					 <td>Appliqué</td><td><input type="radio" name="qua1" value="Appliqué"/></td>
+					 <td>AppliquÃ©<td><td><input type="radio" name="qua1" value="AppliquÃ©"></td>
 			</tr>
 			<tr>
-					 <td>Soigné</td><td><input type="radio" name="qua1" value="Soigné"/></td>
+					 <td>SoignÃ©</td><td><input type="radio" name="qua1" value="SoignÃ©"></td>
 			</tr>
 			<tr>
 					 <td>Minutieux</td><td><input type="radio" name="qua1" value="Minutieux"/></td>
@@ -146,8 +146,8 @@
 	</div>
 
 	<div class="rubrique_hidden" id="exp">
-		<h3>Expériences professionnelles</h3>
-			<p><input type="button" id="bouton_experiences" value="Ajouter une expérience professionnelle"></p>
+		<h3>ExpÃ©riences professionnelles</h3>
+			<p><input type="button" id="bouton_experiences" value="Ajouter une expÃ©rience professionnelle"></p>
 	</div>
 
 	<div class="rubrique_hidden" id="for">
@@ -156,9 +156,9 @@
 	</div>
 
 	<div class="rubrique_hidden" id="inf">
-		<h3>Informations complémentaires</h3>
+		<h3>Informations complÃ©mentaires</h3>
 			<p>
-				Loisirs / Centres d'intérêt : <input type="text">
+				Loisirs / Centres d'intÃ©rÃªt : <input type="text">
 			</p>
 			<p>
 				Autre(s) :<br><textarea cols="50" rows="5"></textarea>
@@ -166,7 +166,7 @@
 	</div>
 
 	<nav>
-		<input type="submit" value="Générer le CV" id="envoi"> <input type="reset" value="Recommencer">
+		<input type="submit" value="GÃ©nÃ©rer le CV" id="envoi"> <input type="reset" value="Recommencer" />
 	</nav>
 	
 
@@ -195,7 +195,7 @@ function suppression(to_suppr) {
 }
 
 
-//FUNCTION DE COMPTAGE DES P des inputs affichés
+//FUNCTION DE COMPTAGE DES P des inputs affich?
 function comptage_p(e) {
 		var lesdivs_aff = comptage();
 		var lesps_par_div = { };
@@ -283,7 +283,7 @@ function affiche(elem) {
 			this.laval = laval;
 			this.lareg = lareg;
 			this.letest = leTest(lareg, laval);
-			//this.laVerif = laVerif(this); //enlevé car enlevé plus haut et pas utile;
+			//this.laVerif = laVerif(this); //enlev?ar enlev?lus haut et pas utile;
 			}
 
 		
@@ -300,7 +300,7 @@ function affiche(elem) {
 					while (spanfound == false) {
 						linput = linput.lastChild;
 						if (linput.nodeName == "SPAN") {
-						console.log("span erreur trouvé");
+						console.log("span erreur trouvÃ©");
 						spanfound = true;
 						}
 					pfound = true;
@@ -341,7 +341,7 @@ function Verif(form) {
 						
 						for (var boite in tabregs) { 
 							if (chi.id.substr(4,3) == boite.substr(0,3)) {
-								console.log ("Une expression régulière trouvée pour : " + chi.id + " == " + boite);
+								console.log ("Une expression rÃ©guliÃ¨re trouvÃ©e pour : " + chi.id + " == " + boite);
 								var temp = new Elmt(i, chi.id, chi.value, tabregs[boite]); //Lance le truc auto !?!?
 								ListElmt.push(temp);
 							
@@ -415,7 +415,7 @@ for (i = 0; i < boutons.length; i++) {
 	}
 	
 	if (boutons[i].type == "button") {
-		//alert("Bouton trouvé !");
+		//alert("Bouton trouvÃ© !");
 		boutons[i].addEventListener("click", function() {
 			
 			var parent = this.parentNode.parentNode;
@@ -423,16 +423,16 @@ for (i = 0; i < boutons.length; i++) {
 			if(parent.id == "exp") {
 				nb_xp += 1;
 				var att_name = "exp_";
-				var caption = "Expérience n°" + nb_xp;
-				var quoi = "Poste occupé";
+				var caption = "ExpÃ©rience nÂ°" + nb_xp;
+				var quoi = "Poste occupÃ©";
 				var lieu = "Entreprise";
 			}
 			
 			if(parent.id == "for") {
 				nb_for += 1;
 				var att_name = "for_";
-				var caption = "Formation n°" + nb_for;
-				var quoi = "Intitulé";
+				var caption = "Formation nÂ°" + nb_for;
+				var quoi = "IntitulÃ©";
 				var lieu = "Organisme";
 			}
 			
@@ -442,21 +442,21 @@ for (i = 0; i < boutons.length; i++) {
 				newM.innerHTML = "X";
 				newM.addEventListener("click", function() {
 					suppression(this)
-				}); // CHELOU MAIS ça FONCTIONNE
+				}); // CHELOU MAIS ?FONCTIONNE
 			
 			if(parent.id == "com") {
 				nb_comp += 1;		
 				
 				
 				
-				var text1 = document.createTextNode('Compétence n°' + nb_comp + ' : ');
+				var text1 = document.createTextNode('CompÃ©tence nÂ°' + nb_comp + ' : ');
 				var newInput = document.createElement("input");
 				newInput.id = 'com_com_' + nb_comp;
 				newInput.type = "text";
 				
 				var newSpan = document.createElement("span");
 				newSpan.className = "lerreur lerreurstyle2";
-				newSpan.innerHTML = "La compétence indiquée ne peut être traitée...";
+				newSpan.innerHTML = "La compÃ©tence indiquÃ©e ne peut Ãªtre traitÃ©e...";
 				
 								
 				newP.appendChild(newM);
@@ -544,7 +544,7 @@ for (i = 0; i < boutons.length; i++) {
 				
 				newTD = document.createElement("td");
 				newTD.class = att_name;
-				newTD.innerHTML = "Département :";
+				newTD.innerHTML = "DÃ©partement :";
 				newTR.appendChild(newTD);
 				
 				newTD = document.createElement("td");
@@ -568,7 +568,7 @@ for (i = 0; i < boutons.length; i++) {
 				var newSpan = document.createElement("span");
 				newSpan.className = "lerreur lerreurstyle2";
 				newSpan.setAttribute("width", "97%"); // NE MARCHE PAS
-				newSpan.innerHTML = "Les dates doivent être indiquées au format 26/03/1987 et correspondrent, l'intitulé doit être renseigné, l'entreprise et la ville écrites en majuscules, enfin le département au format 75018."
+				newSpan.innerHTML = "Les dates doivent Ãªtre indiquÃ©es au format 26/03/1987 et correspondrent, l'intitulÃ© doit Ãªtre renseignÃ©, l'entreprise et la ville Ã©crites en majuscules, enfin le dÃ©partement au format 75018."
 				
 				newTD.appendChild(newSpan);
 				newTR.appendChild(newTD);
@@ -597,7 +597,7 @@ for (i = 0; i < boutons.length; i++) {
 </script>
 
 <footer>
-	<h2>Propulsé par Dr. B.</h2>
+	<h2>PropulsÃ© par Dr. B.</h2>
 </footer>
 
 </div>

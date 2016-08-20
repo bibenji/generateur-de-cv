@@ -70,7 +70,7 @@
 
 	<div class="rubrique_hidden" id="tit">
 		<h3>Titre</h3>
-			<p>Titre du CV (poste recherché: <input type="text"></p>
+			<p>Titre du CV (poste recherché: <input type="text" name="" id="tit_prenom"><span class="lerreur lerreurstyle1">Votre titre doit commencer par une majuscule et contenir au moins 2 lettres...</span></p>
 	</div>
 
 	<div class="rubrique_hidden" id="obj">
@@ -199,10 +199,14 @@ function suppression(to_suppr) {
 //FUNCTION DE COMPTAGE DES P des inputs affich?
 function comptage_p(e) {
 		var lesdivs_aff = comptage();
+		
+		var divs_aff = lesdivs_aff['aff'];
+		
 		var lesps_par_div = { };
-		for (var i = 0, c = lesdivs_aff.length; i < c; i++) {
-			var lesps = lesdivs_aff[i].getElementsByTagName('p');
-			lesps_par_div[lesdivs_aff[i].id] = lesps.length; // POUR L'INSTANT ENREGISTRE JUSTE LE NOMBRE DE P
+		for (var i = 0, c = divs_aff.length; i < c; i++) {
+			var lesps = divs_aff[i].getElementsByTagName('p');
+			lesps_par_div[divs_aff[i].id] = lesps.length; // POUR L'INSTANT ENREGISTRE JUSTE LE NOMBRE DE P
+			
 			}		
 					
 		for (var lire in lesps_par_div) {
@@ -293,6 +297,7 @@ function affiche(elem) {
 
 //FUNCTION TROUVER LE SPAN D'ERREUR
 		function span_erreur(linput) {
+			
 			var pfound = false;
 			var spanfound = false;
 			while (pfound == false) {

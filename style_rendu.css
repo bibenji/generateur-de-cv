@@ -1,35 +1,68 @@
-﻿#lecv {
-	border: solid black 1px;
-	margin: 10px auto;
-	width: 80%;
+﻿.flex {
+	display: flex;
+	display: -webkit-flex;
+	border: solid 1px pink;
+	width: 90%;
+	
 }
 
-#ide, #exp {
-	margin: 5px;
+.conteneur1 {
+	flex: 1;
+}
+
+.conteneur2 {
+	width: 630px;
+	
+}
+
+#lecv {
+	border: solid black 1px;
+	margin: 0px;
+	width: 100%;
+	height: 891px;
+}
+
+#zonecv {
+	border: grey solid 1px;
+	margin: 30px 20px;
+	padding: 0px;
+}
+
+#ide, #exp, #soustit {
+	
 }
 
 #tit {
 	width: 60%;
-	margin: 20px auto;
+	margin: 40px auto 5px;
 	font-size: 150%;
 	text-align: center;
 	border: solid black 1px;
-	padding: 5px;
+	padding: 5px 0px;
+}
+
+#soustit {
+	font-style: italic;
+	width: 60%;
+	margin: 0px auto;
 }
 
 table {
-	width: 90%;
+	width: 100%;
 	margin: 10px auto;
+	
 }
 
-table td {
-	width: 30%;
+.first_td {
+	width: 40%;
+	vertical-align: top;
 }
 
 h3 {
-	width: 90%;
-	margin: 5px auto;
+	width: 100%;
+	margin: 15px auto 5px;
 	text-align: center;
 	background-color: black;
 	color: white;
+	padding: 5px 0px;
 }

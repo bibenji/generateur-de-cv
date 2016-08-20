@@ -34,8 +34,8 @@
 			<ul>
 				<li><input type="checkbox">titre</li>
 				<li><input type="checkbox">objectif</li>
-				<li><input type="checkbox">compétences</li>
-				<li><input type="checkbox">qualités</li>
+				<li><input type="checkbox" disabled="disabled">compétences</li>
+				<li><input type="checkbox" disabled="disabled">qualités</li>
 				<li><input type="checkbox">expériences professionnelles</li>
 				<li><input type="checkbox">formation</li>
 				<li><input type="checkbox">informations complémentaires</li>
@@ -55,28 +55,88 @@
 
 	<div class="rubrique" id="ide">
 		<h3>Identité</h3>
-			<p>Sexe : <input type="radio" name="sexe" id="homme"> <label for="homme">Homme</label> <input type="radio" name="sexe" id="femme"> <label for="femme">Femme</label><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p>
-
-		<p><label for="nom">NOM :</label> <input type="text" name="" id="ide_nom"><span class="lerreur lerreurstyle1">Votre nom doit être écrit en majuscules et contenir au moins 2 lettres...</span></p>
-		<p><label for="prenom" >Prénom :</label> <input type="text" name="prenom" id="ide_prenom"><span class="lerreur lerreurstyle1">Votre prénom doit commencer par une majuscule et contenir au moins 2 lettres...</span></p>
-		<p><label for="adresse">Adresse :</label> <input type="text" size="50%" name="" id="ide_adresse"><span class="lerreur lerreurstyle1">Votre adresse doit être du type : "13 rue des Lavandières"...</span></p>
-		<p><label for="ville">Ville :</label> <input type="text" name="" id="ide_ville"><span class="lerreur lerreurstyle1">Votre ville doit être écrite en majuscules...</span></p>
-		<p><label for="codepostal">Code Postal :</label> <input type="text" name="" id="ide_codepo"><span class="lerreur lerreurstyle1">Votre code postal doit être composé de 5 chiffres...</span></p>
-		<p><label for="datenaissance">Date de naissance :</label> <input type="date" name="" id="ide_datenaiss"><span class="lerreur lerreurstyle1">Votre date de naissance doit être indiquée au format 26/03/1987...</span></p>
-		<p><label for="permis">Permis de conduire :</label> <select name="" id="ide_permis"><option selected="selected">Pas de permis</option><option>Permis B</option><option>Permis D</option></select><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p>
-		<p><label for="vehicule">Véhicule :</label> <select name="" id="ide_vehicule"><option selected="selected">Non</option><option>Oui</option><option>Moto / Scooter</option></select><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p>
+			<!--<p>Sexe : <input type="radio" name="sexe" id="homme"> <label for="homme">Homme</label> <input type="radio" name="sexe" id="femme"> <label for="femme">Femme</label><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p>-->
+		<table class="table_type2">
+		<tr>
+		<td><label for="nom">NOM :</label></td>
+		<td><p><input type="text" name="" id="ide_nom"><span class="lerreur lerreurstyle1">Votre nom doit être écrit en majuscules et contenir au moins 2 lettres...</span></p></td>
+		</tr>
+		
+		<tr>
+		<td><label for="prenom" >Prénom :</label></td>
+		<td><p><input type="text" name="prenom" id="ide_prenom"><span class="lerreur lerreurstyle1">Votre prénom doit commencer par une majuscule et contenir au moins 2 lettres...</span></p></td>
+		</tr>
+		
+		<tr>	
+		<td><label for="datenaissance">Date de naissance :</label></td>
+		<td><p><input type="date" name="" id="ide_datenaiss"><span class="lerreur lerreurstyle1">Votre date de naissance doit être indiquée au format 26/03/1987...</span></p></td>
+		</tr>
+		
+		<tr>
+		<td><label for="adresse">Adresse :</label></td>
+		<td><p><input type="text" name="" id="ide_adresse"><span class="lerreur lerreurstyle1">Votre adresse doit être du type : "13 rue des Lavandières"...</span></p></td>
+		</tr>
+		
+		<tr>
+		<td><label for="codepostal">Code Postal :</label></td>
+		<td><p><input type="text" name="" id="ide_codepo"><span class="lerreur lerreurstyle1">Votre code postal doit être composé de 5 chiffres...</span></p></td>
+		</tr>
+		
+		<tr>
+		<td><label for="ville">Ville :</label></td>
+		<td><p><input type="text" name="" id="ide_ville"><span class="lerreur lerreurstyle1">Votre ville doit être écrite en majuscules...</span></p></td>
+		</tr>
+		
+		<tr>
+		<td><label for="tel">Numéro de téléphone :</label></td>
+		<td><p><input type="text" name="" id="ide_telephone"><span class="lerreur lerreurstyle1">Votre numéro de téléphone n'est pas au bon format... Il doit être de la forme : 06 07 08 09 10. Pensez aux espaces !</span></p></td>
+		</tr>
+		
+		<tr>
+		<td><label for="mail">Adresse mail :</label></td>
+		<td><p><input type="text" name="" id="ide_mail"><span class="lerreur lerreurstyle1">Votre mail n'est pas au bon format...</span></p></td>
+		</tr>
+		
+		<tr>
+		<td><label for="permis">Permis de conduire :</label></td>
+		<td><p><select name="" id="ide_permis"><option selected="selected">Pas de permis</option><option>Permis B</option><option>Permis D</option></select><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p></td>
+		</tr>
+		
+		<tr>
+		<td><label for="vehicule">Véhicule :</label></td>
+		<td><p><select name="" id="ide_vehicule"><option selected="selected">Non</option><option>Oui</option><option>Moto / Scooter</option></select><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p></td>
+		</tr>
+		
+		</table>
 		
 	</div>
 
 	<div class="rubrique_hidden" id="tit">
 		<h3>Titre</h3>
-			<p>Titre du CV (poste recherché: <input type="text" name="" id="tit_prenom"><span class="lerreur lerreurstyle1">Votre titre doit commencer par une majuscule et contenir au moins 2 lettres...</span></p>
+		<table class="table_type2">
+		<tr>
+			<td>Titre du CV :<br />(Poste recherché.)</td>
+			<td><p><input type="text" name="" id="tit_prenom"><span class="lerreur lerreurstyle1">Votre titre doit commencer par une majuscule et contenir au moins 2 lettres...</span></p></td>
+		</tr>
+		</table>
 	</div>
 
 	<div class="rubrique_hidden" id="obj">
 		<h3>Objectif</h3>
-			<p>Objectif : <select><option>Emploi</option><option>Stage</option></select></p>
-			<p>Mon objectif :<br><textarea cols="50" rows="5" id="objectif" name="">Candidature pour un poste en tant que... Demande de stage en tant que...</textarea></p>
+		<table class="table_type2">
+		<tr>
+		<td>Objectif :</td>
+		<td>
+				<select name="obj_prenom" id="obj_prenom">
+					<option value="Stage">Stage</option>
+					<option value="Emploi">Emploi</option>
+					<option>Personnalisé</option>
+				</select>
+	
+				<p><br /><textarea cols="50" rows="5" id="objectif" name="" disabled="disabled">Veuillez écrire ici votre objectif...</textarea></p>
+		</td>
+		</tr>
+		</table>
 	</div>
 
 	<div class="rubrique_hidden" id="com">
@@ -158,12 +218,26 @@
 
 	<div class="rubrique_hidden" id="inf">
 		<h3>Informations complémentaires</h3>
-			<p>
-				Loisirs / Centres d'intérêt : <input type="text">
-			</p>
-			<p>
-				Autre(s) :<br><textarea cols="50" rows="5"></textarea>
-			</p>
+			<table class="table_type2">
+			<tr>
+				<td>Loisirs / Centres d'intérêt :</td>
+				<td><p><input type="text" name="" id="inf_texte_loisirs"><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></p></td>
+			</tr>
+			<tr>
+				<td>Langues :</td>
+				<td><p><input type="text" name="" id="inf_texte_langues"><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></p></td>
+			</tr>
+			<tr>
+				<td>Informatique :</td>
+				<td><input type="text"><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
+			</tr>
+			<tr>
+				<td>Autre(s) :</td>
+				<td><textarea cols="50" rows="5" id="objectif" name="" disabled="disabled"></textarea></td>
+			</tr>
+			</table>
+			
+			
 	</div>
 
 	<nav>
@@ -262,7 +336,10 @@ function affiche(elem) {
 			codepostal: '^\\d{5}$',
 			datenaissance: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
 			date: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
-			comp: '[A-Z][a-z]+'
+			comp: '[A-Z][a-z]+',
+			mail: '\\S+@\\S+\\.\\S+',
+			tel: '0\\d \\d{2} \\d{2} \\d{2} \\d{2}',
+			texte: '\\w.*'
 		};
 
 //FONCTION DE VERIFICATION DU CHAMP SAISI REGHEX... 
@@ -474,6 +551,7 @@ for (i = 0; i < boutons.length; i++) {
 			else {			
 				
 				var newT = document.createElement("table");
+				newT.setAttribute("class", "rubrique_table");
 				var newC = document.createElement("caption");
 				newC.innerHTML = caption;
 				newT.appendChild(newC);

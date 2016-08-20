@@ -192,12 +192,12 @@ mark:hover
 background-color: yellow;
 }
 
-.rubrique table {
+.rubrique_table {
 	
 	width: 100%;
 	
 }
-.rubrique table tr td {
+.rubrique_table tr td {
 	padding-right: 10px;
 	text-align: right;
 	
@@ -391,13 +391,13 @@ box-shadow: 0px 1px 1px 1px #bc2a2a;
 {
 	
 	color: #e63535;
-	padding: 5px 10px;
-	margin-left: 10px;
-	
+	/*padding: 5px 10px;*/
+	margin-top: 5px;
+	float: right;
 	font-size: 60%;
 	
-	float: right;
-	width: 35%;
+	
+	width: 55%;
 	
 }
 
@@ -429,3 +429,35 @@ box-shadow: 0px 1px 1px 1px #bc2a2a;
 {
 	background: #EB9532;
 }
+
+.table_type1 {
+	margin: 10px;
+	width: 100%;
+}
+
+.table_type1 tr {
+	
+}
+
+
+.table_type1 td {
+	vertical-align: top;
+	padding-bottom: 10px;
+}
+
+.table_type1 td:first-child { width: 20%;}
+
+.table_type1 input, .table_type1 textarea {
+	width: 50%;
+	background-color: #dadfe1;
+	border: 0px solid grey;
+	border-bottom: solid 1px grey;
+	
+}
+
+.table_type2 { margin: 10px; width: 96%;}
+.table_type2 td { vertical-align: top; padding-bottom: 10px;}
+.table_type2 td:nth-child(1) { width: 25%;}
+.table_type2 td:nth-child(2) { width: 75%;}
+.table_type2 td:nth-child(2) p { margin: 0px 0px;}
+.table_type2 td:nth-child(2) input { width: 40%;}

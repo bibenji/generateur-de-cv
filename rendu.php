@@ -9,15 +9,10 @@
 
 <h1>Générateur de Cvs et de Lettres de motivation</h1>
 
-<div id="haut">
-<h2>Haut</h2>
-</div>
-
 <div id="milieu">
-<h2>Milieu</h2>
-<p><a href="index.php">CVs</a> | Lettres de motivation</p>
+<p><a href="index.php">Retour contenu CV</a> <a href="pdf.php">Générer le PDF</a></p>
 
-<p>Rendu CV...</p>
+
 
 <div id="menu_gauche">
 <p>Modifications...</p>

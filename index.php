@@ -59,7 +59,12 @@
 		<table class="table_type2">
 		<tr>
 		<td><label for="nom">NOM :</label></td>
-		<td><p><input type="text" name="" id="ide_nom"><span class="lerreur lerreurstyle1">Votre nom doit être écrit en majuscules et contenir au moins 2 lettres...</span></p></td>
+		<td>
+		<input type="text" name="" id="ide_nom">
+		</td>
+		<td>
+		<span class="lerreurstyle1">Votre nom doit être écrit en majuscules et contenir au moins 2 lettres...</span>
+		</td>
 		</tr>
 		
 		<tr>
@@ -331,15 +336,17 @@ function affiche(elem) {
 		var tabregs = {
 			nom: '[A-Z]{2,}',
 			prenom: '[A-Z][a-z]{2,}',
-			adresse: '[1-9][0-9]*\\s[a-z]*\\s[A-za-z]*',
-			ville: '[A-Z]{2,}',
-			codepostal: '^\\d{5}$',
 			datenaissance: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
-			date: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
-			comp: '[A-Z][a-z]+',
-			mail: '\\S+@\\S+\\.\\S+',
+			adresse: '[1-9][0-9]*\\s[a-z]*\\s[A-za-z]*',
+			codepostal: '^\\d{5}$',
+			ville: '[A-Z]{2,}',
 			tel: '0\\d \\d{2} \\d{2} \\d{2} \\d{2}',
-			texte: '\\w.*'
+			
+			texte: '\\w.*',
+			
+			date: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
+			competence: '[A-Z][a-z]+'
+					
 		};
 
 //FONCTION DE VERIFICATION DU CHAMP SAISI REGHEX... 

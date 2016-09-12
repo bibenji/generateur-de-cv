@@ -1,4 +1,30 @@
-﻿<!DOCTYPE html>
+﻿<?php
+session_start();
+
+echo '<a href="destroy.php">Destroy</a>';
+var_dump($_SESSION);
+
+
+
+
+function addField($rub, $name, $error)
+{
+	$lname = strtolower($name); //low_name
+	
+	echo '<tr><td><label for="' . $name . '">' . ucfirst($name) . ' :</label></td>';
+	echo '<td class="td_stop"><input type="text" class="normal_input" name="" id="' . $rub . '_' . str_replace(' ','',$lname) . '"';
+			
+	if (isset($_SESSION['data'][$rub][substr($lname,0,3)]) AND !empty($_SESSION['data'][$rub][substr($lname,0,3)])) 
+	{
+			echo ' value="' . $_SESSION['data'][$rub][substr($lname,0,3)] . '"';
+			
+	}
+	
+	echo '></td><td><span class="lerreur lerreurstyle1">' . $error . '</span></td></tr>';
+}
+?>
+
+<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="style.css">
@@ -7,139 +33,119 @@
 
 <body>
 
+
+
 <div id="main">
 
-<header>
-	<h1>Curriculum</h1>
-	<span id="soustitre">Vite Fait</span>
-	
-	<!--
-		<nav id="haut">
-			<p>
-				<a href="rendu.php"><img src="rendu.png" /><br />Rendu CV</a>
-				<a href="testsphp.php"><img src="tests.png" /><br />Tests PHP</a>
-				<a href="#" onclick="affiche('ide');" class="rub-sel"><img src="rendu.png" /><br />Identité</a>
-				<a href="#"  onclick="affiche('tit');" class="rub-active"><img src="rendu.png" /><br />Titre</a>
-				<a href="#" onclick="affiche('obj');" ><img src="rendu.png" /><br />Objectif</a>
-				<a href="#" onclick="affiche('com');" ><img src="rendu.png" /><br />Compétences</a>
-			</p>
-		</nav>
-	-->
-	
-</header>
+<?php include('header.php'); ?>
+
+
 
 <aside>
+	
+	<div>
 		<p>Quelles parties souhaitez-vous intégrer dans votre CV ?</p>
 
-			<ul>
-				<li><input type="checkbox">titre</li>
-				<li><input type="checkbox">objectif</li>
-				<li><input type="checkbox" disabled="disabled">compétences</li>
-				<li><input type="checkbox" disabled="disabled">qualités</li>
-				<li><input type="checkbox">expériences professionnelles</li>
-				<li><input type="checkbox">formation</li>
-				<li><input type="checkbox">informations complémentaires</li>
+			<ul class="li_menu">
+				<?php
+				
+				?>
+				<li><input type="checkbox" class="foraff" checked="checked" id="ch_titre"><label for="ch_titre">titre</label></li>
+				<li><input type="checkbox" class="foraff" checked="checked" id="ch_obj"><label for="ch_obj">objectif</label></li>
+				<li><input type="checkbox" class="foraff" disabled="disabled" id="ch_com"><label for="ch_com">compétences</label></li>
+				<li><input type="checkbox" class="foraff" id="ch_qua"><label for="ch_qua">qualités</label></li>
+				<li><input type="checkbox" class="foraff" checked="checked" id="ch_exp"><label for="ch_exp">expériences professionnelles</label></li>
+				<li><input type="checkbox" class="foraff" checked="checked" id="ch_for"><label for="ch_for">formation</label></li>
+				<li><input type="checkbox" class="foraff" id="ch_inf"><label for="ch_inf">informations complémentaires</label></li>
 			</ul>
 	
 
-			
+			<!--
 			<div id="compteur">
 				0 compétnces, 0 expériences et 0 formations
 			</div>
 			<p><a href='#' id="comptage">Compter</a></p>
-	</aside>
+			-->
+	</div>
+	
+	<div>
+		<p>Zone membre</p>
+		Vous devez être connecté pour accéder à ces fonctionnalités...
+	</div>
+		
+</aside>
+
+
 
 <section id="milieu">
+<?php include('menu_nav.php'); ?>
 
 <form method="post" action="testsphp.php" id="form">
-
+	
+	<!-- RUBRIQUE IDENTITE -->
 	<div class="rubrique" id="ide">
 		<h3>Identité</h3>
 			<!--<p>Sexe : <input type="radio" name="sexe" id="homme"> <label for="homme">Homme</label> <input type="radio" name="sexe" id="femme"> <label for="femme">Femme</label><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p>-->
 		<table class="table_type2">
+		
+		<?php
+		addField('ide','nom','Votre nom doit être écrit en majuscules et contenir au moins 2 lettres...');
+		addField('ide','prenom','Votre prénom doit commencer par une majuscule et contenir au moins 2 lettres...');
+		addField('ide','date de naissance','Votre date de naissance doit être indiquée au format 26/03/1987...');
+		addField('ide','adresse','Votre adresse doit être du type : "13 rue des Lavandières"...');
+		addField('ide','code postal','Votre code postal doit être composé de 5 chiffres...');
+		addField('ide','ville','Votre ville doit être écrite en majuscules...');
+		addField('ide','telephone','Votre numéro de téléphone n\'est pas au bon format... Il doit être de la forme : 06 07 08 09 10. Pensez aux espaces !');
+		addField('ide','mail','Votre mail n\'est pas au bon format...');
+		?>
+		
 		<tr>
-		<td><label for="nom">NOM :</label></td>
-		<td>
-		<input type="text" name="" id="ide_nom">
-		</td>
-		<td>
-		<span class="lerreurstyle1">Votre nom doit être écrit en majuscules et contenir au moins 2 lettres...</span>
-		</td>
+			<td><label for="permis">Permis de conduire :</label></td>
+			<td><select name="ide_permis" id="ide_permis"><option selected="selected">Pas de permis</option><option>Permis B</option><option>Permis D</option></select></td>
+			<td><span class="lerreur lerreurstyle1">Champ à renseigner...</span></td>
 		</tr>
 		
 		<tr>
-		<td><label for="prenom" >Prénom :</label></td>
-		<td><p><input type="text" name="prenom" id="ide_prenom"><span class="lerreur lerreurstyle1">Votre prénom doit commencer par une majuscule et contenir au moins 2 lettres...</span></p></td>
-		</tr>
-		
-		<tr>	
-		<td><label for="datenaissance">Date de naissance :</label></td>
-		<td><p><input type="date" name="" id="ide_datenaiss"><span class="lerreur lerreurstyle1">Votre date de naissance doit être indiquée au format 26/03/1987...</span></p></td>
-		</tr>
-		
-		<tr>
-		<td><label for="adresse">Adresse :</label></td>
-		<td><p><input type="text" name="" id="ide_adresse"><span class="lerreur lerreurstyle1">Votre adresse doit être du type : "13 rue des Lavandières"...</span></p></td>
-		</tr>
-		
-		<tr>
-		<td><label for="codepostal">Code Postal :</label></td>
-		<td><p><input type="text" name="" id="ide_codepo"><span class="lerreur lerreurstyle1">Votre code postal doit être composé de 5 chiffres...</span></p></td>
-		</tr>
-		
-		<tr>
-		<td><label for="ville">Ville :</label></td>
-		<td><p><input type="text" name="" id="ide_ville"><span class="lerreur lerreurstyle1">Votre ville doit être écrite en majuscules...</span></p></td>
-		</tr>
-		
-		<tr>
-		<td><label for="tel">Numéro de téléphone :</label></td>
-		<td><p><input type="text" name="" id="ide_telephone"><span class="lerreur lerreurstyle1">Votre numéro de téléphone n'est pas au bon format... Il doit être de la forme : 06 07 08 09 10. Pensez aux espaces !</span></p></td>
-		</tr>
-		
-		<tr>
-		<td><label for="mail">Adresse mail :</label></td>
-		<td><p><input type="text" name="" id="ide_mail"><span class="lerreur lerreurstyle1">Votre mail n'est pas au bon format...</span></p></td>
-		</tr>
-		
-		<tr>
-		<td><label for="permis">Permis de conduire :</label></td>
-		<td><p><select name="" id="ide_permis"><option selected="selected">Pas de permis</option><option>Permis B</option><option>Permis D</option></select><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p></td>
-		</tr>
-		
-		<tr>
-		<td><label for="vehicule">Véhicule :</label></td>
-		<td><p><select name="" id="ide_vehicule"><option selected="selected">Non</option><option>Oui</option><option>Moto / Scooter</option></select><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p></td>
+			<td><label for="vehicule">Véhicule :</label></td>
+			<td><select name="ide_vehicule" id="ide_vehicule"><option selected="selected">Non</option><option>Oui</option><option>Moto / Scooter</option></select></td>
+			<td><span class="lerreur lerreurstyle1">Champ à renseigner...</span></td>
 		</tr>
 		
 		</table>
-		
 	</div>
 
-	<div class="rubrique_hidden" id="tit">
+
+	
+	<!-- RUBRIQUE TITRE -->
+	<div class="rubrique" id="tit">
 		<h3>Titre</h3>
 		<table class="table_type2">
-		<tr>
-			<td>Titre du CV :<br />(Poste recherché.)</td>
-			<td><p><input type="text" name="" id="tit_prenom"><span class="lerreur lerreurstyle1">Votre titre doit commencer par une majuscule et contenir au moins 2 lettres...</span></p></td>
-		</tr>
+		<?php
+		addField('tit','titre du CV','Votre titre doit commencer par une majuscule et contenir au moins 2 lettres...');
+		?>
 		</table>
 	</div>
 
-	<div class="rubrique_hidden" id="obj">
+	
+	
+	<!-- RUBRIQUE OBJECTIF -->
+	<div class="rubrique" id="obj">
 		<h3>Objectif</h3>
 		<table class="table_type2">
 		<tr>
 		<td>Objectif :</td>
 		<td>
-				<select name="obj_prenom" id="obj_prenom">
+				<select name="obj_objectif" id="obj_objectif">
+					<option value="Emploi" selected="selected">Emploi</option>
 					<option value="Stage">Stage</option>
-					<option value="Emploi">Emploi</option>
-					<option>Personnalisé</option>
+					<option value="Perso" disabled="disabled">Personnalisé</option>
 				</select>
-	
-				<p><br /><textarea cols="50" rows="5" id="objectif" name="" disabled="disabled">Veuillez écrire ici votre objectif...</textarea></p>
+				
+				<!--
+				<p><br /><textarea cols="" rows="5" id="objectif" name="" disabled="disabled">Veuillez écrire ici votre objectif...</textarea></p>
+				-->
 		</td>
+		<td><span></span></td>
 		</tr>
 		</table>
 	</div>
@@ -152,101 +158,234 @@
 	<div class="rubrique_hidden" id="qua">
 		<h3>Qualités</h3>
 			<p>Choisissez 3 qualités vous correspondant :</p>
-			<table>
-			<tr>
-				<td>Qualités</td><td>Ma qualité</td>
-			</tr>
-			<tr>
-				<td>Dynamique</td><td><input type="radio" name="qua1" value="Dynamique"/></td>
-			</tr>
-			<tr>
-					<td>Consciencieux</td><td><input type="radio" name="qua1" value="Consciencieux"/></td>
-			</tr>
-			<tr>
-					 <td>Motivé<td><td><input type="radio" name="qua1" value="Motivé></td>
-			</tr>
-			<tr>
-					 <td>Sociable</td><td><input type="radio" name="qua1" value="Sociable"/></td>
-			</tr>
-			<tr>
-					 <td>Ponctuel</td><td><input type="radio" name="qua1" value="Ponctuel"/></td>
-			</tr>
-			<tr>
-					<td>Sens du contact</td><td><input type="radio" name="qua1" value="Sens du contact"/></td>
-			</tr>
-			<tr>
-					 <td>Bon relationnel</td><td><input type="radio" name="qua1" value="Bon relationnel"/></td>
-			</tr>
-			<tr>
-					 <td>Sérieux</td><td><input type="radio" name="qua1" value="Sérieux"/></td>
-			</tr>
-			<tr>
-					 <td>A l'écoute</td><td><input type="radio" name="qua1" value="A l'écoute"/></td>
-			</tr>
-			<tr>
-					 <td>Créatif</td><td><input type="radio" name="qua1" value="Créatif"/></td>
-			</tr>
-			<tr>
-					 <td>Sang-froid</td><td><input type="radio" name="qua1" value="Sang-froid"/></td>
-			</tr>
-			<tr>
-					 <td>Bienveillance</td><td><input type="radio" name="qua1" value="Bienveillance"/></td>
-			</tr>
-			<tr>
-					 <td>Patient</td><td><input type="radio" name="qua1" value="Patient"/></td>
-			</tr>
-			<tr>
-					 <td>Appliqué<td><td><input type="radio" name="qua1" value="Appliqué"></td>
-			</tr>
-			<tr>
-					 <td>Soigné</td><td><input type="radio" name="qua1" value="Soigné"></td>
-			</tr>
-			<tr>
-					 <td>Minutieux</td><td><input type="radio" name="qua1" value="Minutieux"/></td>
-				
-				
-			</tr>
-			</table>
+			<div id="zonedequals">
+			<?php
+			$lesquals = array("Dynamique", "Consciencieux", "Motivé", "Sociable", "Ponctuel", "Sens du contact", "Bon relationnel", "Sérieux", "A l'écoute", "Créatif", "Sang-froid", "Bienveillance", "Patient", "Appliqué", "Soigné", "Minutieux");
+			$nbqual = 0;
+			foreach ($lesquals as $onequal) {
+				echo '<input type="checkbox" id="qua_' . $nbqual . '" name="qua_' . $nbqual . '" value="' . $onequal . '" /> ' . $onequal . '<br />';
+				$nbqual++;
+			}
+			?>
+			</div>
 			
 			
 	</div>
 
-	<div class="rubrique_hidden" id="exp">
+	<div class="rubrique" id="exp">
 		<h3>Expériences professionnelles</h3>
-			<p><input type="button" id="bouton_experiences" value="Ajouter une expérience professionnelle"></p>
+			
+			
+			<!--
+			<table class="rubrique_table">
+				<caption>Expérience n°1</caption>
+				<tr>
+				<td><mark>X</mark></td>
+				<td class="td_stop">
+					<table>
+					<tr>
+					<td>Du :</td>
+					<td><input name="" id="exp_datedebut_1" type="date"></td>
+					<td>Au :</td>
+					<td><input name="" id="exp_datefin_1" type="date"></td>
+					</tr>
+					<tr>
+					<td>Poste occupé</td>
+					<td><input name="" id="exp_prequoi_1" type="text"></td>
+					<td>Entreprise</td>
+					<td><input name="" id="exp_nomou_1" type="text"></td>
+					</tr>
+					<tr>
+					<td>Ville :</td>
+					<td><input name="" id="exp_ville_1" type="text"></td>
+					<td>CP :</td>
+					<td><input name="" id="exp_codedep_1" type="text"></td>
+					</tr>
+					</table>
+				</td>
+				<td>
+				<span width="97%" class="lerreur lerreurstyle2">Erreur dans la saisie...<span class="info_bulle">Les dates doivent être indiquées au format 26/03/1987 et correspondrent, l'intitulé doit être renseigné, l'entreprise et la ville écrites en majuscules, enfin le département au format 75018.</span>
+				</td>
+				</tr>
+				</table>
+			-->	
+			
+			
+			
+			<p class="commandes"><span class="compte_el"><span id="nbre_de_xp">0</span> expérience(s)</span><input type="button" id="bouton_experiences" value="Ajouter une expérience" class="bouton_add"></p>
+			
+			<?php
+			$nb_xp_session = 0;
+			if (isset($_SESSION['data']['exp'][1]) AND !empty($_SESSION['data']['exp'][1]))
+			{				
+				foreach($_SESSION['data']['exp'] as $one_xp)
+				{
+					//var_dump($one_xp);
+					$nb_xp_session++;
+					echo '<table class="rubrique_table">
+						<caption>Expérience n°'.$nb_xp_session.'</caption>
+						<tr>
+						<td><mark>X</mark></td>
+						<td class="td_stop">';
+					echo '<table>
+						<tr>
+						<td>Du :</td>
+						<td><input name="" id="exp_datedebut_'.$nb_xp_session.'" type="date" class="normal_input" value="'.$one_xp['datedebut'].'"></td>
+						<td>Au :</td>
+						<td><input name="" id="exp_datefin_'.$nb_xp_session.'" type="date" class="normal_input" value="'.$one_xp['datefin'].'"></td>
+						</tr>';
+					echo '<tr>
+						<td>Poste occupé :</td>
+						<td><input name="" id="exp_prequoi_'.$nb_xp_session.'" type="text" class="normal_input" value="'.$one_xp['prequoi'].'"></td>
+						<td>Entreprise :</td>
+						<td><input name="" id="exp_nomou_'.$nb_xp_session.'" type="text" class="normal_input" value="'.$one_xp['nomou'].'"></td>
+						</tr>';
+					echo '<tr>
+					<td>Ville :</td>
+					<td><input name="" id="exp_ville_'.$nb_xp_session.'" type="text" class="normal_input" value="'.$one_xp['ville'].'"></td>
+					<td>Département :</td>
+					<td><input name="" id="exp_codedep_'.$nb_xp_session.'" type="text" class="normal_input" value="'.$one_xp['codedep'].'"></td>
+					</tr>
+					</table>';
+					echo '</td>
+					<td>
+					<span width="97%" class="lerreur lerreurstyle2">Erreur dans la saisie...<span class="info_bulle">Les dates doivent être indiquées au format 26/03/1987 et correspondrent, l\'intitulé doit être renseigné, l\'entreprise et la ville écrites en majuscules, enfin le département au format 75018.</span>
+					</td>
+					</tr>
+					</table>';
+					
+				}
+			}
+			?>
+			
+			
+		
+		
+		
 	</div>
+	
 
-	<div class="rubrique_hidden" id="for">
+	<div class="rubrique" id="for">
 		<h3>Formation</h3>
-			<p><input type="button" id="bouton_formations" value="Ajouter une formation"></p>
+			<p class="commandes"><span class="compte_el"><span id="nbre_de_for">0</span> expérience(s)</span><input type="button" id="bouton_formations" value="Ajouter une formation" class="bouton_add"></p>
+			
+			<?php
+			$nb_for_session = 0;
+			if (isset($_SESSION['data']['for'][1]) AND !empty($_SESSION['data']['for'][1]))
+			{				
+				foreach($_SESSION['data']['for'] as $one_for)
+				{
+					//var_dump($one_xp);
+					$nb_for_session++;
+					echo '<table class="rubrique_table">
+						<caption>Expérience n°'.$nb_for_session.'</caption>
+						<tr>
+						<td><mark>X</mark></td>
+						<td class="td_stop">';
+					echo '<table>
+						<tr>
+						<td>Du :</td>
+						<td><input name="" id="for_datedebut_'.$nb_for_session.'" type="date" class="normal_input" value="'.$one_for['datedebut'].'"></td>
+						<td>Au :</td>
+						<td><input name="" id="for_datefin_'.$nb_for_session.'" type="date" class="normal_input" value="'.$one_for['datefin'].'"></td>
+						</tr>';
+					echo '<tr>
+						<td>Intitulé :</td>
+						<td><input name="" id="for_prequoi_'.$nb_for_session.'" type="text" class="normal_input" value="'.$one_for['prequoi'].'"></td>
+						<td>Organisme :</td>
+						<td><input name="" id="for_nomou_'.$nb_for_session.'" type="text" class="normal_input" value="'.$one_for['nomou'].'"></td>
+						</tr>';
+					echo '<tr>
+					<td>Ville :</td>
+					<td><input name="" id="for_ville_'.$nb_for_session.'" type="text" class="normal_input" value="'.$one_for['ville'].'"></td>
+					<td>Département :</td>
+					<td><input name="" id="for_codedep_'.$nb_for_session.'" type="text" class="normal_input" value="'.$one_for['codedep'].'"></td>
+					</tr>
+					</table>';
+					echo '</td>
+					<td>
+					<span width="97%" class="lerreur lerreurstyle2">Erreur dans la saisie...<span class="info_bulle">Les dates doivent être indiquées au format 26/03/1987 et correspondrent, l\'intitulé doit être renseigné, l\'entreprise et la ville écrites en majuscules, enfin le département au format 75018.</span>
+					</td>
+					</tr>
+					</table>';
+					
+				}
+			}
+			?>
 	</div>
 
 	<div class="rubrique_hidden" id="inf">
 		<h3>Informations complémentaires</h3>
+		
+		<table class="table_type2">
+			<tr>
+				<td>Libellé :<br />(Loisirs, Langues, Informatique...)</td>
+				<td class="td_stop"><input type="text" class="normal_input"></td>
+				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
+			</tr>
+			<tr>
+				<td>Contenu :</td>
+				<td class="td_stop"><input type="text" class="normal_input"></td>
+				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
+			</tr>
+		</table>
+		
+		<table class="table_type2">
+			<tr>
+				<td>Libellé :<br />(Loisirs, Langues, Informatique...)</td>
+				<td class="td_stop"><input type="text" class="normal_input"></td>
+				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
+			</tr>
+			<tr>
+				<td>Contenu :</td>
+				<td class="td_stop"><input type="text" class="normal_input"></td>
+				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
+			</tr>
+		</table>		
+		
+		<table class="table_type2">
+			<tr>
+				<td>Libellé :<br />(Loisirs, Langues, Informatique...)</td>
+				<td class="td_stop"><input type="text" class="normal_input"></td>
+				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
+			</tr>
+			<tr>
+				<td>Contenu :</td>
+				<td class="td_stop"><input type="text" class="normal_input"></td>
+				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
+			</tr>
+		</table>
+			<!--
 			<table class="table_type2">
 			<tr>
 				<td>Loisirs / Centres d'intérêt :</td>
-				<td><p><input type="text" name="" id="inf_texte_loisirs"><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></p></td>
+				<td class="td_stop"><input type="text" name="" id="inf_loisirs"></td>
+				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
 			</tr>
 			<tr>
 				<td>Langues :</td>
-				<td><p><input type="text" name="" id="inf_texte_langues"><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></p></td>
+				<td class="td_stop"><input type="text" name="" id="inf_langues"></td>
+				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
 			</tr>
 			<tr>
 				<td>Informatique :</td>
-				<td><input type="text"><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
+				<td class="td_stop"><input type="text"></td>
+				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
 			</tr>
 			<tr>
 				<td>Autre(s) :</td>
-				<td><textarea cols="50" rows="5" id="objectif" name="" disabled="disabled"></textarea></td>
+				<td class="td_stop"><textarea cols="" rows="5" id="objectif" name="" disabled="disabled"></textarea></td>
+				<td></td>
 			</tr>
 			</table>
-			
+			-->
 			
 	</div>
-
+	
+	
+	
 	<nav>
-		<input type="submit" value="Générer le CV" id="envoi"> <input type="reset" value="Recommencer" />
+		<input type="submit" value="Générer le CV" id="envoi" class="btn-form-p1" /> <input type="reset" value="Recommencer"  class="btn-form-p1" />
 	</nav>
 	
 
@@ -262,40 +401,42 @@ var milieu = document.getElementById("milieu");
 var envoi; // variable finale de verif
 
 //FUNCTION DE SUPPRESSION DES PARAGRAPHES COMP, XP, FORMATIONS = OK
-function suppression(to_suppr) {
+function suppression(to_suppr, id_parent) {
 	var found = false;
 	while (found == false) {
 		to_suppr = to_suppr.parentNode;
 		if (to_suppr.nodeName == "P") {
 			to_suppr.parentNode.removeChild(to_suppr);
 			console.log("Suppression ok");
+			if (id_parent == 'exp') { nb_xp -= 1; cpteur_exp.innerHTML = nb_xp;}
+			else if (id_parent == 'for') { nb_for -= 1; cpteur_for.innerHTML = nb_for;}
+			else { }
 			found = true;
 		}
 	}
 }
 
 
-//FUNCTION DE COMPTAGE DES P des inputs affich?
-function comptage_p(e) {
-		var lesdivs_aff = comptage();
-		
+//FUNCTION DE COMPTAGE DES INPUTS DES CATEGORIES AFFICHEES (divs)
+function comptage_inputs(e) {
+		var lesdivs_aff = comptage_divs();
 		var divs_aff = lesdivs_aff['aff'];
 		
-		var lesps_par_div = { };
+		var inputs_par_div = { };
 		for (var i = 0, c = divs_aff.length; i < c; i++) {
-			var lesps = divs_aff[i].getElementsByTagName('p');
-			lesps_par_div[divs_aff[i].id] = lesps.length; // POUR L'INSTANT ENREGISTRE JUSTE LE NOMBRE DE P
+			var lesdivs = divs_aff[i].getElementsByTagName('input');
+			inputs_par_div[divs_aff[i].id] = lesdivs.length; // POUR L'INSTANT ENREGISTRE JUSTE LE NOMBRE D'INPUTS
 			
 			}		
 					
-		for (var lire in lesps_par_div) {
-			console.log(lire + " : " + lesps_par_div[lire] + "\n");
+		for (var lire in inputs_par_div) {
+			console.log(lire + " : " + inputs_par_div[lire] + "\n");
 			}
 		e.preventDefault();
 	}
 
 // FUNCTION DE COMPTAGE DES INPUTS AFFICHES ET NON-AFFICHES
-function comptage() {
+function comptage_divs() {
 		var results_comptage = {
 			aff: [ ],
 			nonaff: [ ]
@@ -306,17 +447,18 @@ function comptage() {
 				if (lesdivs[i].getAttribute("class") == "rubrique") {
 					results_comptage.aff.push(lesdivs[i]);
 					}
-				else {
+				else if (lesdivs[i].getAttribute("class") == "rubrique_hidden") {
 					results_comptage.nonaff.push(lesdivs[i]);
 					}
 				}
 				
-				
+		
 		return results_comptage;
 		}
 
 
-document.getElementById('comptage').addEventListener("click", comptage_p, false);
+//document.getElementById('comptage').addEventListener("click", comptage_inputs, false);
+// fonction ci-dessus désactivée
 
 //SELECTION DES RUBRIQUES ET AFFICHAGE OU MASQUAGE
 function affiche(elem) {
@@ -338,14 +480,18 @@ function affiche(elem) {
 			prenom: '[A-Z][a-z]{2,}',
 			datenaissance: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
 			adresse: '[1-9][0-9]*\\s[a-z]*\\s[A-za-z]*',
+			complement: '.*',
 			codepostal: '^\\d{5}$',
 			ville: '[A-Z]{2,}',
 			tel: '0\\d \\d{2} \\d{2} \\d{2} \\d{2}',
+			mail: '.+@.+\\..+',
 			
-			texte: '\\w.*',
+			langues: '[A-Z].+',
+			loisirs: '[A-Z].+',
+			texte: '[A-Z].+',
 			
 			date: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
-			competence: '[A-Z][a-z]+'
+			competence: '[A-Z].+'
 					
 		};
 
@@ -374,30 +520,29 @@ function affiche(elem) {
 			this.letest = leTest(lareg, laval);
 			//this.laVerif = laVerif(this); //enlev?ar enlev?lus haut et pas utile;
 			}
-
 		
 //TABLEAU POUR STOCKER LES CONSTRUCTEURS D'OBJET AVEC NOM VARIABLE // DONC APPEL : ListElmt[0].letest;
 		var ListElmt = [ ];
 
 //FUNCTION TROUVER LE SPAN D'ERREUR
 		function span_erreur(linput) {
-			
-			var pfound = false;
-			var spanfound = false;
-			while (pfound == false) {
-				linput = linput.parentNode;
-				if (linput.nodeName == "P") {
-					while (spanfound == false) {
-						linput = linput.lastChild;
-						if (linput.nodeName == "SPAN") {
-						console.log("span erreur trouvé");
-						spanfound = true;
-						}
-					pfound = true;
-				}
-			}
-		}
-		return linput;
+				
+				do {
+				linput = linput.parentNode;	
+				//console.log("l'input : " + linput + ", sa classe : " + linput.className);
+				} while (linput.className != "td_stop");
+				
+				
+				
+					num_cell = linput.cellIndex;
+					line_cell = linput.parentNode.rowIndex;
+					
+					//console.log('ligne : ' + line_cell + ', cellule : ' + num_cell);
+					
+					var td_final = linput.parentNode.cells[num_cell+1];
+					//console.log(td_final.lastChild);
+					
+					return td_final.lastChild;
 	}
 		
 // VERIFICATION FORMULAIRE FONCTION GENERALE
@@ -415,8 +560,9 @@ function Verif(form) {
 		envoi = true; //ON INITIALISE ENVOI
 	
 //SELECTION DE TOUS LES INPUTS DANS PARTIE IDENTITE
-		var a_verifier = comptage(); //RENVOI LE TABLEAU DES ADRESSES DES DIV AFFICHEES
+		var a_verifier = comptage_divs(); //RENVOI LE TABLEAU DES ADRESSES DES DIV AFFICHEES
 		var avirer = a_verifier.nonaff;
+		console.log(avirer);
 				
 		var a_verifier = a_verifier.aff;
 				
@@ -434,7 +580,8 @@ function Verif(form) {
 								console.log ("Une expression régulière trouvée pour : " + chi.id + " == " + boite);
 								var temp = new Elmt(i, chi.id, chi.value, tabregs[boite]); //Lance le truc auto !?!?
 								ListElmt.push(temp);
-							
+								
+								chi.classList.remove("normal_input");
 								if (temp.letest == true) {
 									chi.classList.add("correct");
 									chi.classList.remove("error");
@@ -463,7 +610,9 @@ function Verif(form) {
 					for (var i = 0, c = avirer.length; i < c; i++) {
 						var lesinputs = avirer[i].getElementsByTagName("input");
 						for (var j = 0, d = lesinputs.length; j < d; j++) {
-						lesinputs[j]. name = "";
+						
+						lesinputs[j].name = "";
+						
 						}
 					}
 				
@@ -488,42 +637,56 @@ function Verif(form) {
 var boutons = document.getElementsByTagName("input");
 
 //VARIABLES POUR ATTRIBUER LES IDS
-var nb_xp = 0;
-var nb_for = 0;
+var nb_xp = <?php echo $nb_xp_session; ?>;
+var nb_for = <?php echo $nb_for_session; ?>;
 var nb_comp = 0;
 
-//AFFICHAGE DES RUBRIQUES AVEC CASES A COCHER
-var i;
-for (i = 0; i < boutons.length; i++) {
+
+for (var i = 0, i_max = boutons.length; i < i_max; i++) {
 	
-	if (boutons[i].type == "checkbox") {
-		boutons[i].checked = false;
+	//MISE EN PLACE DES CASES A COCHER POUR L'AFFICHAGE DES RUBRIQUES
+	if (boutons[i].type == "checkbox" && boutons[i].className == "foraff") {
 		
+		//boutons[i].checked = false;
+		//console.log(boutons[i].nextSibling + ' <- est-ce un label ?');
+		var lelabel = boutons[i].nextSibling;
+		//console.log(lelabel.innerHTML);
+		lelabel.addEventListener("click", function() {
+			affiche(this.innerHTML.substr(0,3)); // FONCTION GERANT AFFICHAGE ET LE MASQUAGE DES PARTIES
+			
+			});
+		/*
 		boutons[i].addEventListener("change", function() {
-			affiche(this.nextSibling.nodeValue.substr(0,3)); // FONCTION POUR LA SELECTION DES RUBRIQUES ET L'AFFICHAGE OU NON
-	});
+			affiche(this.nextSibling.nodeValue.substr(0,3)); // FONCTION GERANT AFFICHAGE ET LE MASQUAGE DES PARTIES
+			
+			});
+			*/
 	}
 	
+	cpteur_exp = document.getElementById('nbre_de_xp');
+	cpteur_for = document.getElementById('nbre_de_for');
+	//POUR AJOUT DE COMPETENCES, D'EXPERIENCES OU DE FORMATIONS
 	if (boutons[i].type == "button") {
-		//alert("Bouton trouvé !");
 		boutons[i].addEventListener("click", function() {
 			
 			var parent = this.parentNode.parentNode;
-						
+					
 			if(parent.id == "exp") {
 				nb_xp += 1;
+				cpteur_exp.innerHTML = nb_xp;
 				var att_name = "exp_";
 				var caption = "Expérience n°" + nb_xp;
-				var quoi = "Poste occupé";
-				var lieu = "Entreprise";
+				var quoi = "Poste occupé : ";
+				var lieu = "Entreprise : ";
 			}
 			
 			if(parent.id == "for") {
 				nb_for += 1;
+				cpteur_for.innerHTML = nb_for;
 				var att_name = "for_";
 				var caption = "Formation n°" + nb_for;
-				var quoi = "Intitulé";
-				var lieu = "Organisme";
+				var quoi = "Intitulé : ";
+				var lieu = "Organisme : ";
 			}
 			
 			
@@ -531,24 +694,22 @@ for (i = 0; i < boutons.length; i++) {
 			var newM = document.createElement("mark");
 				newM.innerHTML = "X";
 				newM.addEventListener("click", function() {
-					suppression(this)
-				}); // CHELOU MAIS ?FONCTIONNE
+					suppression(this, parent.id);
+					}); // CHELOU MAIS ?FONCTIONNE
 			
+			//AJOUT DE COMPETENCE A REVOIR...
 			if(parent.id == "com") {
 				nb_comp += 1;		
 				
-				
-				
 				var text1 = document.createTextNode('Compétence n°' + nb_comp + ' : ');
 				var newInput = document.createElement("input");
-				newInput.id = 'com_com_' + nb_comp;
+				newInput.id = 'com_competence' + nb_comp;
 				newInput.type = "text";
 				
 				var newSpan = document.createElement("span");
 				newSpan.className = "lerreur lerreurstyle2";
 				newSpan.innerHTML = "La compétence indiquée ne peut être traitée...";
-				
-								
+												
 				newP.appendChild(newM);
 				newP.appendChild(text1);
 				newP.appendChild(newInput);
@@ -557,126 +718,65 @@ for (i = 0; i < boutons.length; i++) {
 			}
 			else {			
 				
-				var newT = document.createElement("table");
+				var newT, newC, newTR, newTD;
+				
+				newT = document.createElement("table");
 				newT.setAttribute("class", "rubrique_table");
-				var newC = document.createElement("caption");
+				newC = document.createElement("caption");
 				newC.innerHTML = caption;
 				newT.appendChild(newC);
+								
+				newTR = document.createElement("tr");
 				
-				//LIGNE 1
-				var newTR = document.createElement("tr");
+				newTD = document.createElement("td");
 				
-				var newTD = document.createElement("td");
-				newTD.setAttribute("rowspan", "3");
 				newTD.appendChild(newM);
 				newTR.appendChild(newTD);
-				
+								
 				newTD = document.createElement("td");
-				//newTD.class = att_name;
-				newTD.innerHTML = "Du :";
+				newTD.setAttribute("class", "td_stop");
+				
+				var in_lines = [
+					['Du :','<input type="date" class="normal_input" name="" id="' + att_name + 'datedebut_' + (parent.id == "for" ? nb_for : nb_xp) + '" />','Au :','<input type="date" class="normal_input" name="" id="' + att_name + 'datefin_' + (parent.id == "for" ?	nb_for : nb_xp) + '" />'],
+					[quoi,'<input type="text" class="normal_input" name="" id="' + att_name + 'prequoi_' + (parent.id == "for" ?	nb_for : nb_xp) + '" />',lieu,'<input type="text" class="normal_input" name="" id="' + att_name + 'nomou_' + (parent.id == "for" ?	nb_for : nb_xp) + '" />'],
+					['Ville :','<input type="text" class="normal_input" name="" id="' + att_name + 'ville_' + (parent.id == "for" ?	nb_for : nb_xp) + '" />','CP :','<input type="text" class="normal_input" name="" id="' + att_name + 'codedep_' + (parent.id == "for" ?	nb_for : nb_xp) + '" />']
+				];
+
+				var newSousT, newSousTR, newSousTD;
+				newSousT = document.createElement("table");
+				for (var i = 0; i < 3; i++) {
+					newSousTR = document.createElement("tr");
+					for (var j = 0; j < 4; j++) {
+						newSousTD = document.createElement("td");
+						newSousTD.innerHTML = in_lines[i][j];
+						newSousTR.appendChild(newSousTD);
+					}
+				newSousT.appendChild(newSousTR);
+				}
+				
+				newTD.appendChild(newSousT);
+				
 				newTR.appendChild(newTD);
 				
-				newTD = document.createElement("td");
-				//newTD.class = att_name;
-				newTD.innerHTML = '<input type="date" name="" id="' + att_name + 'datedebut_' + (parent.id == "com" ? nb_comp : nb_xp) + '" />';
-				newTR.appendChild(newTD);
+				// REPRISE...
 				
 				newTD = document.createElement("td");
-				//newTD.class = att_name;
-				newTD.innerHTML = "Au :";
-				newTR.appendChild(newTD);
-				
-				newTD = document.createElement("td");
-				//newTD.class = att_name;
-				newTD.innerHTML = '<input type="date" name="" id="' + att_name + 'datefin_' + (parent.id == "com" ?	nb_comp : nb_xp) + '" />';
-				newTR.appendChild(newTD);
-				
-				newT.appendChild(newTR);
-				
-				//LIGNE 2
-				
-				newTR = document.createElement("tr");
-				
-				newTD = document.createElement("td");
-				//newTD.class = att_name;
-				newTD.innerHTML = quoi;
-				newTR.appendChild(newTD);
-				
-				newTD = document.createElement("td");
-				//newTD.class = att_name;
-				newTD.innerHTML = '<input type="text" name="" id="' + att_name + 'prequoi_' + (parent.id == "com" ?	nb_comp : nb_xp) + '" />';
-				newTR.appendChild(newTD);
-				
-				newTD = document.createElement("td");
-				newTD.class = att_name;
-				newTD.innerHTML = lieu;
-				newTR.appendChild(newTD);
-				
-				newTD = document.createElement("td");
-				newTD.class = att_name;
-				newTD.innerHTML = '<input type="text" name="" id="' + att_name + 'nomou_' + (parent.id == "com" ?	nb_comp : nb_xp) + '" />';
-				newTR.appendChild(newTD);
-				
-				newT.appendChild(newTR);
-				
-				//LIGNE 3
-				
-				newTR = document.createElement("tr");
-				
-				newTD = document.createElement("td");
-				newTD.class = att_name;
-				newTD.innerHTML = "Ville :";
-				newTR.appendChild(newTD);
-				
-				newTD = document.createElement("td");
-				newTD.class = att_name;
-				newTD.innerHTML = '<input type="text" name="" id="' + att_name + 'ville_' + (parent.id == "com" ?	nb_comp : nb_xp) + '" />';
-				newTR.appendChild(newTD);
-				
-				newTD = document.createElement("td");
-				newTD.class = att_name;
-				newTD.innerHTML = "Département :";
-				newTR.appendChild(newTD);
-				
-				newTD = document.createElement("td");
-				newTD.class = att_name;
-				newTD.innerHTML = '<input type="text" name="" id="' + att_name + 'codedep_' + (parent.id == "com" ?	nb_comp : nb_xp) + '" />';
-				newTR.appendChild(newTD);
-				
-				newT.appendChild(newTR);
-				
-				//LIGNE 4
-				
-				newTR = document.createElement("tr");
-				
-				newTD = document.createElement("td");
-				newTR.appendChild(newTD);
-				
-				newTD = document.createElement("td");
-				newTD.setAttribute("colspan", "4");
-				newTD.style.textAlign = "left";
-				
 				var newSpan = document.createElement("span");
 				newSpan.className = "lerreur lerreurstyle2";
 				newSpan.setAttribute("width", "97%"); // NE MARCHE PAS
-				newSpan.innerHTML = "Les dates doivent être indiquées au format 26/03/1987 et correspondrent, l'intitulé doit être renseigné, l'entreprise et la ville écrites en majuscules, enfin le département au format 75018."
-				
+				newSpan.innerHTML = "Erreur dans la saisie...<span class='info_bulle'>Les dates doivent être indiquées au format 26/03/1987 et correspondrent, l'intitulé doit être renseigné, l'entreprise et la ville écrites en majuscules, enfin le département au format 75018.</span>"
 				newTD.appendChild(newSpan);
 				newTR.appendChild(newTD);
+				
 				newT.appendChild(newTR);
 				
 				//INSERTION FINALE DANS LE PARAGRAPHE
 				newP.appendChild(newT);
-				
-				
+							
 			}	
-			
-		
+					
 			parent.appendChild(newP);
-			
-			
-			
-			
+					
 		});
 
 	}

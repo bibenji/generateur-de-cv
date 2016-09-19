@@ -1,3 +1,6 @@
-*.tmp
-log.txt
-tmp/*
+/archives/*
+/font/*
+/ressources/*
+/tests/*
+/tmp/*
+/TO_DEL/*

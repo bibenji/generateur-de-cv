@@ -30,7 +30,7 @@ function AjouterTitre($espaces_g, $taille_t, $titre, $taille_ss_t, $objectif)
 	$this->Cell(0,3,'',0,1,'C');
 	$this->SetFont('Arial','I',$taille_ss_t);
 	$this->SetLeftMargin(30);
-	$this->MultiCell(150,5,$objectif);
+	$this->MultiCell(150,5,utf8_decode($objectif));
 	$this->SetLeftMargin(10);
 	$this->Ln($espaces_g);
 	$this->Cell(0,0.5,'',1,1,'',true);
@@ -54,6 +54,9 @@ function AjouterRuSpe($rub, $espaces_g, $taille_b, $align)
 	// Saut de ligne
 	$this->Ln(1);
 	$this->SetTextColor(0,0,0);
+	
+	global $align;
+	$align = 'R';
 }
 
 function AjouterRu($rub, $espaces_g, $taille_b) // faire un héritage ou un trait... à voir demain !!!

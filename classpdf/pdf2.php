@@ -29,7 +29,7 @@ function AjouterTitre($espaces_g, $taille_t, $titre, $taille_ss_t, $objectif)
 	$this->Cell(0,8,$titre,0,1);
 	$this->Cell(0,3,'',0,1,'C');
 	$this->SetFont('Arial','I',$taille_ss_t);
-	$this->MultiCell(0,5,$objectif);
+	$this->MultiCell(0,5,utf8_decode($objectif));
 	
 	$this->setY($save_y);
 	$this->SetLeftMargin(10);
@@ -40,17 +40,34 @@ function AjouterTitre($espaces_g, $taille_t, $titre, $taille_ss_t, $objectif)
 
 function AjouterRu($rub, $espaces_g, $taille_b, $colband, $coltxtband, $colbdrband) // faire un héritage ou un trait... à voir demain !!!
 {
+	// déterminer l'icone à afficher
+	$icones = array(
+		"EXPERIENCE PROFESSIONNELLE" => "ressources/png/experiences.png",
+		"FORMATION" => "ressources/png/formation.png",
+		"INFORMATIONS COMPLEMENTAIRES" => "ressources/png/infos.jpg"
+	);
+		
 	$this->Ln($espaces_g);
+	$this->Image($icones[$rub],null,null,10);
+	
+	$this->setY($this->getY()-7);
+	$this->setX($this->getX()+11);
+	
+	
 	$this->SetFont('Arial','B',$taille_b);
 	$this->SetTextColor($coltxtband[0],$coltxtband[1],$coltxtband[2]);
 	$this->SetFillColor($colband[0],$colband[1],$colband[2]);
 	$this->SetDrawColor(255,255,255);
+	
 	$this->Cell(0,10,$rub,1,1,'',true);
 	$this->SetFillColor($colbdrband[0],$colbdrband[1],$colbdrband[2]);
 	$this->Cell(0,1,'',1,1,'',true);
 	// Saut de ligne
 	$this->Ln(1);
 	$this->SetTextColor(0,0,0);
+	
+	$this->setX($this->getX()-14);
+	// $this->setY($this->getY()+10);
 }
 
 function AjouterItem($quand, $quoi, $ou, $taille_t)

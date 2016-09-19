@@ -11,7 +11,7 @@ $obj;
 $all_qual = array();
 $all_exp = array();
 $all_for = array();
-$inf = array();
+$all_inf = array();
 
 foreach ($_POST as $key => $val) {
 	
@@ -69,7 +69,7 @@ foreach ($_POST as $key => $val) {
 		
 		case 'inf' : {
 			$n = substr(substr($key, 0, -2), 4);
-			$inf[substr($key, 4, 3	)] = $val;
+			$all_inf[substr($key, strlen($key)-1, strlen($key))][$n] = $val;
 		}
 		break;
 	}
@@ -79,7 +79,7 @@ $_SESSION['data']['ide'] = $ide;
 $_SESSION['data']['qual'] = $all_qual;
 $_SESSION['data']['exp'] = $all_exp;
 $_SESSION['data']['for'] = $all_for;
-$_SESSION['data']['inf'] = $inf;
+$_SESSION['data']['inf'] = $all_inf;
 
 
 //TRAITEMENTS EN BDD	
@@ -105,9 +105,9 @@ if (TEST_ON) {
 ?>
 
 
-<html>
+<html lang="fr">
 <head>
-
+<meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="style.css" />
 <link rel="stylesheet" type="text/css" href="style_rendu.css" />
 <title>Rendu CV - Tests</title>
@@ -154,9 +154,11 @@ while ($donnees = $q->fetch()) {
 
 ?>
 
+<?php include('header.php'); ?>
+
 <div id="main">
 
-<?php include('header.php'); ?>
+
 
 <?php include('menu_nav.php'); ?>
 	
@@ -165,13 +167,15 @@ while ($donnees = $q->fetch()) {
 <aside class="conteneur1">
 	
 	<?php include('menu_modifs.php'); ?>
-
+	
+	<!--
+	<br />
 	<hr />
-
+	<br />
 
 	<p><a href="pdf.php">Tenter le PDF</a></p>
 	<p><a href="lm.php">Tenter aussi la LM</a></p>
-	
+	-->
 	
 	<?php
 	//PETIT TEST AVEC LES EXP
@@ -197,14 +201,14 @@ foreach ($all_exp as $m => $xp)
 
 	<div id="lecv" class="cv_type1">
 
-		<div id="zonecv">
+		<div id="zonecv" class="alltxt">
 
 			<div id="ide">
 				<span class="lenom"><?php echo $ide['nom'] . ' ' . $ide['pre']; ?></span><br />
-				<?php echo $ide['adr']; ?><br />
-				<?php echo $ide['cod'] . ' ' . $ide['vil']; ?><br />
-				<?php echo $ide['tel']; ?><br />
-				<?php echo $ide['mai']; ?><br />
+				<span class="adr1"><?php echo $ide['adr']; ?></span><br />
+				<span class="adr2"><?php echo $ide['cod'] . ' ' . $ide['vil']; ?></span><br />
+				<span class="coordos1"><?php echo $ide['tel']; ?></span><br />
+				<span class="coordos2"><?php echo $ide['mai']; ?></span><br />
 				Né(e) le : <?php echo $ide['dat']; ?>
 			</div>
 
@@ -228,9 +232,9 @@ foreach ($all_exp as $m => $xp)
 				<?php
 				foreach ($all_exp as $xp)
 				{
-					echo '<table><tr>';
+					echo '<table class="alltxt"><tr>';
 					echo '<td class="first_td">Du ' . $xp['datedebut'] . ' au ' . $xp['datefin'] . '</td>';
-					echo '<td><span class="intitu">' . $xp['prequoi'] . '</span>';
+					echo '<td class="second_td"><span class="intitu">' . $xp['prequoi'] . '</span>';
 					echo $xp['nomou'] . ', ' . $xp['ville'] . ' (' . $xp['codedep'] . ')</td>';
 					echo '</tr></table>';
 				}
@@ -238,13 +242,13 @@ foreach ($all_exp as $m => $xp)
 			</div>
 
 			<div id="for">
-			<h3 class="bandeau"><img src="ressources\png\formations.png" />Formation</h3>
+			<h3 class="bandeau"><img src="ressources\png\formation.png" />Formation</h3>
 				<?php
 				foreach ($all_for as $for)
 				{
-					echo '<table><tr>';
+					echo '<table class="alltxt"><tr>';
 					echo '<td class="first_td">Du ' . $for['datedebut'] . ' au ' . $for['datefin'] . '</td>';
-					echo '<td><span class="intitu">' . $for['prequoi'] . '</span>';
+					echo '<td class="second_td"><span class="intitu">' . $for['prequoi'] . '</span>';
 					echo $for['nomou'] . ', ' . $for['ville'] . ' (' . $for['codedep'] . ')</td>';
 					echo '</tr></table>';
 				}
@@ -252,13 +256,14 @@ foreach ($all_exp as $m => $xp)
 			</div>
 
 			<div id="inf">
-			<h3 class="bandeau">Informations complémentaires</h3>
+			<h3 class="bandeau"><img src="ressources\png\infos.jpg" />Informations complémentaires</h3>
 				<?php
-				foreach ($inf as $inf_key => $one_inf)
+				foreach ($all_inf as $one_inf)
 				{
-					if ($inf_key == "loi") $new_inf_key = "Loisirs";
-					if ($inf_key == "lan") $new_inf_key = "Langues";
-					echo '<p>' . $new_inf_key . ' : ' . $one_inf . '</p>';
+					
+					// if ($inf_key == "loi") $new_inf_key = "Loisirs";
+					// if ($inf_key == "lan") $new_inf_key = "Langues";
+					echo '<p>' . $one_inf['libelle'] . ' : ' . $one_inf['contenu'] . '</p>';
 				}
 				?>
 			</div>
@@ -271,23 +276,35 @@ foreach ($all_exp as $m => $xp)
 
 </div>
 
+
+</div>
+
 <footer>
 	<h2>Propulsé par Dr. B.</h2>
 </footer>
-</div>
+
+
 
 <?php
-var_dump($_SESSION);
+var_dump($_SESSION); // vide la session???
 ?>
 
+
 <script type="text/javascript">
+	var linkgenererpdf = document.getElementById('linkgenererpdf');
+	linkgenererpdf.addEventListener("click", function() {
+	document.getElementById('leform').submit();
+	});
+
 var aside = document.getElementsByTagName('aside');
 var all_select = aside[0].getElementsByTagName('select');
 var i_max = all_select.length;
 
 for (var i = 0; i < i_max; i++) {
 		if(all_select[i].id != 'modeleCV') {
-		
+			
+			// pour initialiser les champs hidden...
+						
 			all_select[i].addEventListener("change", function() {
 				var fin_attribut = this.id.search("_");
 				var attribut_cible = this.id.substr(0, fin_attribut);

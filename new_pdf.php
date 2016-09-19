@@ -4,9 +4,10 @@ if (1 == 2) {
 	echo '<pre>';
 	print_r($_POST);
 	echo '</pre>';
-	
+
 	//params :
 // tailles :
+/*
 $tailles_px = array(
 		'xx-small' => 6,
 		"x-small" => 8,
@@ -32,7 +33,7 @@ $codes_couleur = array(
 		"6C7A89" => '108,122,137',
 		"F7CA18" => '247,202,24',
 		"D35400" => '211,84,0',
-		"D2527F" => '210,82,27',
+		"D2527F" => '210,82,127',
 		"CF000F" => '207,0,15',
 		"019875" => '1,152,117',
 		"663399" => '6,99,57'
@@ -45,6 +46,7 @@ $colors = array(
 		"fondbandeau" => array(0,0,0),
 		"bordurebandeau" => array(0,0,0)
 	);
+*/
 	
 foreach($_POST as $key => $val)
 {
@@ -78,13 +80,16 @@ else
 /*
 unset($_SESSION);
 */
-
+/*
 $_SESSION['data']['inf']['lan'] = "Langues : Anglais (bon niveau), Allemand (niveau scolaire)";
 $_SESSION['data']['inf']['loi'] = "Loisirs : musique, écriture";
+*/
+
 /* keep that pour le moment */
 
 //params :
 // tailles :
+/*
 $tailles_px = array(
 		'xx-small' => 6,
 		"x-small" => 8,
@@ -93,6 +98,16 @@ $tailles_px = array(
 		"large" => 14,
 		"x-large" => 16,
 		"xx-large" => 20
+	);
+*/
+$tailles_px = array(
+		'70%' => 6,
+		"80%" => 8,
+		"90%" => 10,
+		"100%" => 12,
+		"110%" => 14,
+		"120%" => 16,
+		"130%" => 20
 	);
 	
 $tailles = array(
@@ -111,7 +126,7 @@ $codes_couleur = array(
 		"6C7A89" => '108,122,137',
 		"F7CA18" => '247,202,24',
 		"D35400" => '211,84,0',
-		"D2527F" => '210,82,27',
+		"D2527F" => '210,82,127',
 		"CF000F" => '207,0,15',
 		"019875" => '1,152,117',
 		"663399" => '6,99,57'
@@ -121,9 +136,15 @@ $colors = array(
 		"texte" => array(0,0,0),
 		"titre" => array(0,0,0),
 		"bandeau" => array(0,0,0),
-		"fondbandeau" => array(0,0,0),
-		"bordurebandeau" => array(0,0,0)
+		"fondbandeau" => array(255,255,255),
+		"bordurebandeau" => array(0,0,0)		
 	);
+
+if ($_POST['hidden_modeleCV'] == "cv_type1")
+{
+	$colors['fondbandeau'] = array(0,0,0);
+	$colors['bandeau'] = array(255,255,255);
+}
 	
 foreach($_POST as $key => $val)
 {
@@ -137,7 +158,7 @@ foreach($_POST as $key => $val)
 			// echo '$val : ' . $val . '<br />';
 			$tailles[strtolower($key)] = $tailles_px[$val]; // ex : $taile['coordos'] = $val de hidden_tailleCoordos
 		}
-		elseif (substr($key,0,1) == 'c')
+		elseif (substr($key,0,1) == 'c') // on cherche les couleurs
 		{
 			$key = str_replace('color', '', $key); // on vire color
 			$colors[strtolower($key)] = explode(',', $codes_couleur[$val]);
@@ -247,7 +268,7 @@ $pdf->SetFont('Arial','',$taille_texte);
 
 foreach ($_SESSION['data']['inf'] as $inf) {
 $pdf->Ln(4);
-$pdf->Cell(0,8,$inf,0,1);
+$pdf->Cell(0,8,utf8_decode($inf['libelle']).' : '.utf8_decode($inf['contenu']),0,1);
 }
 
 /*

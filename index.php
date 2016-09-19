@@ -3,7 +3,7 @@ session_start();
 
 echo '<a href="destroy.php">Destroy</a>';
 var_dump($_SESSION);
-
+if (isset($_SESSION['data']['inf'])) var_dump($_SESSION['data']['inf']);
 
 
 
@@ -25,8 +25,9 @@ function addField($rub, $name, $error)
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+<meta charset="UTF-8">
 <link rel="stylesheet" href="style.css">
 <title>Générateur CVs Lettres de motivation</title>
 </head>
@@ -34,10 +35,10 @@ function addField($rub, $name, $error)
 <body>
 
 
-
+<?php include('header.php'); ?>
 <div id="main">
 
-<?php include('header.php'); ?>
+<?php include('menu_nav.php'); ?>
 
 
 
@@ -56,7 +57,7 @@ function addField($rub, $name, $error)
 				<li><input type="checkbox" class="foraff" id="ch_qua"><label for="ch_qua">qualités</label></li>
 				<li><input type="checkbox" class="foraff" checked="checked" id="ch_exp"><label for="ch_exp">expériences professionnelles</label></li>
 				<li><input type="checkbox" class="foraff" checked="checked" id="ch_for"><label for="ch_for">formation</label></li>
-				<li><input type="checkbox" class="foraff" id="ch_inf"><label for="ch_inf">informations complémentaires</label></li>
+				<li><input type="checkbox" class="foraff" checked="checked" id="ch_inf"><label for="ch_inf">informations complémentaires</label></li>
 			</ul>
 	
 
@@ -78,7 +79,7 @@ function addField($rub, $name, $error)
 
 
 <section id="milieu">
-<?php include('menu_nav.php'); ?>
+
 
 <form method="post" action="testsphp.php" id="form">
 	
@@ -175,57 +176,23 @@ function addField($rub, $name, $error)
 	<div class="rubrique" id="exp">
 		<h3>Expériences professionnelles</h3>
 			
-			
-			<!--
-			<table class="rubrique_table">
-				<caption>Expérience n°1</caption>
-				<tr>
-				<td><mark>X</mark></td>
-				<td class="td_stop">
-					<table>
-					<tr>
-					<td>Du :</td>
-					<td><input name="" id="exp_datedebut_1" type="date"></td>
-					<td>Au :</td>
-					<td><input name="" id="exp_datefin_1" type="date"></td>
-					</tr>
-					<tr>
-					<td>Poste occupé</td>
-					<td><input name="" id="exp_prequoi_1" type="text"></td>
-					<td>Entreprise</td>
-					<td><input name="" id="exp_nomou_1" type="text"></td>
-					</tr>
-					<tr>
-					<td>Ville :</td>
-					<td><input name="" id="exp_ville_1" type="text"></td>
-					<td>CP :</td>
-					<td><input name="" id="exp_codedep_1" type="text"></td>
-					</tr>
-					</table>
-				</td>
-				<td>
-				<span width="97%" class="lerreur lerreurstyle2">Erreur dans la saisie...<span class="info_bulle">Les dates doivent être indiquées au format 26/03/1987 et correspondrent, l'intitulé doit être renseigné, l'entreprise et la ville écrites en majuscules, enfin le département au format 75018.</span>
-				</td>
-				</tr>
-				</table>
-			-->	
-			
-			
-			
-			<p class="commandes"><span class="compte_el"><span id="nbre_de_xp">0</span> expérience(s)</span><input type="button" id="bouton_experiences" value="Ajouter une expérience" class="bouton_add"></p>
+			<p class="commandes">
+				<!--<span class="compte_el"><span id="nbre_de_xp">0</span> expérience(s)</span>-->
+				<input type="button" id="bouton_experiences" value="Ajouter une expérience" class="bouton_add">
+			</p>
 			
 			<?php
 			$nb_xp_session = 0;
-			if (isset($_SESSION['data']['exp'][1]) AND !empty($_SESSION['data']['exp'][1]))
+			if (isset($_SESSION['data']['exp']) AND !empty($_SESSION['data']['exp']))
 			{				
 				foreach($_SESSION['data']['exp'] as $one_xp)
 				{
 					//var_dump($one_xp);
 					$nb_xp_session++;
-					echo '<table class="rubrique_table">
+					echo '<p><table class="rubrique_table">
 						<caption>Expérience n°'.$nb_xp_session.'</caption>
 						<tr>
-						<td><mark>X</mark></td>
+						<td><mark onclick="suppression(this, \'exp\')">X</mark></td>
 						<td class="td_stop">';
 					echo '<table>
 						<tr>
@@ -252,7 +219,7 @@ function addField($rub, $name, $error)
 					<span width="97%" class="lerreur lerreurstyle2">Erreur dans la saisie...<span class="info_bulle">Les dates doivent être indiquées au format 26/03/1987 et correspondrent, l\'intitulé doit être renseigné, l\'entreprise et la ville écrites en majuscules, enfin le département au format 75018.</span>
 					</td>
 					</tr>
-					</table>';
+					</table></p>';
 					
 				}
 			}
@@ -267,20 +234,23 @@ function addField($rub, $name, $error)
 
 	<div class="rubrique" id="for">
 		<h3>Formation</h3>
-			<p class="commandes"><span class="compte_el"><span id="nbre_de_for">0</span> expérience(s)</span><input type="button" id="bouton_formations" value="Ajouter une formation" class="bouton_add"></p>
+			<p class="commandes">
+				<!--<span class="compte_el"><span id="nbre_de_for">0</span> expérience(s)</span>-->
+				<input type="button" id="bouton_formations" value="Ajouter une formation" class="bouton_add">
+			</p>
 			
 			<?php
 			$nb_for_session = 0;
-			if (isset($_SESSION['data']['for'][1]) AND !empty($_SESSION['data']['for'][1]))
+			if (isset($_SESSION['data']['for']) AND !empty($_SESSION['data']['for']))
 			{				
 				foreach($_SESSION['data']['for'] as $one_for)
 				{
 					//var_dump($one_xp);
 					$nb_for_session++;
-					echo '<table class="rubrique_table">
+					echo '<p><table class="rubrique_table">
 						<caption>Expérience n°'.$nb_for_session.'</caption>
 						<tr>
-						<td><mark>X</mark></td>
+						<td><mark onclick="suppression(this, \'for\')">X</mark></td>
 						<td class="td_stop">';
 					echo '<table>
 						<tr>
@@ -307,78 +277,66 @@ function addField($rub, $name, $error)
 					<span width="97%" class="lerreur lerreurstyle2">Erreur dans la saisie...<span class="info_bulle">Les dates doivent être indiquées au format 26/03/1987 et correspondrent, l\'intitulé doit être renseigné, l\'entreprise et la ville écrites en majuscules, enfin le département au format 75018.</span>
 					</td>
 					</tr>
-					</table>';
+					</table></p>';
 					
 				}
 			}
 			?>
 	</div>
 
-	<div class="rubrique_hidden" id="inf">
+	<div class="rubrique" id="inf">
 		<h3>Informations complémentaires</h3>
+		<p class="commandes"><input type="button" id="bouton_informations" value="Ajouter une information" class="bouton_add"></p>
 		
-		<table class="table_type2">
+		<?php
+			$nb_inf_session = 0;
+			
+			if (isset($_SESSION['data']['inf']) AND !empty($_SESSION['data']['inf']))
+			{				
+				foreach($_SESSION['data']['inf'] as $one_inf)
+				{
+					//var_dump($one_xp);
+					$nb_inf_session++;
+					echo '<p><table class="table_type3"><tr>
+							<td class="td01-t3"><mark onclick="suppression(this, \'inf\')">X</mark></td>
+							<td>
+							<table><tr><td class="td02-t3">Libellé :<br /></td>
+								<td class="td_stop"><input type="text" name="" id="inf_libelle_' . $nb_inf_session . '" class="normal_input" placeholder="Loisirs, Langues..." value="' . $one_inf['libelle'] . '" /></td>
+								<td class="td03-t3"><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
+								</tr><tr>
+								<td class="td02-t3">Contenu :</td>
+								<td class="td_stop"><input type="text" name="" id="inf_contenu_' . $nb_inf_session . '" class="normal_input" value="' . $one_inf['contenu'] . '" /></td>
+								<td class="td03-t3"><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
+							</tr></table>
+						</td></tr></table></p>';							
+				}
+			}
+			?>
+		
+		
+		<!--
+		<p>
+		<table class="table_type3">
 			<tr>
-				<td>Libellé :<br />(Loisirs, Langues, Informatique...)</td>
-				<td class="td_stop"><input type="text" class="normal_input"></td>
-				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
-			</tr>
-			<tr>
-				<td>Contenu :</td>
-				<td class="td_stop"><input type="text" class="normal_input"></td>
-				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
+				<td class="td01-t3"><mark onclick="suppression(this, 'inf');">X</mark></td>
+				<td>
+					<table><tr>
+						<td class="td02-t3">Libellé :<br /></td>
+						<td class="td_stop"><input type="text" class="normal_input" placeholder="Loisirs, Langues..." /></td>
+						<td class="td03-t3"><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
+					</tr>
+					<tr>
+						<td class="td02-t3">Contenu :</td>
+						<td class="td_stop"><input type="text" class="normal_input" /></td>
+						<td class="td03-t3"><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
+					</tr>
+					</table>
+				</td>
 			</tr>
 		</table>
+		</p>
+		-->
 		
-		<table class="table_type2">
-			<tr>
-				<td>Libellé :<br />(Loisirs, Langues, Informatique...)</td>
-				<td class="td_stop"><input type="text" class="normal_input"></td>
-				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
-			</tr>
-			<tr>
-				<td>Contenu :</td>
-				<td class="td_stop"><input type="text" class="normal_input"></td>
-				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
-			</tr>
-		</table>		
-		
-		<table class="table_type2">
-			<tr>
-				<td>Libellé :<br />(Loisirs, Langues, Informatique...)</td>
-				<td class="td_stop"><input type="text" class="normal_input"></td>
-				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
-			</tr>
-			<tr>
-				<td>Contenu :</td>
-				<td class="td_stop"><input type="text" class="normal_input"></td>
-				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
-			</tr>
-		</table>
-			<!--
-			<table class="table_type2">
-			<tr>
-				<td>Loisirs / Centres d'intérêt :</td>
-				<td class="td_stop"><input type="text" name="" id="inf_loisirs"></td>
-				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
-			</tr>
-			<tr>
-				<td>Langues :</td>
-				<td class="td_stop"><input type="text" name="" id="inf_langues"></td>
-				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
-			</tr>
-			<tr>
-				<td>Informatique :</td>
-				<td class="td_stop"><input type="text"></td>
-				<td><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
-			</tr>
-			<tr>
-				<td>Autre(s) :</td>
-				<td class="td_stop"><textarea cols="" rows="5" id="objectif" name="" disabled="disabled"></textarea></td>
-				<td></td>
-			</tr>
-			</table>
-			-->
 			
 	</div>
 	
@@ -402,15 +360,18 @@ var envoi; // variable finale de verif
 
 //FUNCTION DE SUPPRESSION DES PARAGRAPHES COMP, XP, FORMATIONS = OK
 function suppression(to_suppr, id_parent) {
+	console.log(to_suppr.parentNode);
+	console.log(id_parent);
 	var found = false;
 	while (found == false) {
 		to_suppr = to_suppr.parentNode;
 		if (to_suppr.nodeName == "P") {
 			to_suppr.parentNode.removeChild(to_suppr);
 			console.log("Suppression ok");
-			if (id_parent == 'exp') { nb_xp -= 1; cpteur_exp.innerHTML = nb_xp;}
+			/*if (id_parent == 'exp') { nb_xp -= 1; cpteur_exp.innerHTML = nb_xp;}
 			else if (id_parent == 'for') { nb_for -= 1; cpteur_for.innerHTML = nb_for;}
-			else { }
+			else if (id_parent == 'inf') { nb_inf -= 1;}
+			else { }*/
 			found = true;
 		}
 	}
@@ -486,12 +447,17 @@ function affiche(elem) {
 			tel: '0\\d \\d{2} \\d{2} \\d{2} \\d{2}',
 			mail: '.+@.+\\..+',
 			
+			titre: '[A-Z].+',
+			
 			langues: '[A-Z].+',
 			loisirs: '[A-Z].+',
 			texte: '[A-Z].+',
 			
 			date: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
-			competence: '[A-Z].+'
+			competence: '[A-Z].+',
+			
+			libelle: '[A-Z].*',
+			contenu: '[A-Z].*' 
 					
 		};
 
@@ -502,7 +468,7 @@ function affiche(elem) {
 			var testreg = new RegExp(rege);
 		//console.log(rege.test(champ));
 			var resultat = testreg.test(champ);
-			console.log(resultat);
+			// console.log(resultat);
 			return resultat;
 			/*
 			if (rege.test(champ) == false) { console.log("reg ok"); console.log(champ);}
@@ -529,10 +495,8 @@ function affiche(elem) {
 				
 				do {
 				linput = linput.parentNode;	
-				//console.log("l'input : " + linput + ", sa classe : " + linput.className);
+				// console.log("l'input : " + linput + ", sa classe : " + linput.className);
 				} while (linput.className != "td_stop");
-				
-				
 				
 					num_cell = linput.cellIndex;
 					line_cell = linput.parentNode.rowIndex;
@@ -540,7 +504,7 @@ function affiche(elem) {
 					//console.log('ligne : ' + line_cell + ', cellule : ' + num_cell);
 					
 					var td_final = linput.parentNode.cells[num_cell+1];
-					//console.log(td_final.lastChild);
+					// console.log(td_final.lastChild);
 					
 					return td_final.lastChild;
 	}
@@ -565,7 +529,8 @@ function Verif(form) {
 		console.log(avirer);
 				
 		var a_verifier = a_verifier.aff;
-				
+		
+		var bool_table = 'bool_table'; // variable pour gesiton des spans d'erreurs de for et de exp
 		//PARCOURS DE CE TABLEAU
 		for (var i = 0, c = a_verifier.length; i < c; i++) { // ON BOUCLE LES DIVS
 			var inputs_a_verifier = a_verifier[i].getElementsByTagName("input");
@@ -577,25 +542,76 @@ function Verif(form) {
 						
 						for (var boite in tabregs) { 
 							if (chi.id.substr(4,3) == boite.substr(0,3)) {
-								console.log ("Une expression régulière trouvée pour : " + chi.id + " == " + boite);
+								// console.log ("Une expression régulière trouvée pour : " + chi.id + " == " + boite);
 								var temp = new Elmt(i, chi.id, chi.value, tabregs[boite]); //Lance le truc auto !?!?
 								ListElmt.push(temp);
-								
 								chi.classList.remove("normal_input");
-								if (temp.letest == true) {
+								
+								// savoir si chi fait parti des spéciaux... exp ou for...
+								if ((chi.id.substr(0,3) == 'exp') || (chi.id.substr(0,3) == 'for'))
+								{
+									var res = temp.letest;
+									console.log('RESULTAAAAAAAAAAAAAAAT : ');
+									console.log(res);
+									// si datedebut initialisation de bool_table à true sinon prend la valeur du résultat de la regexp
+									if (chi.id.substr(4,9) == 'datedebut') { bool_table = res;}
+									else
+									{
+										bool_table = (bool_table && res);
+										console.log('BOOOOOOOOOOOOOOL : ');
+										console.log(bool_table);
+									}
+									
+									// si regexp true alors on enleve la bordure rouge
+									if (res == true)
+									{
+										// console.log('iciiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+										// console.log(bool_table);
+										chi.classList.add("correct");
+										chi.classList.remove("error");
+										if (bool_table != false) // si par ailleurs les autres machines sont toutes bonnes on efface le span d'erreur
+										{
+											var lerreur = span_erreur(chi);
+											lerreur.style.display = "none";
+										}	
+										else
+										{
+											// on laisse afficher le span d'erreur
+										}
+									}
+									else
+									{
+									// console.log('laaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+									// console.log(bool_table);
+										
+									chi.classList.add("error");
+									chi.classList.remove("correct");
+									var lerreur = span_erreur(chi);
+									// console.log(lerreur);
+									// console.log(chi.id.substr(4,9));
+									lerreur.style.display = "inline-block";
+									envoi = false; //VARIABLE POUR SAVOIR SI ENVOI OU NON DU FORMULAIRE
+									}
+								}
+								// cas pour les champs or exp et for...
+								else
+								{
+									if (temp.letest == true) {
 									chi.classList.add("correct");
 									chi.classList.remove("error");
 									var lerreur = span_erreur(chi);
 									lerreur.style.display = "none";
-									
 									}
-								else {
+									else {
 									chi.classList.add("error");
 									chi.classList.remove("correct");
 									var lerreur = span_erreur(chi);
+									// console.log(lerreur);
+									// console.log(chi.id.substr(4,9));
 									lerreur.style.display = "inline-block";
 									envoi = false; //VARIABLE POUR SAVOIR SI ENVOI OU NON DU FORMULAIRE
 									}
+								}
 							
 							}
 						}
@@ -628,8 +644,13 @@ function Verif(form) {
 //APPEL DE LA FONCTION VERIF
 	var leform = document.getElementById('form');
 	
-	leform.addEventListener("submit", Verif, false);		
+	leform.addEventListener("submit", Verif, false);
 
+	var linkgenerer = document.getElementById('linkgenerer');
+	linkgenerer.addEventListener("click", Verif, false);
+	
+
+	
 //REPRENDRE ICI !!
 //-----------------------------------------------------------------------------------------------------------------------------------
 
@@ -639,6 +660,7 @@ var boutons = document.getElementsByTagName("input");
 //VARIABLES POUR ATTRIBUER LES IDS
 var nb_xp = <?php echo $nb_xp_session; ?>;
 var nb_for = <?php echo $nb_for_session; ?>;
+var nb_inf = <?php echo $nb_inf_session; ?>;
 var nb_comp = 0;
 
 
@@ -663,8 +685,8 @@ for (var i = 0, i_max = boutons.length; i < i_max; i++) {
 			*/
 	}
 	
-	cpteur_exp = document.getElementById('nbre_de_xp');
-	cpteur_for = document.getElementById('nbre_de_for');
+	//cpteur_exp = document.getElementById('nbre_de_xp');
+	//cpteur_for = document.getElementById('nbre_de_for');
 	//POUR AJOUT DE COMPETENCES, D'EXPERIENCES OU DE FORMATIONS
 	if (boutons[i].type == "button") {
 		boutons[i].addEventListener("click", function() {
@@ -673,7 +695,7 @@ for (var i = 0, i_max = boutons.length; i < i_max; i++) {
 					
 			if(parent.id == "exp") {
 				nb_xp += 1;
-				cpteur_exp.innerHTML = nb_xp;
+				//cpteur_exp.innerHTML = nb_xp;
 				var att_name = "exp_";
 				var caption = "Expérience n°" + nb_xp;
 				var quoi = "Poste occupé : ";
@@ -682,7 +704,7 @@ for (var i = 0, i_max = boutons.length; i < i_max; i++) {
 			
 			if(parent.id == "for") {
 				nb_for += 1;
-				cpteur_for.innerHTML = nb_for;
+				//cpteur_for.innerHTML = nb_for;
 				var att_name = "for_";
 				var caption = "Formation n°" + nb_for;
 				var quoi = "Intitulé : ";
@@ -698,27 +720,29 @@ for (var i = 0, i_max = boutons.length; i < i_max; i++) {
 					}); // CHELOU MAIS ?FONCTIONNE
 			
 			//AJOUT DE COMPETENCE A REVOIR...
-			if(parent.id == "com") {
-				nb_comp += 1;		
+			
+			var newT, newC, newTR, newTD;
+			var newSousT, newSousTR, newSousTD;
+			
+			//AJOUT D'INFOS COMP :
+			if(parent.id == "inf") {
 				
-				var text1 = document.createTextNode('Compétence n°' + nb_comp + ' : ');
-				var newInput = document.createElement("input");
-				newInput.id = 'com_competence' + nb_comp;
-				newInput.type = "text";
+				nb_inf += 1;
+				var parties = [
+					['<table class="table_type3"><tr><td class="td01-t3"><mark onclick="suppression(this, \'inf\')">X</mark></td><td><table><tr><td class="td02-t3">Libellé :<br /></td>'],
+					['<td class="td_stop"><input type="text" class="normal_input" placeholder="Loisirs, Langues..." id="inf_libelle_'+nb_inf+'" name="" /></td>'],
+					['<td class="td03-t3"><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>'],
+					['</tr><tr><td class="td02-t3">Contenu :</td><td class="td_stop"><input type="text" class="normal_input"  id="inf_contenu_'+nb_inf+'" name="" /></td>'],
+					['<td class="td03-t3"><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>'],
+					['</tr></table></td></tr></table>']
+				];
 				
-				var newSpan = document.createElement("span");
-				newSpan.className = "lerreur lerreurstyle2";
-				newSpan.innerHTML = "La compétence indiquée ne peut être traitée...";
-												
-				newP.appendChild(newM);
-				newP.appendChild(text1);
-				newP.appendChild(newInput);
-				newP.appendChild(newSpan);
+				newP.innerHTML = parties[0] + parties[1] + parties[2] + parties[3] + parties[4] + parties[5];
 				
 			}
 			else {			
 				
-				var newT, newC, newTR, newTD;
+				/*var newT, newC, newTR, newTD;*/
 				
 				newT = document.createElement("table");
 				newT.setAttribute("class", "rubrique_table");
@@ -742,7 +766,7 @@ for (var i = 0, i_max = boutons.length; i < i_max; i++) {
 					['Ville :','<input type="text" class="normal_input" name="" id="' + att_name + 'ville_' + (parent.id == "for" ?	nb_for : nb_xp) + '" />','CP :','<input type="text" class="normal_input" name="" id="' + att_name + 'codedep_' + (parent.id == "for" ?	nb_for : nb_xp) + '" />']
 				];
 
-				var newSousT, newSousTR, newSousTD;
+				/*var newSousT, newSousTR, newSousTD;*/
 				newSousT = document.createElement("table");
 				for (var i = 0; i < 3; i++) {
 					newSousTR = document.createElement("tr");
@@ -787,11 +811,22 @@ for (var i = 0, i_max = boutons.length; i < i_max; i++) {
 
 </script>
 
-<footer>
-	<h2>Propulsé par Dr. B.</h2>
-</footer>
+
 
 </div>
+
+<footer>
+	<div class="colonnes">
+	<h2>Curriculum Vite Fait</h2>
+	Un CV en 2 secondes
+	<h2>Propulsé par</h2>
+	Dr. B
+	<h2>Contact</h2>
+	curriculum@vite-fait.fr
+	
+	
+	</div>
+</footer>
 
 </body>
 </html>

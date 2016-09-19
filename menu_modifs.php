@@ -11,7 +11,7 @@ const OPTIONS_COULEUR = '<option value="Black">Noir</option>
 						<option value="663399">Violet</option>';
 						
 const OPTIONS_POLICE = '<option value="Arial">Arial</option>
-						<option value="Arial Black">Arial Black</option>
+						<!--<option value="Arial Black">Arial Black</option>-->
 						<option value="Cursive">Comic Sans MS, Cursive</option>
 						<option value="Courrier">Courrier, Palatino, Times New Roman</option>
 						<!--<option>Gadget</option>-->
@@ -24,13 +24,18 @@ const OPTIONS_POLICE = '<option value="Arial">Arial</option>
 						<option>Trebuchet MS</option>
 						<option>Verdana</option>';
 
-const OPTIONS_TAILLE = '<option value="xx-small">1</option>
-						<option value="x-small">2</option>
-						<option value="small">3</option>
-						<option value="medium" selected="selected">4</option>
-						<option value="large">5</option>
-						<option value="x-large">6</option>
-						<option value="xx-large">7</option>';
+const OPTIONS_TAILLE = '<option value="70%">1</option>
+						<option value="80%">2</option>
+						<option value="90%">3</option>
+						<option value="100%" selected="selected">4</option>
+						<option value="110%">5</option>
+						<option value="120%">6</option>
+						<option value="130%">7</option>';
+						
+const OPTIONS_ALIGN = '<option value="" selected="selected"> </option>
+						<option value="left">Gauche</option>
+						<option value="center">Centré</option>
+						<option value="right">Droite</option>';
 
 function policeSelect($name, $namejs, $ref_pdf)
 {
@@ -61,31 +66,33 @@ function borderColor($name, $namejs, $ref_pdf) {
 
 ?>
 	
-	<form action="new_pdf.php" method="post" target="_blank" />
+	<form action="new_pdf.php" method="post" target="_blank" id="leform" />
 	<!--<form action="tests/hidden_post.php" method="post" target="_blank" />-->
 	<ul class="menu_modifs">
 		
 		<li>Modèle de CV<br /><div class="styled-select"><select id="modeleCV"><option value="cv_type1">Modèle 1</option><option value="cv_type2">Modèle 2</option><option value="cv_type3">Modèle 3</option></select></div></li>
-		<input type="hidden" id="hidden_modeleCV" name="hidden_modeleCV" />
-		
+		<input type="hidden" id="hidden_modeleCV" name="hidden_modeleCV" value="cv_type1" />
+		<hr />
 		<?php policeSelect("Police", "#lecv", "policeTextCV"); ?>
-		<?php textColor("Couleur du texte", "#lecv", "colorTexte"); ?>
-		<?php tailleSelect("Taille générale du texte", "#lecv", "tailleTexte"); ?>
-		
+		<?php textColor("Couleur du texte", ".alltxt", "colorTexte"); ?>
+		<?php tailleSelect("Taille générale du texte", ".alltxt", "tailleTexte"); ?>
+		<hr />
 		<?php tailleSelect("Taille coordonnées", "#ide", "tailleCoordos"); ?>
-				
+		<hr />		
 		<?php policeSelect("Police du titre", "#tit", "policeTitre"); ?>
 		<?php textColor("Couleur du titre", "#tit", "colorTitre"); ?>
 		<?php borderColor("Couleur des bordures du titre", "#tit", "borduresTitre"); ?>
 		<?php tailleSelect("Taille du titre", "#tit", "tailleTitre"); ?>
-		
-		
+		<hr />
+		<?php textColor("Couleur du sous-titre", "#soustit", "colorSousTitre"); ?>
+		<?php tailleSelect("Taille du sous-titre", "#soustit", "tailleSousTitre"); ?>
+		<hr />
 		<?php policeSelect("Police des bandeaux", ".bandeau", "policeBandeau"); ?>
 		<?php textColor("Couleur du texte des bandeaux", ".bandeau", "colorBandeau"); ?>
 		<?php fondColor("Couleur des bandeaux", ".bandeau", "colorFondBandeau"); ?>
 		<?php borderColor("Couleur des bordures des bandeaux", ".bandeau", "colorBordureBandeau"); ?>
 		<?php tailleSelect("Taille des bandeaux", ".bandeau", "tailleBandeau"); ?>
-	
+		<hr />
 	<input type="submit" value="Générer le CV" class="btn-gen"/>
 	</form>
 	

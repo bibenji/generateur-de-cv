@@ -13,10 +13,11 @@
 .menu_modifs { }
 
 .menu_modifs hr {
-	background-color: rgba(49, 55, 101, 0.8);
-	height: 5px;
+	background-color: rgba(49, 55, 101, 0.2);
+	height: 0px;
 	width: 90%;
 	margin: 14px 2px;
+	border: none;
 }
 
 .menu_modifs li { margin-bottom: 10px;}
@@ -24,7 +25,7 @@
 .styled-select { width: 200px; height: 20px; overflow: hidden; background: url('down_arrow_select.jpg') no-repeat right #ddd; border: 1px solid #ccc; margin: 0px;}
 .styled-select select { background: transparent; width: 250px; padding: 0px; font-size: 14px; line-height: 24px; border: 0; border-radius: 0; height: 20px; -webkit-appearance: none;}
 
-#lecv { font-size: 100%; color: yellow; box-shadow: 1px 1px 2px grey; background-color: white; margin: 10px 0px 0px; width: 100%; height: 891px; font-family: Arial; font-size: Medium; overflow: hidden;}
+#lecv { font-size: 100%; color: black; box-shadow: 1px 1px 2px grey; background-color: white; margin: 10px 0px 0px; width: 100%; height: 891px; font-family: Arial; font-size: Medium; overflow: hidden;}
 
 #zonecv { margin: 30px 20px; padding: 0px;}
 
@@ -104,9 +105,9 @@ table { width: 100%; margin: 10px auto;}
   text-decoration: none;
   border: none;
   cursor: pointer;
-	margin: 15px 0px 0px;
+	margin: 15px auto 0px;
 	display: block;
-	width: 89%;
+	width: 80%;
 }
 
 .btn-gen:hover {

@@ -136,7 +136,7 @@ function insertXP(array $donnees, $bdd)
 		$q->execute(array(
 		':date_debut' => $donnees['datedebut'],
 		':date_fin' => $donnees['datefin'],
-		':poste' => $donnees['prequoi'],
+		':poste' => $donnees['prquoi'],
 		':entreprise' => $donnees['nomou'],
 		':ville' => $donnees['ville'],
 		':code_postal' => $donnees['codedep']
@@ -234,7 +234,7 @@ foreach ($all_exp as $m => $xp)
 				{
 					echo '<table class="alltxt"><tr>';
 					echo '<td class="first_td">Du ' . $xp['datedebut'] . ' au ' . $xp['datefin'] . '</td>';
-					echo '<td class="second_td"><span class="intitu">' . $xp['prequoi'] . '</span>';
+					echo '<td class="second_td"><span class="intitu">' . $xp['prquoi'] . '</span>';
 					echo $xp['nomou'] . ', ' . $xp['ville'] . ' (' . $xp['codedep'] . ')</td>';
 					echo '</tr></table>';
 				}
@@ -248,7 +248,7 @@ foreach ($all_exp as $m => $xp)
 				{
 					echo '<table class="alltxt"><tr>';
 					echo '<td class="first_td">Du ' . $for['datedebut'] . ' au ' . $for['datefin'] . '</td>';
-					echo '<td class="second_td"><span class="intitu">' . $for['prequoi'] . '</span>';
+					echo '<td class="second_td"><span class="intitu">' . $for['prquoi'] . '</span>';
 					echo $for['nomou'] . ', ' . $for['ville'] . ' (' . $for['codedep'] . ')</td>';
 					echo '</tr></table>';
 				}

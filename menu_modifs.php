@@ -40,7 +40,7 @@ const OPTIONS_ALIGN = '<option value="" selected="selected"> </option>
 function policeSelect($name, $namejs, $ref_pdf)
 {
 	echo '<li>' . $name . '<br /><div class="styled-select"><select id="fontFamily_' . $namejs . '">' . OPTIONS_POLICE . '</select></div></li>';
-	echo '<input type="hidden" id="hidden_fontFamily_' . $namejs . '" name="hidden_' . $ref_pdf . '" />';
+	echo '<input type="hidden" id="hidden_fontFamily_' . $namejs . '" name="hidden_' . $ref_pdf . '" value="Arial" />';
 }
 
 function tailleSelect($name, $namejs, $ref_pdf)
@@ -73,13 +73,24 @@ function borderColor($name, $namejs, $ref_pdf) {
 		<li>Modèle de CV<br /><div class="styled-select"><select id="modeleCV"><option value="cv_type1">Modèle 1</option><option value="cv_type2">Modèle 2</option><option value="cv_type3">Modèle 3</option></select></div></li>
 		<input type="hidden" id="hidden_modeleCV" name="hidden_modeleCV" value="cv_type1" />
 		<hr />
+		<li>Taille des espaces du CV<br /><div class="styled-select"><select id="marginTop_.bandeau">
+				<option value="0">0</option>
+				<option value="5">5</option>
+				<option value="10">10</option>
+				<option value="15" selected="selected">15</option>
+				<option value="20">20</option>
+				<option value="25">25</option>
+				<option value="30">30</option>				
+				</select></div></li>
+		<input type="hidden" id="hidden_marginTop_.bandeau" name="hidden_espacesCV" value="6" />
+		<hr />
 		<?php policeSelect("Police", "#lecv", "policeTextCV"); ?>
 		<?php textColor("Couleur du texte", ".alltxt", "colorTexte"); ?>
 		<?php tailleSelect("Taille générale du texte", ".alltxt", "tailleTexte"); ?>
 		<hr />
 		<?php tailleSelect("Taille coordonnées", "#ide", "tailleCoordos"); ?>
 		<hr />		
-		<?php policeSelect("Police du titre", "#tit", "policeTitre"); ?>
+		<?php policeSelect("Police du titre et du sous-titre", "#tit_sstit", "policeTitre"); ?>
 		<?php textColor("Couleur du titre", "#tit", "colorTitre"); ?>
 		<?php borderColor("Couleur des bordures du titre", "#tit", "borduresTitre"); ?>
 		<?php tailleSelect("Taille du titre", "#tit", "tailleTitre"); ?>

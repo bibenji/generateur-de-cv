@@ -101,21 +101,21 @@ $tailles_px = array(
 	);
 */
 $tailles_px = array(
-		'70%' => 6,
-		"80%" => 8,
-		"90%" => 10,
-		"100%" => 12,
-		"110%" => 14,
-		"120%" => 16,
-		"130%" => 20
+		'70%' => 10,
+		"80%" => 12,
+		"90%" => 14,
+		"100%" => 16,
+		"110%" => 18,
+		"120%" => 22,
+		"130%" => 30
 	);
 	
 $tailles = array(
 		"coordos" => 16,
 		"titre" => 30,
-		"sstitre" => 14,
-		"bandeau" => 16,
-		"texte" => 12
+		"sstitre" => 16,
+		"bandeau" => 18,
+		"texte" => 14
 	);
 
 // couleurs :
@@ -139,12 +139,24 @@ $colors = array(
 		"fondbandeau" => array(255,255,255),
 		"bordurebandeau" => array(0,0,0)		
 	);
+	
+$polices = array(
+		"Arial" => "Arial",
+		"Cursive" => "comic",
+		"Courrier" => "Courrier",
+		//"Helvetica" => "Helvetica" // idem Arial
+		"Impact" => "impact",
+		"Times" => "Times"
+	);
 
 if ($_POST['hidden_modeleCV'] == "cv_type1")
 {
 	$colors['fondbandeau'] = array(0,0,0);
 	$colors['bandeau'] = array(255,255,255);
 }
+
+$lespolices = array();
+$espaces = array(); // pour stocker la variable espaces
 	
 foreach($_POST as $key => $val)
 {
@@ -164,6 +176,18 @@ foreach($_POST as $key => $val)
 			$colors[strtolower($key)] = explode(',', $codes_couleur[$val]);
 			
 		}
+		elseif (substr($key,0,1) == 'e') // on cherche les espaces
+		{
+			$key = str_replace('espaces', '', $key); // on vire color
+			$espaces[strtolower($key)] = $val . "px";
+			
+		}
+		elseif (substr($key,0,1) == 'p') // on cherche les polices
+		{
+			$key = str_replace('police', '', $key); // on vire police
+			$lespolices[strtolower($key)] = $polices[$val];
+			
+		}
 	}
 }
 
@@ -171,7 +195,7 @@ foreach($_POST as $key => $val)
 
 // fonts :
 //polices :
-$polices = array('Arial', 'Times', 'Courier');
+/*$polices = array('Arial', 'Times', 'Courier');*/
 
 	/*
 	[hidden_tailleTextCV] => 
@@ -200,13 +224,16 @@ $taille_titre = $tailles['titre'];
 $taille_ss_titre = $tailles['sstitre'];
 $taille_bandeaux = $tailles['bandeau'];
 $taille_texte = $tailles['texte'];
-
+$espaces_g = $espaces['cv'];
+$police_titre = $lespolices['titre'];
+$police_texte = $lespolices['textcv'];
+$police_bandeau = $lespolices['bandeau'];
 //espaces :
-$espaces_g = 6;
+// $espaces_g = 6;
 //$espace_coordos_titre = 10;
 
 
-
+define('FPDF_FONTPATH','/font');
 require('fpdf.php');
 
 if ($_POST['hidden_modeleCV'] == 'cv_type1')
@@ -225,36 +252,45 @@ else
 
 
 $pdf = new PDF();
+
+/* FONCTION POUR AJOUTER DES FONTS */ // fonction à créer pour simplifier...
+$pdf->AddFont('comic');
+$pdf->AddFont('comic','B','comicbd.php');
+$pdf->AddFont('comic','I','comici.php');
+$pdf->AddFont('impact');
+$pdf->AddFont('impact','B','impact.php');
+$pdf->AddFont('impact','I','impact.php');
+
 $pdf->AddPage();
 
 $pdf->SetTextColor($colors['texte'][0],$colors['texte'][1],$colors['texte'][2]);
 
-$pdf->AjouterCoordos($taille_coordos, $_SESSION['data']['ide']);
+$pdf->AjouterCoordos($taille_coordos, $_SESSION['data']['ide'], $police_texte);
 
-$pdf->AjouterTitre($espaces_g, $taille_titre, $_SESSION['data']['tit']['tit'], $taille_ss_titre, $_SESSION['data']['obj']['obj']);
+$pdf->AjouterTitre($espaces_g, $taille_titre, utf8_decode($_SESSION['data']['tit']['tit']), $taille_ss_titre, $_SESSION['data']['obj']['obj'], $police_titre);
 
 $pdf->AjouterRu("EXPERIENCE PROFESSIONNELLE", $espaces_g, $taille_bandeaux,
 					$colors['fondbandeau'], $colors['bandeau'], $colors['bordurebandeau'],
-					$colors['texte']);
+					$colors['texte'], $police_bandeau);
 
 foreach ($_SESSION['data']['exp'] as $xp) {
 $pdf->AjouterItem('Du ' . $xp['datedebut']  . ' au ' . $xp['datefin'],
-					$xp['prequoi'],
+					utf8_decode($xp['prquoi']),
 					$xp['nomou'] . ', ' . $xp['ville'] . ' (' . $xp['codedep'] . ')',
-					$taille_texte
+					$taille_texte, $police_texte
 					);
 }
 
 
 $pdf->AjouterRu("FORMATION", $espaces_g, $taille_bandeaux,
 					$colors['fondbandeau'], $colors['bandeau'], $colors['bordurebandeau'],
-					$colors['texte']);
+					$colors['texte'], $police_bandeau);
 
 foreach ($_SESSION['data']['for'] as $for) {
 $pdf->AjouterItem('Du ' . $for['datedebut']  . ' au ' . $for['datefin'],
-					$for['prequoi'],
+					utf8_decode($for['prquoi']),
 					$for['nomou'] . ', ' . $for['ville'] . ' (' . $for['codedep'] . ')',
-					$taille_texte
+					$taille_texte, $police_texte
 					);
 }
 
@@ -262,7 +298,7 @@ $pdf->AjouterItem('Du ' . $for['datedebut']  . ' au ' . $for['datefin'],
 
 $pdf->AjouterRu("INFORMATIONS COMPLEMENTAIRES", $espaces_g, $taille_bandeaux,
 					$colors['fondbandeau'], $colors['bandeau'], $colors['bordurebandeau'],
-					$colors['texte']);
+					$colors['texte'], $police_bandeau);
 					
 $pdf->SetFont('Arial','',$taille_texte);
 

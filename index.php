@@ -38,6 +38,8 @@ function addField($rub, $name, $error)
 <?php include('header.php'); ?>
 <div id="main">
 
+<div class="warning">Attention, le site est prévu pour être utilisé sur un écran large !</div>
+
 <?php include('menu_nav.php'); ?>
 
 
@@ -119,7 +121,7 @@ function addField($rub, $name, $error)
 	
 	<!-- RUBRIQUE TITRE -->
 	<div class="rubrique" id="tit">
-		<h3>Titre</h3>
+		<h3>Titre<span class="help">?<span class="cache-help">Le titre du CV doit correspondre à l'intitulé du poste recherché ou à votre demande.</span></span></h3>
 		<table class="table_type2">
 		<?php
 		addField('tit','titre du CV','Votre titre doit commencer par une majuscule et contenir au moins 2 lettres...');
@@ -131,7 +133,8 @@ function addField($rub, $name, $error)
 	
 	<!-- RUBRIQUE OBJECTIF -->
 	<div class="rubrique" id="obj">
-		<h3>Objectif</h3>
+		<h3>Objectif<span class="help">?<span class="cache-help">L'objectif permet de clarifier votre CV en résumant succintement votre demande...</span></span></h3>
+		
 		<table class="table_type2">
 		<tr>
 		<td>Objectif :</td>
@@ -174,11 +177,11 @@ function addField($rub, $name, $error)
 	</div>
 
 	<div class="rubrique" id="exp">
-		<h3>Expériences professionnelles</h3>
+		<h3>Expériences professionnelles<span class="help">?<span class="cache-help">Indiquez dans cette partie toutes vos expériences de travail (emplois, stage...).</span></span></h3>
 			
 			<p class="commandes">
 				<!--<span class="compte_el"><span id="nbre_de_xp">0</span> expérience(s)</span>-->
-				<input type="button" id="bouton_experiences" value="Ajouter une expérience" class="bouton_add">
+				<input type="button" id="bouton_experiences" value="Ajouter une expérience" class="bouton_add">				
 			</p>
 			
 			<?php
@@ -190,7 +193,7 @@ function addField($rub, $name, $error)
 					//var_dump($one_xp);
 					$nb_xp_session++;
 					echo '<p><table class="rubrique_table">
-						<caption>Expérience n°'.$nb_xp_session.'</caption>
+						<caption>Expérience<!-- n°'.$nb_xp_session.'--></caption>
 						<tr>
 						<td><mark onclick="suppression(this, \'exp\')">X</mark></td>
 						<td class="td_stop">';
@@ -203,7 +206,7 @@ function addField($rub, $name, $error)
 						</tr>';
 					echo '<tr>
 						<td>Poste occupé :</td>
-						<td><input name="" id="exp_prequoi_'.$nb_xp_session.'" type="text" class="normal_input" value="'.$one_xp['prequoi'].'"></td>
+						<td><input name="" id="exp_prquoi_'.$nb_xp_session.'" type="text" class="normal_input" value="'.$one_xp['prquoi'].'"></td>
 						<td>Entreprise :</td>
 						<td><input name="" id="exp_nomou_'.$nb_xp_session.'" type="text" class="normal_input" value="'.$one_xp['nomou'].'"></td>
 						</tr>';
@@ -233,10 +236,11 @@ function addField($rub, $name, $error)
 	
 
 	<div class="rubrique" id="for">
-		<h3>Formation</h3>
+		<h3>Formation<span class="help">?<span class="cache-help">Indiquez ici toutes les formations que vous avez effectuées (cursus scolaire, formations continues...).</span></span></h3>
 			<p class="commandes">
 				<!--<span class="compte_el"><span id="nbre_de_for">0</span> expérience(s)</span>-->
 				<input type="button" id="bouton_formations" value="Ajouter une formation" class="bouton_add">
+				
 			</p>
 			
 			<?php
@@ -248,7 +252,7 @@ function addField($rub, $name, $error)
 					//var_dump($one_xp);
 					$nb_for_session++;
 					echo '<p><table class="rubrique_table">
-						<caption>Expérience n°'.$nb_for_session.'</caption>
+						<caption>Formation<!-- n°'.$nb_for_session.'--></caption>
 						<tr>
 						<td><mark onclick="suppression(this, \'for\')">X</mark></td>
 						<td class="td_stop">';
@@ -261,7 +265,7 @@ function addField($rub, $name, $error)
 						</tr>';
 					echo '<tr>
 						<td>Intitulé :</td>
-						<td><input name="" id="for_prequoi_'.$nb_for_session.'" type="text" class="normal_input" value="'.$one_for['prequoi'].'"></td>
+						<td><input name="" id="for_prquoi_'.$nb_for_session.'" type="text" class="normal_input" value="'.$one_for['prquoi'].'"></td>
 						<td>Organisme :</td>
 						<td><input name="" id="for_nomou_'.$nb_for_session.'" type="text" class="normal_input" value="'.$one_for['nomou'].'"></td>
 						</tr>';
@@ -285,7 +289,7 @@ function addField($rub, $name, $error)
 	</div>
 
 	<div class="rubrique" id="inf">
-		<h3>Informations complémentaires</h3>
+		<h3>Informations complémentaires<span class="help">?<span class="cache-help">Vous pouvez mentionner ici des éléments qui vous semblent importants (exemple : Langues -> Anglais (niveau scolaire)).</span></span></h3>
 		<p class="commandes"><input type="button" id="bouton_informations" value="Ajouter une information" class="bouton_add"></p>
 		
 		<?php
@@ -449,6 +453,8 @@ function affiche(elem) {
 			
 			titre: '[A-Z].+',
 			
+			prquoi: '[A-Z].+',
+			
 			langues: '[A-Z].+',
 			loisirs: '[A-Z].+',
 			texte: '[A-Z].+',
@@ -463,12 +469,12 @@ function affiche(elem) {
 
 //FONCTION DE VERIFICATION DU CHAMP SAISI REGHEX... 
 		function leTest(rege, champ) {
-		//console.log(rege);
-		//console.log(champ);
+		// console.log('rege : ' + rege);
+		// console.log('champ : ' + champ);
 			var testreg = new RegExp(rege);
-		//console.log(rege.test(champ));
+		// console.log(rege.test(champ));
 			var resultat = testreg.test(champ);
-			// console.log(resultat);
+			// console.log('resultat : ' + resultat);
 			return resultat;
 			/*
 			if (rege.test(champ) == false) { console.log("reg ok"); console.log(champ);}
@@ -542,7 +548,7 @@ function Verif(form) {
 						
 						for (var boite in tabregs) { 
 							if (chi.id.substr(4,3) == boite.substr(0,3)) {
-								// console.log ("Une expression régulière trouvée pour : " + chi.id + " == " + boite);
+								console.log ("Une expression régulière trouvée pour : " + chi.id + " == " + boite);
 								var temp = new Elmt(i, chi.id, chi.value, tabregs[boite]); //Lance le truc auto !?!?
 								ListElmt.push(temp);
 								chi.classList.remove("normal_input");
@@ -551,15 +557,15 @@ function Verif(form) {
 								if ((chi.id.substr(0,3) == 'exp') || (chi.id.substr(0,3) == 'for'))
 								{
 									var res = temp.letest;
-									console.log('RESULTAAAAAAAAAAAAAAAT : ');
-									console.log(res);
+									// console.log('RESULTAAAAAAAAAAAAAAAT : ');
+									// console.log(res);
 									// si datedebut initialisation de bool_table à true sinon prend la valeur du résultat de la regexp
 									if (chi.id.substr(4,9) == 'datedebut') { bool_table = res;}
 									else
 									{
 										bool_table = (bool_table && res);
-										console.log('BOOOOOOOOOOOOOOL : ');
-										console.log(bool_table);
+										// console.log('BOOOOOOOOOOOOOOL : ');
+										// console.log(bool_table);
 									}
 									
 									// si regexp true alors on enleve la bordure rouge
@@ -697,7 +703,7 @@ for (var i = 0, i_max = boutons.length; i < i_max; i++) {
 				nb_xp += 1;
 				//cpteur_exp.innerHTML = nb_xp;
 				var att_name = "exp_";
-				var caption = "Expérience n°" + nb_xp;
+				var caption = "" //Expérience n°" + nb_xp;
 				var quoi = "Poste occupé : ";
 				var lieu = "Entreprise : ";
 			}
@@ -706,7 +712,7 @@ for (var i = 0, i_max = boutons.length; i < i_max; i++) {
 				nb_for += 1;
 				//cpteur_for.innerHTML = nb_for;
 				var att_name = "for_";
-				var caption = "Formation n°" + nb_for;
+				var caption = ""; //Formation n°" + nb_for;
 				var quoi = "Intitulé : ";
 				var lieu = "Organisme : ";
 			}
@@ -762,7 +768,7 @@ for (var i = 0, i_max = boutons.length; i < i_max; i++) {
 				
 				var in_lines = [
 					['Du :','<input type="date" class="normal_input" name="" id="' + att_name + 'datedebut_' + (parent.id == "for" ? nb_for : nb_xp) + '" />','Au :','<input type="date" class="normal_input" name="" id="' + att_name + 'datefin_' + (parent.id == "for" ?	nb_for : nb_xp) + '" />'],
-					[quoi,'<input type="text" class="normal_input" name="" id="' + att_name + 'prequoi_' + (parent.id == "for" ?	nb_for : nb_xp) + '" />',lieu,'<input type="text" class="normal_input" name="" id="' + att_name + 'nomou_' + (parent.id == "for" ?	nb_for : nb_xp) + '" />'],
+					[quoi,'<input type="text" class="normal_input" name="" id="' + att_name + 'prquoi_' + (parent.id == "for" ?	nb_for : nb_xp) + '" />',lieu,'<input type="text" class="normal_input" name="" id="' + att_name + 'nomou_' + (parent.id == "for" ?	nb_for : nb_xp) + '" />'],
 					['Ville :','<input type="text" class="normal_input" name="" id="' + att_name + 'ville_' + (parent.id == "for" ?	nb_for : nb_xp) + '" />','CP :','<input type="text" class="normal_input" name="" id="' + att_name + 'codedep_' + (parent.id == "for" ?	nb_for : nb_xp) + '" />']
 				];
 

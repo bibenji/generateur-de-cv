@@ -12,7 +12,7 @@ margin: -20px 0px 0px 0px;
 background-color: #FDE3A7;
 padding: 0px;
 overflow: hidden;
-background-image: url('fond.jpg');
+background-image: url('../images/fond.jpg');
 background-size: 100%;
 background-position: 0 267px;
 /*border-bottom: 1px #313765 solid;*/
@@ -55,9 +55,9 @@ aside li { list-style-type: none; text-align: left;}
 section { width: 70%; margin-left: 2%;}
 
 .top_navigation { /*background-color: #323665;*/}
-.top_navigation ul { width: 70%; margin: 0px auto 20px; padding: 0px;}
+.top_navigation ul { width: 70%; margin: 20px auto 20px; padding: 0px;}
 .top_navigation ul li { display: inline-block; text-align: center; margin: 0px; padding: 0px; border-radius: 0px; width: 24%;}
-.top_navigation img { width: 75%; margin: 0px auto; padding: 0px;}
+.top_navigation img { width: 50%; margin: 0px auto; padding: 0px;}
 
 .tn_active, .top_navigation ul li:hover, .top_navigation ul li:hover a { color: #313765; cursor: pointer;}
 .top_navigation li, .top_navigation a { /*color: #b3b3b3;*/ text-decoration: none;	font-weight: bold;}
@@ -70,6 +70,8 @@ section { width: 70%; margin-left: 2%;}
 	}
 
 .to_clear { clear: both;}
+
+.go-dispo { margin: 15px 0px 10px; text-align: center;}
 
 footer { clear: both; text-align: center; margin-top: 10px; margin-bottom: -20px; background-color: #6C7A89; color: white; font-size: 70%;}
 .colonnes

@@ -1,4 +1,4 @@
-﻿	<nav class="top_navigation">
+	<nav class="top_navigation">
 		<ul>
 			
 			
@@ -12,7 +12,7 @@
 			<li class="nav-active"><img src="ressources\png\disposer.png" /><br />Disposition</li>
 			<?php } ?>
 			
-			<?php if (strpos($_SERVER['REQUEST_URI'], "testsphp")) { ?>
+			<?php if (strpos($_SERVER['REQUEST_URI'], "disposition")) { ?>
 			<li class="nav-inactive" id="linkgenererpdf"><img src="ressources\png\generer.png" /><br />Génération CV</li>
 			<?php } else { ?>
 			<li class="nav-inactive"><img src="ressources\png\generer-w.png" /><br />Génération CV</li>

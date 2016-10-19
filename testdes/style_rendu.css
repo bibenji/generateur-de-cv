@@ -1,0 +1,121 @@
+﻿.flex {
+	display: flex;
+	display: -webkit-flex;
+	/*border: solid 1px pink;*/
+	width: 100%;
+}
+
+.conteneur1 { flex: 0.9; padding: 0px;}
+.conteneur2 { width: 630px; min-width: 630px;} /*conteneur de taille papier*/
+
+.conteneur1 form { margin-top: -20px;}
+
+.menu_modifs { }
+
+.menu_modifs hr {
+	background-color: rgba(49, 55, 101, 0.2);
+	height: 0px;
+	width: 90%;
+	margin: 14px 2px;
+	border: none;
+}
+
+.menu_modifs li { margin-bottom: 10px;}
+
+.styled-select { width: 200px; height: 20px; overflow: hidden; background: url('down_arrow_select.jpg') no-repeat right #ddd; border: 1px solid #ccc; margin: 0px;}
+.styled-select select { background: transparent; width: 250px; padding: 0px; font-size: 14px; line-height: 24px; border: 0; border-radius: 0; height: 20px; -webkit-appearance: none;}
+
+#lecv { font-size: 100%; color: black; box-shadow: 1px 1px 2px grey; background-color: white; margin: 10px 0px 0px; width: 100%; height: 891px; font-family: Arial; font-size: Medium; overflow: hidden;}
+
+#zonecv { margin: 30px 20px; padding: 0px;}
+
+#ide { font-size: 120%;}
+
+.cv_type1 { font-size: 100%;}
+.cv_type1 .lenom { font-size: 130%; font-weight: bold;}
+.cv_type1 #tit {	margin-top: 12px; font-size: 240%; font-weight: bold; border: solid white 1px;}
+.cv_type1 #soustit {	font-style: italic;	font-size: 110%;}
+.cv_type1 h3 { text-transform: uppercase; width: 100%; margin: 15px auto 5px; text-align: center; background-color: black; color: white; padding: 5px 0px; clear: both; border: solid black 1px; font-size: 120%;}
+.cv_type1 h3 img { display: none;}
+.cv_type1 table { font-size: 110%;}
+.cv_type1 .first_td { width: 45%; vertical-align: top;}
+.cv_type1 .intitu { font-size: 120%;	font-weight: bold; display: block; margin-bottom: 8px;}
+
+.cv_type2 { font-size: 12px;}
+.cv_type2 #ide {	font-size: 16px;}
+.cv_type2 .lenom { font-size: 18px; font-weight: bold;}
+.cv_type2 #tit {	margin-top: 12px; font-size: 32px; font-weight: bold;}
+.cv_type2 #soustit {	font-style: italic;	font-size: 14px;}
+
+.cv_type2 table { font-size: 12px;}
+.cv_type2 .first_td { width: 40%; vertical-align: top;}
+.cv_type2 .intitu { font-size: 14px;	font-weight: bold; display: block; margin-bottom: 8px;}
+/*ce qui diffère du type1*/
+.cv_type2 h3 { text-transform: uppercase; width: 100%; margin: 15px auto 5px; text-align: left; background-color: white; color: black; padding: 5px 0px; clear: both; border-bottom: solid black 1px; font-size: 16px;}
+.cv_type2 h3 img { width: 3%; margin-right: 1%;}
+.cv_type2 #ide {	float: left; width: 40%; margin-right: 5%;}
+.cv_type2 #tit_sstit { float: left; width: 53%; padding-left: 2%;}
+
+.cv_type3 { font-size: 12px;}
+.cv_type3 .lenom { font-size: 18px; font-weight: bold;}
+.cv_type3 #tit {	margin-top: 12px; font-size: 32px; font-weight: bold;}
+.cv_type3 #soustit {	font-style: italic;	font-size: 14px;}
+.cv_type3 h3 img { display: none;}
+.cv_type3 table { font-size: 12px;}
+.cv_type3 .first_td { width: 40%; vertical-align: top;}
+.cv_type3 .intitu { font-size: 14px;	font-weight: bold; display: block; margin-bottom: 8px;}
+/*ce qui diffère du type1*/
+.cv_type3 #ide, .cv_type3 #tit_sstit { text-align: center; border-bottom: solid black 1px; padding-bottom: 2%;}
+.cv_type3 .adr1 + br { display: none;}
+.cv_type3 .adr1 { }
+.cv_type3 .adr1::after { content: ",";}
+.cv_type3 .adr2 { }
+.cv_type3 .coordos1 + br { display: none;}
+.cv_type3 .coordos1 { }
+.cv_type3 .coordos1::after { content: " -";}
+.cv_type3 .coordos2 { }
+
+.cv_type3 #exp .first_td { float: right; width: 80%; text-align: right;}
+.cv_type3 #exp .second_td { float: right; width: 80%; text-align: right;}
+.cv_type3 #exp { float: left; width: 45%; text-align: right; margin-right: 4%;}
+.cv_type3 #exp h3 { text-align: right; width: 90%; margin-left: 10%;}
+.cv_type3 #for .first_td { float: right; width: 100%; text-align: left;}
+.cv_type3 #for .second_td { float: right; width: 100%; text-align: left;}
+.cv_type3 #for { float: left; width: 45%; margin-left: 4%; text-align: left;}
+.cv_type3 #for h3 { text-align: left;}
+.cv_type3 #inf h3 { border-top: solid 1px black; padding-top: 2%;}
+.cv_type3 h3 { text-transform: uppercase; width: 100%; margin: 15px auto 5px; text-align: center; background-color: white; color: black; padding: 5px 0px; clear: both; font-size: 16px;}
+
+#space_top { height: 10px; clear: both;}
+
+table { width: 100%; margin: 10px auto;}
+
+/*h3 { width: 100%; margin: 15px auto 5px; text-align: center; background-color: black; color: white; padding: 5px 0px; clear: both; border: solid black 1px;}*/
+
+.btn-gen {
+  background-color: #6C7A89;
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+  text-shadow: 1px 1px 3px #666666;
+  font-family: Arial;
+  color: #fffcff;
+  font-size: 18px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+	margin: 15px auto 0px;
+	display: block;
+	width: 80%;
+}
+
+.btn-gen:hover {
+  background: #6b7de3;
+  background-image: -webkit-linear-gradient(top, #6b7de3, #6b7de3);
+  background-image: -moz-linear-gradient(top, #6b7de3, #6b7de3);
+  background-image: -ms-linear-gradient(top, #6b7de3, #6b7de3);
+  background-image: -o-linear-gradient(top, #6b7de3, #6b7de3);
+  background-image: linear-gradient(to bottom, #6b7de3, #6b7de3);
+  text-decoration: none;
+}

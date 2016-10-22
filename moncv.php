@@ -113,7 +113,7 @@ else // génération du pdf
 	if ($_SESSION['data']['ide']['tel'] == '') $_SESSION['data']['ide']['tel'] = '01 23 45 67 89';
 	if ($_SESSION['data']['ide']['mai'] == '') $_SESSION['data']['ide']['mai'] = 'john@doe.com';
 	if ($_SESSION['data']['ide']['vil'] == '') $_SESSION['data']['ide']['vil'] = 'NOWHERE';
-	if ($_SESSION['data']['tit']['tit'] == '') $_SESSION['data']['tit']['tit'] = 'Expert en Vie privée';
+	if ($_SESSION['data']['tit']['tit'] == '') $_SESSION['data']['tit']['tit'] = utf8_decode('Expert en Vie privée');
 	
 	foreach ($_SESSION['data'] as $one_rub) {
 		foreach ($one_rub as $one_elem) {
@@ -166,7 +166,8 @@ else // génération du pdf
 
 	$pdf->AddPage();
 	$pdf->setAutoPageBreak(false);
-	$pdf->Rect(5,5,200,287);
+	
+	if ($_POST['_bordureCV'] == 'black solid 1px') $pdf->Rect(5,5,200,287);
 
 	$pdf->SetTextColor($colors['texte'][0],$colors['texte'][1],$colors['texte'][2]);
 

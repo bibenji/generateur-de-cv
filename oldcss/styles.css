@@ -90,7 +90,7 @@
 	background-color: #202221;	
 }
 
-body { /*background-color: #f47f85;*/ background-image: url('images/rose.png'); background-repeat: no-repeat; background-size: 100% 150%;}
+body { /*background-color: #f47f85;*/ background-image: url('../images/rose.png'); background-repeat: no-repeat; background-size: 100% 150%;}
 
 /*
 img { position: absolute;}

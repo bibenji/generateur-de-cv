@@ -1,0 +1,118 @@
+body {
+    /*background-color: #f47f85;*/
+    background-image: url('../images/rose.png');
+    background-repeat: no-repeat;
+    background-size: 100% 150%;
+}
+
+#main {
+    z-index: 10;
+    position: relative;
+    width: 75%;
+    text-align: center;
+    font-family: Tahoma, Verdana;
+}
+
+#top {
+    position: relative;
+    z-index: 0;
+    width: 80%;
+    margin: 0px auto;
+    text-align: center;
+    /*
+    font-family: hb_sketch, pwroughsmedium;
+    background-color: rgba(243,235,226,0.90);
+    box-shadow: 4px 4px 8px 4px #141816;
+    */
+    img {
+        width: 400px;
+        position: static;
+        margin: 20px 0px 40px;
+    }
+}
+
+#gauche {
+	position: relative;
+	width: 700px;
+	max-width: 80%;
+	margin: 0px auto;
+	/*background-color: rgba(243,235,226,0.90);*/    
+    background-color: white;
+	box-shadow: 8px 8px 8px 6px rgba(0, 0, 0, 0.8);
+    border-radius: 2px;
+    height: 990px;
+    font-size: 110%;
+    margin-bottom: 40px;
+}
+
+#droite {	
+	position: fixed;
+    top: 0; right: 0;
+	width: 25%; height: 100%;
+	text-align: left; font-size: 110%; font-family: Tahoma;
+	z-index: 20;
+}
+
+#onglet {
+	float: right;
+	width: 10%;
+}
+
+#haut-lesreglages, #haut-disposition {    
+	text-align: center; cursor: pointer;
+	height: 140px;
+	width: 100%; position: absolute; left: -30px;
+	line-height: 30px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;	
+	writing-mode: sideways-lr;	
+}
+
+#haut-lesreglages {
+	background-color: #202221; color: #f3f5f4;
+	top: 0;
+}
+
+#haut-disposition {
+	background-color: #fdf1f5;
+	top: 140px;
+}
+
+#cols-droite {
+    width: 100%; height: 100%;
+    margin: 0px;
+    position: relative;
+    clear: both;
+    float: right;
+}
+
+.droite-content {
+    height: 100%;
+    padding: 20px 40px;
+    overflow-y: auto;
+}
+
+#lesreglages {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    color: #f3f5f4;
+    width: 100%;
+    z-index: 1;
+    .droite-content {
+        background-color: #202221;        
+    }
+}
+
+
+#ladisposition {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    color: black;
+    width: 100%;
+    z-index: 0;
+    .droite-content {
+        background-color: #fdf1f5;       
+    }
+}

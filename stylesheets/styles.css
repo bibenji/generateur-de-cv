@@ -1,0 +1,620 @@
+@charset "UTF-8";
+/* line 1, ../sass/_01global.scss */
+.error {
+  color: red;
+}
+
+/* line 1, ../sass/_02layout.scss */
+body {
+  /*background-color: #f47f85;*/
+  background-image: url("../images/rose.png");
+  background-repeat: no-repeat;
+  background-size: 100% 150%;
+}
+
+/* line 8, ../sass/_02layout.scss */
+#main {
+  z-index: 10;
+  position: relative;
+  width: 75%;
+  text-align: center;
+  font-family: Tahoma, Verdana;
+}
+
+/* line 16, ../sass/_02layout.scss */
+#top {
+  position: relative;
+  z-index: 0;
+  width: 80%;
+  margin: 0px auto;
+  text-align: center;
+  /*
+  font-family: hb_sketch, pwroughsmedium;
+  background-color: rgba(243,235,226,0.90);
+  box-shadow: 4px 4px 8px 4px #141816;
+  */
+}
+/* line 27, ../sass/_02layout.scss */
+#top img {
+  width: 400px;
+  position: static;
+  margin: 20px 0px 40px;
+}
+
+/* line 34, ../sass/_02layout.scss */
+#gauche {
+  position: relative;
+  width: 700px;
+  max-width: 80%;
+  margin: 0px auto;
+  /*background-color: rgba(243,235,226,0.90);*/
+  background-color: white;
+  box-shadow: 8px 8px 8px 6px rgba(0, 0, 0, 0.8);
+  border-radius: 2px;
+  height: 990px;
+  font-size: 110%;
+  margin-bottom: 40px;
+}
+
+/* line 48, ../sass/_02layout.scss */
+#droite {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 25%;
+  height: 100%;
+  text-align: left;
+  font-size: 110%;
+  font-family: Tahoma;
+  z-index: 20;
+}
+
+/* line 56, ../sass/_02layout.scss */
+#onglet {
+  float: right;
+  width: 10%;
+}
+
+/* line 61, ../sass/_02layout.scss */
+#haut-lesreglages, #haut-disposition {
+  text-align: center;
+  cursor: pointer;
+  height: 140px;
+  width: 100%;
+  position: absolute;
+  left: -30px;
+  line-height: 30px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  writing-mode: sideways-lr;
+}
+
+/* line 71, ../sass/_02layout.scss */
+#haut-lesreglages {
+  background-color: #202221;
+  color: #f3f5f4;
+  top: 0;
+}
+
+/* line 76, ../sass/_02layout.scss */
+#haut-disposition {
+  background-color: #fdf1f5;
+  top: 140px;
+}
+
+/* line 81, ../sass/_02layout.scss */
+#cols-droite {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  position: relative;
+  clear: both;
+  float: right;
+}
+
+/* line 89, ../sass/_02layout.scss */
+.droite-content {
+  height: 100%;
+  padding: 20px 40px;
+  overflow-y: auto;
+}
+
+/* line 95, ../sass/_02layout.scss */
+#lesreglages {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  color: #f3f5f4;
+  width: 100%;
+  z-index: 1;
+}
+/* line 102, ../sass/_02layout.scss */
+#lesreglages .droite-content {
+  background-color: #202221;
+}
+
+/* line 108, ../sass/_02layout.scss */
+#ladisposition {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  color: black;
+  width: 100%;
+  z-index: 0;
+}
+/* line 115, ../sass/_02layout.scss */
+#ladisposition .droite-content {
+  background-color: #fdf1f5;
+}
+
+/* line 1, ../sass/_03modules.scss */
+#disposition-content select {
+  margin-bottom: 10px;
+}
+
+/* line 5, ../sass/_03modules.scss */
+#droite p {
+  margin: 0px;
+}
+
+/* line 9, ../sass/_03modules.scss */
+#droite ul {
+  padding: 0px;
+  list-style-type: none;
+}
+
+/* line 13, ../sass/_03modules.scss */
+#droite li {
+  margin-left: 0px;
+}
+
+/* line 17, ../sass/_03modules.scss */
+#manuel {
+  display: none;
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300%;
+  background-color: rgba(237, 237, 237, 0.9);
+  font-family: Arial;
+}
+
+/* line 29, ../sass/_03modules.scss */
+#texte-manuel {
+  padding: 1% 0%;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  font-size: 125%;
+  position: relative;
+}
+/* line 36, ../sass/_03modules.scss */
+#texte-manuel img {
+  position: absolute;
+  top: 2%;
+  right: 0;
+  width: 25px;
+  cursor: pointer;
+}
+/* line 42, ../sass/_03modules.scss */
+#texte-manuel h1 {
+  text-align: center;
+}
+/* line 45, ../sass/_03modules.scss */
+#texte-manuel p {
+  text-indent: 30px;
+  text-align: justify;
+}
+
+/* line 51, ../sass/_03modules.scss */
+.affmanuel {
+  text-align: center;
+  cursor: pointer;
+  text-decoration: underline;
+  display: block;
+  margin: 0px auto;
+}
+
+/* line 59, ../sass/_03modules.scss */
+.module-affmanuel {
+  width: 300px;
+  max-width: 100%;
+  margin: 0px auto 50px;
+  display: block;
+  text-align: center;
+}
+
+/* line 66, ../sass/_03modules.scss */
+#genlecv {
+  background-color: white;
+  color: #202221;
+  border: solid 1px white;
+  padding: 20px 0px;
+  display: block;
+  margin: -10px auto 0px;
+  width: 100%;
+  text-align: center;
+  border-radius: 3px;
+  font-weight: 900;
+  cursor: pointer;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+/* line 80, ../sass/_03modules.scss */
+#genlecv:hover {
+  color: white;
+  background-color: #202221;
+}
+
+/* line 86, ../sass/_03modules.scss */
+#obj-obj {
+  border: none;
+  font-size: 90%;
+}
+
+/* line 91, ../sass/_03modules.scss */
+.one-reglage {
+  margin-bottom: 30px;
+}
+
+/* line 95, ../sass/_03modules.scss */
+.but-more {
+  width: 33%;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  margin-bottom: 0px;
+  font-size: 110%;
+  cursor: pointer;
+  min-width: 100px;
+  float: left;
+  padding: 10px 0;
+  /*margin-top: -10px;*/
+  border-radius: 3px;
+}
+/* line 108, ../sass/_03modules.scss */
+.but-more:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+/* line 111, ../sass/_03modules.scss */
+.but-more img {
+  width: 35%;
+  position: static;
+  display: block;
+  margin: 0px auto;
+  margin-bottom: 5px;
+}
+
+/* line 120, ../sass/_03modules.scss */
+.one-clear {
+  clear: both;
+}
+
+/* line 124, ../sass/_03modules.scss */
+#test-ph {
+  margin: 0px;
+  border: none;
+}
+
+/* line 128, ../sass/_03modules.scss */
+table {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* line 129, ../sass/_03modules.scss */
+td {
+  width: 50%;
+}
+
+/* line 130, ../sass/_03modules.scss */
+.col1 {
+  width: 5%;
+}
+
+/* line 131, ../sass/_03modules.scss */
+.col2 {
+  width: 40%;
+}
+
+/* line 132, ../sass/_03modules.scss */
+.col3 {
+  width: 55%;
+}
+
+/* line 134, ../sass/_03modules.scss */
+#lesronds {
+  width: 45px;
+  height: 150px;
+  position: absolute;
+  left: -47px;
+  top: -1px;
+}
+/* line 138, ../sass/_03modules.scss */
+#lesronds span {
+  margin-bottom: 5px;
+  width: 35px;
+  height: 35px;
+  display: block;
+  border-radius: 35px;
+  border: solid white 1px;
+  cursor: pointer;
+}
+
+/* line 148, ../sass/_03modules.scss */
+.rd-rose {
+  background-color: #f67c83;
+}
+
+/* line 149, ../sass/_03modules.scss */
+.rd-bleu {
+  background-color: #27368e;
+}
+
+/* line 150, ../sass/_03modules.scss */
+.rd-noir {
+  background-color: #161616;
+}
+
+/* line 152, ../sass/_03modules.scss */
+#download {
+  position: absolute;
+  right: 0px;
+  top: -55px;
+  width: 40px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 1;
+}
+/* line 158, ../sass/_03modules.scss */
+#download img {
+  width: 100%;
+}
+
+/* line 163, ../sass/_03modules.scss */
+mark {
+  cursor: pointer;
+  background-color: white;
+  color: grey;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+/* line 169, ../sass/_03modules.scss */
+mark:hover {
+  background-color: red;
+  color: white;
+}
+
+/* r├®glages g├®n├®raux */
+/* line 2, ../sass/_styles_cvs.scss */
+#lecv {
+  text-align: left;
+  padding: 30px 30px;
+  line-height: 16pt;
+  border: solid 1px white;
+  margin: 30px;
+  top: 30px;
+  position: relative;
+  height: 880px;
+}
+
+/* line 18, ../sass/_styles_cvs.scss */
+#ide-nom, #ide-pre {
+  font-weight: bold;
+  font-size: 110%;
+}
+
+/* line 19, ../sass/_styles_cvs.scss */
+#tit {
+  font-weight: bold;
+  font-size: 200%;
+  margin: 30px 0px 10px;
+  display: inline-block;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+/* line 20, ../sass/_styles_cvs.scss */
+#obj {
+  font-style: italic;
+  text-align: center;
+}
+
+/* line 21, ../sass/_styles_cvs.scss */
+#lecv h3 {
+  font-size: 110%;
+}
+
+/* line 22, ../sass/_styles_cvs.scss */
+.cl-int {
+  font-weight: bold;
+}
+
+/* cv_type0 */
+/* line 25, ../sass/_styles_cvs.scss */
+.cv_type0 {
+  font-family: number_2_pencil;
+}
+
+/* line 26, ../sass/_styles_cvs.scss */
+.cv_type0 h3 {
+  text-decoration: underline;
+}
+
+/* line 27, ../sass/_styles_cvs.scss */
+.cv_type0 h3 img {
+  display: none;
+}
+
+/* cv_type1 */
+/* line 30, ../sass/_styles_cvs.scss */
+.cv_type1 {
+  font-family: Arial;
+  font-size: 100%;
+}
+
+/* line 31, ../sass/_styles_cvs.scss */
+.cv_type1 h3 {
+  text-transform: uppercase;
+  /*width: 100%; margin: 15px auto 5px;*/
+  text-align: center;
+  background-color: black;
+  color: white;
+  padding: 5px 0px;
+  border: solid black 1px;
+}
+
+/* line 38, ../sass/_styles_cvs.scss */
+.cv_type1 h3 img {
+  display: none;
+}
+
+/* cv_type2 */
+/* line 44, ../sass/_styles_cvs.scss */
+.cv_type2 #ide {
+  float: left;
+  width: 40%;
+  margin-bottom: 20px;
+}
+
+/* line 45, ../sass/_styles_cvs.scss */
+.cv_type2 #titetsous {
+  float: left;
+  width: 60%;
+}
+
+/* line 46, ../sass/_styles_cvs.scss */
+.cv_type2 #tit {
+  margin-top: 10px;
+}
+
+/* line 48, ../sass/_styles_cvs.scss */
+.cv_type2 h3 {
+  clear: both;
+  border-bottom: solid black 1px;
+}
+
+/* line 49, ../sass/_styles_cvs.scss */
+.cv_type2 h3 img {
+  width: 3%;
+  margin-right: 1%;
+}
+
+/* cv_type3 */
+/* line 52, ../sass/_styles_cvs.scss */
+.cv_type3 h3 img {
+  display: none;
+}
+
+/* line 54, ../sass/_styles_cvs.scss */
+.cv_type3 #inp-ide-adr + br {
+  display: none;
+}
+
+/* line 55, ../sass/_styles_cvs.scss */
+.cv_type3 #ide-adr::after {
+  content: ",";
+}
+
+/* line 56, ../sass/_styles_cvs.scss */
+.cv_type3 #inp-ide-tel + br {
+  display: none;
+}
+
+/* line 57, ../sass/_styles_cvs.scss */
+.cv_type3 #ide-tel::after {
+  content: " - ";
+}
+
+/* line 58, ../sass/_styles_cvs.scss */
+.cv_type3 #ide {
+  text-align: center;
+  border-bottom: solid black 1px;
+  padding-bottom: 10px;
+  color: grey;
+}
+
+/* line 59, ../sass/_styles_cvs.scss */
+.cv_type3 h3 {
+  text-transform: uppercase;
+}
+
+/* line 60, ../sass/_styles_cvs.scss */
+.cv_type3 #titetsous {
+  text-align: center;
+  margin-top: 0px;
+  border-bottom: solid black 1px;
+  padding-bottom: 20px;
+}
+
+/* line 62, ../sass/_styles_cvs.scss */
+.cv_type3 #exp {
+  float: left;
+  width: 45%;
+  margin-right: 4%;
+  /*border: solid 1px black;*/
+  text-align: right;
+}
+
+/* line 63, ../sass/_styles_cvs.scss */
+.cv_type3 #exp .col1 {
+  float: left;
+  width: 8%;
+}
+
+/* line 64, ../sass/_styles_cvs.scss */
+.cv_type3 #exp .col2 {
+  float: right;
+  width: 90%;
+}
+
+/* line 65, ../sass/_styles_cvs.scss */
+.cv_type3 #exp .col3 {
+  float: left;
+  width: 100%;
+}
+
+/* line 66, ../sass/_styles_cvs.scss */
+.cv_type3 #for {
+  float: left;
+  width: 45%;
+  margin-left: 5%;
+  /*border: solid 1px black;*/
+  text-align: left;
+}
+
+/* line 67, ../sass/_styles_cvs.scss */
+.cv_type3 #for .col1 {
+  float: right;
+  width: 8%;
+}
+
+/* line 68, ../sass/_styles_cvs.scss */
+.cv_type3 #for .col2 {
+  float: left;
+  width: 90%;
+}
+
+/* line 69, ../sass/_styles_cvs.scss */
+.cv_type3 #for .col3 {
+  float: left;
+  width: 100%;
+}
+
+/* line 70, ../sass/_styles_cvs.scss */
+.cv_type3 #inf {
+  clear: both;
+  padding-top: 10px;
+}
+
+/* line 71, ../sass/_styles_cvs.scss */
+.cv_type3 #inf h3 {
+  text-align: center;
+  border-top: 1px solid black;
+  padding-top: 10px;
+}

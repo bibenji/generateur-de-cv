@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'pencil_stencil';
+    src: url('pencil_stencil-webfont.woff2') format('woff2'),
+         url('pencil_stencil-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'number_2_pencil';
+    src: url('djb_number_2_pencil-webfont.woff2') format('woff2'),
+         url('djb_number_2_pencil-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'hb_sketch';
+    src: url('hb_sketch_demo-webfont.woff2') format('woff2'),
+         url('hb_sketch_demo-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'pwroughsmedium';
+    src: url('pwroughs-webfont.woff2') format('woff2'),
+         url('pwroughs-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*
+img { position: absolute;}
+#img-crayons { height: 550px; right: 22%; top: 225px; z-index: 0;}
+#img-mug { top: -5%; left: 0%; z-index: 50;}
+#img-help { position: absolute; top: 2%;}
+#img-smartphone { top: 600px; left: -10%; width: 350px;}
+#img-glasses { top: 950px; left: 18.5%; width: 550px;}
+#img-help img { width: 50px; cursor: pointer; position: static;}
+*/
+
+#top h1 { color: #090100; font-size: 300%; text-shadow: 1px 1px #725336; margin: 50px 0px 50px;}
+#top h2 { color: #1A1919; font-size: 300%; text-shadow: 1px 1px #725336; margin: 0px 0px 50px;}
+/*#main #gauche, #main #droite {float: left; margin: 0px 1%;}*/
+
+
+/*
+.module-affmanuel p { display: inline-block; text-align: left; max-width: 48%; vertical-align: middle;}
+.module-affmanuel span { max-width: 48%; display: inline-block; vertical-align: middle;}
+.module-affmanuel img { width: 25%; margin: 0px auto;}
+*/
+
+
+::-webkit-input-placeholder { color: red;}
+:-moz-placeholder { color: red;}
+::-moz-placeholder { color: red;}
+:-ms-input-placeholder { color: red;}
+
+
+ /*
+ // rajouter l'attribut size dans le html
+ .bloc-select { width: 100%; overflow: hidden;}
+  .testselectstyle {
+	 width: 110%;
+	 border: none;
+	background-color: #fdf1f5;
+	height: 100px;
+ }
+ .testselectstyle option {
+	border: solid black 1px;
+	padding: 33px 0px;
+	border-radius: 45px;
+	display: inline-block;
+	width: 20%;
+	margin: 0% 1%;
+	text-align: center;
+	cursor: pointer;
+ }
+ */
+ 

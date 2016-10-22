@@ -1,297 +1,519 @@
-<?php
-session_start();
-
-require('consttes.php');
-
-/* AIDE EN DEVELOPPEMENT */
-if (DEVMODE)
-{
-	echo '<a href="destroy.php">Destroy</a><br />';
-	var_dump($_SESSION);	
-}
-
-/* VARIABLES */
-$nb_xp_session = 0;
-$nb_for_session = 0;
-$nb_inf_session = 0;
-
-/* FONCTIONS */
-function addField($rub, $name, $error)
-{
-	$lname = strtolower($name); //low_name
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="css/styles-cv.css" />
+<script src="js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+	<!--
+	<div id="img-help">
+	<img src="ecrire.png" /><br /><img src="disposer.png" /><br /><img src="generer.png" /><br /><img src="help.png" />
+	</div>
+	<img src="crayons.png" id="img-crayons" /><img src="mug.png" id="img-mug" /><img src="smartphone2.png" id="img-smartphone" />
+	<img src="glasses1.png" id="img-glasses" />-->
+	<div id="manuel">		
+		<div id="texte-manuel">
+		<img class="affmanuel" src="images/close.png" />
+		<h1>Bienvenue sur Curriculum Vite Fait !</h1>
+		<p>Ici, vous pouvez réaliser un CV en moins de cinq minutes !</p>
+		<p>Pour cela, cliquez sur le texte. Vous aurez alors la possibilité de modifier les différents champs qui vont composer votre nouveau CV !</p>
+		<p>Vous pouvez facilement rajouter des expériences, des formations ou des informations complémentaires à l'aide du menu situé sur votre droite (onglet réglages).</p>
+		<p>Vous avez également la possibilité (onglet disposition) de sélectionner différents modèles de CV ainsi que de paramétrer la mise en page de votre CV.</p>
+		<p>Les champs qui ne sont pas correctement remplis s'affichent en rouge. Cette indication disparaît dès lors que votre saisie est correcte !</p>
+		<p>Lorsque vous avez terminé, le petit icône situé en haut à droite de votre CV vous permet d'en télécharger une version au format PDF...</p>
+		<p>Plus besoin de savoir utiliser un traitement de texte, créer un CV n'a jamais été aussi facile!</p>
+		<span class="affmanuel">Reprendre la création du CV</span>
+		</div>
+	</div>
 	
-	echo '<tr><td><label for="' . $name . '">' . ucfirst($name) . ' :</label></td>';
-	echo '<td class="td_stop"><input type="text" class="normal_input" name="" id="' . $rub . '_' . str_replace(' ','',$lname) . '"';
+	<form method="post" action="moncv.php" id="main-form" target="_blank">
+	
+	<div id="main">
+	
+	<div id="top">
+	<img src="images/logo-cvf.png" />
+	<!--<h1>Curriculum Vite Fait - Saisie du CV</h1>-->
+	</div>
+	
+	
 			
-	if (isset($_SESSION['data'][$rub][substr($lname,0,3)]) AND !empty($_SESSION['data'][$rub][substr($lname,0,3)])) 
-	{
-			echo ' value="' . $_SESSION['data'][$rub][substr($lname,0,3)] . '"';			
+	<div id="gauche">
+	<div id="lesronds"><span class="rd-rose"></span><span class="rd-bleu"></span><span class="rd-noir"></div>
+	<div id="download"><img src="images/download2.png" /></div>
+	
+	<div id="lecv" class="cv_type0">
+	<div id="ide">
+		<span id="ide-nom" class=''>NOM</span><input type="hidden" id="inp-ide-nom" name="ide-nom" /> 
+		<span id="ide-pre" class=''>Prénom</span><input type="hidden" id="inp-ide-pre" name="ide-pre" /><br />
+		<span id="ide-adr">Adresse</span><input type="hidden" id="inp-ide-adr" name="ide-adr" /><br />
+		<span id="ide-cod">75001</span><input type="hidden" id="inp-ide-cod" name="ide-cod" />  
+		<span id="ide-vil">PARIS</span><input type="hidden" id="inp-ide-vil" name="ide-vil" /><br />
+		<span id="ide-tel">06 00 00 00 00</span><input type="hidden" id="inp-ide-tel" name="ide-tel" /><br />
+		<span id="ide-mai">john.doe@gmail.com</span><input type="hidden" id="inp_ide_mai" name="ide-mai" /><br />
+		<span id="ide-nai">26/03/1987</span><input type="hidden" id="inp_ide_nai" name="ide-nai" /><br />
+	</div>
+	
+	<div id="titetsous">
+	<div id="tit">
+		<span id="tit-tit">Titre du CV</span><input type="hidden" id="inp-tit-tit" name="tit-tit" />	
+	</div>
+	
+	<div id="obj">
+		Objectif : Trouver un <select id="obj-obj" name="obj-obj"><option>Emploi</option><option>Stage</option></select>
+	</div>
+	</div>
+	
+	
+	<div id="exp">
+	<h3><img src="images/experiences.png" /> Expériences professionnelles</h3>
+	</div>
+	
+	
+	<div id="for">
+	<h3><img src="images/formation.png" /> Formation</h3>
+	</div>
+	
+	<div id="inf">
+	<h3><img src="images/infos.jpg" /> Informations complémentaires</h3>	
+	</div>
+	
+	</div>
+	
+	
+	
+	
+	
+	</div>
+
+	
+	</div>
+	
+	<div id="droite">
+	
+	<div id="onglets">
+	<div id="haut-lesreglages"><!-- > -->Réglages</div>
+	<div id="haut-disposition"><!-- > -->Disposition</div>
+	</div>
+	
+	<div id="cols-droite">
+	
+	<div id="lesreglages">
+	<div id="lesreglages-content">
+	
+	<div class="one-reglage">
+	<p>
+	Quelles parties souhaitez-vous intégrer à votre CV ?
+	<ul>
+		<li><input type="checkbox" /> Identité</li>
+		<li><input type="checkbox" /> Titre</li>
+		<li><input type="checkbox" /> Objectif</li>
+		<li><input type="checkbox" /> Compétences</li>
+		<li><input type="checkbox" /> Expériences professionnelles</li>
+		<li><input type="checkbox" /> Formation</li>
+		<li><input type="checkbox" /> Informations complémentaires</li>
+		<li><input type="checkbox" /> Qualités (LM)</li>
+	</ul>
+	</p>
+	</div>
+	
+	<div class="one-reglage">
+	<p>
+		Cliquez ici pour ajouter des éléments :<br /><br />
+		<span id="exp-but-more" class="but-more"><img src="images/plus.png" />Expérience</span>
+		<span id="for-but-more" class="but-more"><img src="images/plus.png" />Formation</span>
+		<span id="inf-but-more" class="but-more"><img src="images/plus.png" />Information</span>
+		<!--<span class="but-more"><img src="plus.png" />Générer</span>-->
+		<div class="one-clear"></div>
+	</p>
+	</div>
+	
+	
+	
+	<div class="one-reglage">
+	<span id="genlecv">Générer le CV</span>
+	</div>
+	
+	<div class="one-reglage">
+		<div class="module-affmanuel">
+			<!--<span><img class="affmanuel" src="images/manual.png" /></span>-->
+			<p class="affmanuel">Perdu ? Consultez le mode d'emploi !</p>		
+		</div>
+	</div>
+	
+	</div>
+	</div>
+	
+	<div id="ladisposition">
+	<div id="disposition-content">
+	<ul>
+		<li>Modèle de CV<br />
+			<div class="bloc-select">
+			<select id="sel-modcv-#lecv-className" name="_modeleCV" class="testselectstyle">
+				<option value="cv_type0">-</option>
+				<option value="cv_type1">Modèle 1</option>
+				<option value="cv_type2">Modèle 2</option>
+				<option value="cv_type3">Modèle 3</option>
+			</select>
+			</div>
+		</li>
+		<li>Sous-modèle<br />
+			<select>
+				<option>-</option>
+			</select>
+		</li>
+		<li>Espacement du CV<br />
+			<select id="sel-espcv-#lecv-style.lineHeight" name="_espacesCV">
+				<option value="16pt">-</option>
+				<?php for($i = 10; $i < 31; $i += 2) { ?>
+				<option value="<?php echo $i; ?>pt"><?php echo $i; ?></option>
+				<?php } ?>
+			</select>
+		</li>
+		<li>Taille de police<br />
+			<select id="sel-taicv-#lecv-style.fontSize" name="_tailleTexte">
+				<option value="100%">-</option>
+				<?php for($i = 70; $i < 131; $i += 5) { ?>
+				<option value="<?php echo $i; ?>%"><?php echo $i; ?></option>
+				<?php } ?>
+			</select>
+		</li>
+		<li>Bordures du CV<br />
+			<select id="sel-borcv-#lecv-style.border">
+				<option value="solid white 1px">-</option>
+				<option value="solid black 1px">Oui</option>
+			</select>
+		</li>
+	</ul>
+	</div>
+	</div>
+	
+	</div>
+	</div>
+	</form>
+	
+	<script type="text/javascript">
+	
+	// TABLEAU DES EXPRESSIONS REGULIERES
+	var tabregs = {
+		nom: '[A-Z]{2,}',
+		pre: '[A-Z][a-z]{2,}',
+		dat: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
+		adr: '[1-9][0-9]*\\s[a-z]*\\s[A-za-z]*',
+		com: '.*',
+		cod: '^\\d{5}$',
+		vil: '[A-Z]{2,}',
+		tel: '0\\d \\d{2} \\d{2} \\d{2} \\d{2}',
+		mai: '.+@.+\\..+',
+		nai: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
+		tit: '[A-Z].+',
+		
+		//ddb: this.dat,
+		//ddf: this.dat,
+		ddb : '^\\d{2}\\/\\d{2}\\/\\d{4}$',
+		ddf: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
+		int: '[A-Z].+', // ATTENTION !
+		str: '[A-Z].+', 
+		
+		con: '[A-Z].+'
+		};
+		
+	// fonction vérifiant la saisie en direct
+	function verifSaisie(elem, val) {
+		var unereg = tabregs[elem.id.substr(4,3)];
+		if (unereg) {
+			console.log(elem.className.substr(0,6));
+			if(elem.className.substr(0,6) == 'cl-int') elem.className = 'cl-int ';
+			else elem.className = '';
+						
+			var testreg = new RegExp(unereg);
+			var resultat = testreg.test(val);
+			if (!resultat) elem.className += 'error';
+			
+			
+			
+		}
+	}
+		
+	
+	
+	// INITIALISE LES SPANS ET LE MODE DE SAISIE
+	function forEvent(elem, valatstart) {
+		elem.setAttribute('contenteditable', 'true');
+		elem.addEventListener('keypress', function(event) {
+			// console.log(event.charCode);
+			if ((this.innerText == valatstart) && (event.charCode != 0)) { this.innerText = '';}
+		});
+		elem.addEventListener('keyup', function() {
+			this.nextSibling.value = this.innerText;
+			verifSaisie(this, this.innerText);
+			if (this.nextSibling.value == '') { this.innerText = valatstart;}
+		});
+	}
+	// INITIALISATION DES CHAMPS INITIAUX (ide, tit, obj)
+	var lecv = document.getElementById('lecv');
+	var lesspans = lecv.getElementsByTagName('span');
+	var atstart = [];
+	for (var i = 0, imax = lesspans.length; i < imax; i++) {
+		atstart[i] = lesspans[i].innerText;		
+		forEvent(lesspans[i], atstart[i]);
 	}
 	
-	echo '></td><td><span class="lerreur lerreurstyle1">' . $error . '</span></td></tr>';
-}
-
-function addFieldTwo($one, $nb, $for = true)
-{	
-	$to_echo = '<table class="rubrique_table">
-			<caption>'.($type=($for)?'Formation':'Experience').'<!-- n°'.$nb.'--></caption>
-			<tr>
-			<td><mark onclick="suppression(this, \''.($type=($for)?'for':'exp').'\')">X</mark></td><td class="td_stop">
-				<table>
-				<tr>
-					<td>Du :</td>
-					<td><input name="" id="'.($type=($for)?'for':'exp').'_datedebut_'.$nb.'" type="date" class="normal_input" value="'.$one['datedebut'].'"></td>
-					<td>Au :</td>
-					<td><input name="" id="'.($type=($for)?'for':'exp').'_datefin_'.$nb.'" type="date" class="normal_input" value="'.$one['datefin'].'"></td>
-				</tr>
-				<tr>
-					<td>'.($nomou=($for)?'Intitulé':'Poste occupé').' :</td><td><input name="" id="'.($type=($for)?'for':'exp').'_prquoi_'.$nb.'" type="text" class="normal_input" value="'.$one['prquoi'].'"></td>
-					<td>'.($nomou=($for)?'Organisme':'Entreprise').' :</td><td><input name="" id="'.($type=($for)?'for':'exp').'_nomou_'.$nb.'" type="text" class="normal_input" value="'.$one['nomou'].'"></td>
-				</tr>
-				<tr>
-					<td>Ville :</td><td><input name="" id="'.($type=($for)?'for':'exp').'_ville_'.$nb.'" type="text" class="normal_input" value="'.$one['ville'].'"></td>
-					<td>Département :</td>
-					<td><input name="" id="'.($type=($for)?'for':'exp').'_codedep_'.$nb.'" type="text" class="normal_input" value="'.$one['codedep'].'"></td>
-				</tr>
-				</table>
-			</td>
-			<td>
-				<span width="97%" class="lerreur lerreurstyle2">Erreur dans la saisie...<span class="info_bulle">Les dates doivent être indiquées au format 26/03/1987 et correspondrent, l\'intitulé doit être renseigné, l\'entreprise et la ville écrites en majuscules, enfin le département au format 75018.</span>
-			</td>
-			</tr>
-			</table>';
+	// FONCTION D'AJOUT DE FONCTION DE SUPPRESSION
+	function addSuppr(elem) {
+		elem.addEventListener('click', function() {
+			var found = false;
+			while (found == false) {
+				elem = elem.parentNode;
+				console.log(elem.nodeName);
+				if (elem.nodeName == 'TABLE') {
+					found = true;
+					elem.parentNode.removeChild(elem);
+				}
+			}
+		});
+	}
 	
-	echo '<div class="one_item">'.$to_echo.'</div>';
-}
+	
+	// INITIALISE LES BOUTONS D'AJOUT
+	function addOneInf(cat, nb) {
+		var newTable = document.createElement('table');
+		var newTr = document.createElement('tr');
+		var newTd = document.createElement('td');
+		var newMark = document.createElement('mark');
+		newMark.innerText = 'X';
+		addSuppr(newMark);
+		newTd.appendChild(newMark);
+		newTd.className = 'col1';
+		newTr.appendChild(newTd);
+		newTd = document.createElement('td');
+		var newSpan = document.createElement('span');
+		newSpan.id = cat+'-int-'+nb;
+		newSpan.innerText = 'Design';
+		forEvent(newSpan, newSpan.innerText);
+		newTd.appendChild(newSpan);
+		var newInput = document.createElement('input');
+		newInput.type = "hidden";
+		newInput.name = cat+'-int-'+nb;
+		newInput.id = 'inp-'+cat+'-int-'+nb;
+		newTd.appendChild(newInput);
+		newTd.appendChild(document.createTextNode(' : '));
+		
+		newSpan = document.createElement('span');
+		newSpan.id = cat+'-con-'+nb;
+		newSpan.innerText = 'Pas très très bon encore LOL !';
+		forEvent(newSpan, newSpan.innerText);
+		newTd.appendChild(newSpan);
+		newInput = document.createElement('input');
+		newInput.type = "hidden";
+		newInput.name = cat+'-con-'+nb;
+		newInput.id = 'inp-'+cat+'-con'+nb;
+		newTd.appendChild(newInput);		
+		
+		newTr.appendChild(newTd);
+		newTable.appendChild(newTr);
+		document.getElementById(cat).appendChild(newTable);
+		
+		// <span id="inf-1-con">Pas très très bon encore LOL !</span><input type="text" id="inp-inf-1-con"></p>
+	}
+	function addOne(cat, nb) {
+		var base = [
+			['ddb', '01/01/2016'],
+			['ddf', '31/12/2016'],
+			['int', 'Intitulé'],
+			['str', 'Structure'],
+			['vil', 'VILLE'],
+			['cod', '00000']];
+		lesnewspans = [], lesnewinputs = [];
+		for (i = 0, imax = base.length; i < imax; i++) {
+			lesnewspans[i] = document.createElement('span');
+			lesnewspans[i].id = cat+'-'+base[i][0]+'-'+nb;
+			lesnewspans[i].className = 'cl-'+base[i][0];
+			lesnewspans[i].innerHTML = base[i][1];
+			lesnewinputs[i] = document.createElement('input');
+			lesnewinputs[i].type = 'hidden';
+			lesnewinputs[i].name = cat+'-'+base[i][0]+'-'+nb;
+			lesnewinputs[i].id = 'inp-'+cat+'-'+base[i][0]+'-'+nb;
+			forEvent(lesnewspans[i], lesnewspans[i].innerText);
+		}
+		var newTable = document.createElement('table');
+		
+		var newTr = document.createElement('tr');
+		
+		var newTd = document.createElement('td');
+		newTd.className = 'col1';
+		var newMark = document.createElement('mark');
+		newMark.innerText = 'X';
+		addSuppr(newMark);
+		newTd.appendChild(newMark);
+		newTr.appendChild(newTd);
+		
+		newTd = document.createElement('td');
+		newTd.className = 'col2';
+		newTd.appendChild(lesnewspans[0]);
+		newTd.appendChild(lesnewinputs[0]);
+		newTd.appendChild(document.createTextNode(' - '));
+		newTd.appendChild(lesnewspans[1]);
+		newTd.appendChild(lesnewinputs[1]);
+		newTr.appendChild(newTd);
+		
+		newTd = document.createElement('td');
+		newTd.className = 'col3';
+		newTd.appendChild(lesnewspans[2]);
+		newTd.appendChild(lesnewinputs[2]);
+		newTr.appendChild(newTd);
+		
+		newTable.appendChild(newTr);
+		
+		newTr = document.createElement('tr');
+		newTd = document.createElement('td');
+		newTd.className = 'col1';
+		newTr.appendChild(newTd);
+		newTd = document.createElement('td');
+		newTd.className = 'col2';
+		newTr.appendChild(newTd);
+		newTd = document.createElement('td');
+		newTd.className = 'col3';
+		newTd.appendChild(lesnewspans[3]);
+		newTd.appendChild(lesnewinputs[3]);
+		newTd.appendChild(document.createTextNode(', '));
+		newTd.appendChild(lesnewspans[4]);
+		newTd.appendChild(lesnewinputs[4]);
+		newTd.appendChild(document.createTextNode(' ('));
+		newTd.appendChild(lesnewspans[5]);
+		newTd.appendChild(lesnewinputs[5]);
+		newTd.appendChild(document.createTextNode(')'));
+		newTr.appendChild(newTd);
+		
+		newTable.appendChild(newTr);
+		document.getElementById(cat).appendChild(newTable);
+	}
+	
+	var nb_xp = 0;
+	var nb_for = 0;
+	var nb_inf = 0;
+	var add_exp = document.getElementById('exp-but-more');
+	add_exp.addEventListener('click', function() {
+			addOne('exp', nb_xp);
+			nb_xp++;
+		});
+	var add_for = document.getElementById('for-but-more');
+	add_for.addEventListener('click', function() {
+			addOne('for', nb_for);
+			nb_for++;
+		});
+	var add_inf = document.getElementById('inf-but-more');
+	add_inf.addEventListener('click', function() {
+			addOneInf('inf', nb_inf);
+			nb_inf++;
+		});
+	
+	
 
-function addFieldThree($nb, $one)
-{
-	echo '<div class="one_item"><table class="table_type3"><tr>
-		<td class="td01-t3"><mark onclick="suppression(this, \'inf\')">X</mark></td>
-		<td>
-			<table><tr><td class="td02-t3">Libellé :<br /></td>
-				<td class="td_stop"><input type="text" name="" id="inf_libelle_' . $nb . '" class="normal_input" placeholder="Loisirs, Langues..." value="' . $one['libelle'] . '" /></td>
-				<td class="td03-t3"><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
-			</tr><tr>
-				<td class="td02-t3">Contenu :</td>
-				<td class="td_stop"><input type="text" name="" id="inf_contenu_' . $nb . '" class="normal_input" value="' . $one['contenu'] . '" /></td>
-				<td class="td03-t3"><span class="lerreur lerreurstyle1">Les données saisies ne peuvent être traitées...</span></td>
-			</tr></table>
-		</td></tr></table></div>';
-}
-?>
+	// INITIALISE LES RONDS DE COULEUR	
+	var lesronds = document.querySelectorAll("#lesronds span");
+	// console.log(lesronds.length);
+	for (var i = 0, imax = lesronds.length; i < imax; i++) {
+		// console.log(lesronds[i]);
+		lesronds[i].addEventListener('click', function() {
+			var bg_ref = this.className.substr(3, this.className.length);
+			document.body.style.backgroundImage = "url('images/"+bg_ref+".png')";
+		});
+	}
+	
+	// INITIALISE LE BOUTON DE DOWNLOAD
+	var down = document.getElementById('download');
+	down.addEventListener('click', function() {
+			document.getElementById('main-form').submit();
+	});
+	// INITIALISE LE BOUTON GENLECV
+	var genlecv = document.getElementById('genlecv');
+	genlecv.addEventListener('click', function() {
+			document.getElementById('main-form').submit();
+	});
 
-<!DOCTYPE html>
-<html lang="fr">
-
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="css/styles.css">
-		<title>Générateur CVs Lettres de motivation</title>
-	</head>
-
-	<body>
-		<?php include('includes/header.php'); ?>
-		<div id="main">
-			<!-- affiché pour les mobiles -->
-			<div class="warning">Attention, le site est prévu pour être utilisé sur un écran large !</div>
-		<?php include('includes/menu_nav.php'); ?>
-			
-			<aside>
-				<div>
-					<p>Quelles parties souhaitez-vous intégrer dans votre CV ?</p>
-					<ul class="li_menu">
-						<li><input type="checkbox" class="foraff" checked="checked" id="ch_titre"><label for="ch_titre">titre</label></li>
-						<li><input type="checkbox" class="foraff" checked="checked" id="ch_obj"><label for="ch_obj">objectif</label></li>
-						<li><input type="checkbox" class="foraff" disabled="disabled" id="ch_com"><label for="ch_com">compétences</label></li>
-						<li><input type="checkbox" class="foraff" disabled="disabled" id="ch_qua"><label for="ch_qua">qualités</label></li>
-						<li><input type="checkbox" class="foraff" checked="checked" id="ch_exp"><label for="ch_exp">expériences professionnelles</label></li>
-						<li><input type="checkbox" class="foraff" checked="checked" id="ch_for"><label for="ch_for">formation</label></li>
-						<li><input type="checkbox" class="foraff" checked="checked" id="ch_inf"><label for="ch_inf">informations complémentaires</label></li>
-					</ul>
+	// INITIALISE LES SELECTS DE DISPOSITION MISE EN PAGE
+	var zone_cv = document.getElementById('gauche');
+	var zone_dispo = document.getElementById('disposition-content');
+	var lesselects = zone_dispo.getElementsByTagName('select');	
+	for (var i = 0, imax = lesselects.length; i < imax; i++) {
+		lesselects[i].selectedIndex = "0";
+		lesselects[i].addEventListener('change', function() {
+			var init_cible = this.id.split("-");
+			var cibles = document.querySelectorAll(init_cible[2]);
+			var prop = init_cible[3];
+			for (var i = 0, imax = cibles.length; i < imax; i++) {
 					
-				<?php if (DEVMODE) { ?>
-				<div id="compteur">0 compétnces, 0 expériences et 0 formations</div>
-				<p><a href='#' id="comptage">Compter</a></p>
-				<?php } ?>
-				</div>
+				// cibles[i].className = this.value;
+				console.log(prop);
+				eval('cibles['+i+'].'+prop+' = "'+this.value+'"');
+			}
+			
+			
+			
+			
+			
+			// console.log('ça change' + cible);
+			
+		});
+	}
 	
-				<div>
-					<p>Zone membre</p>
-					Vous devez être connecté pour accéder à ces fonctionnalités...
-				</div>
-			</aside>
-
-		<section id="milieu">
-		
-		<form method="post" action="disposition.php" id="form">
-		
-		<!-- RUBRIQUE IDENTITE -->
-		<div class="rubrique" id="ide">
-			<h3>Identité</h3>
-			<!--<p>Sexe : <input type="radio" name="sexe" id="homme"> <label for="homme">Homme</label> <input type="radio" name="sexe" id="femme"> <label for="femme">Femme</label><span class="lerreur lerreurstyle1">Champ à renseigner...</span></p>-->
-			<table class="table_type2">
-				<?php
-				addField('ide','nom','Votre nom doit être écrit en majuscules et contenir au moins 2 lettres...');
-				addField('ide','prenom','Votre prénom doit commencer par une majuscule et contenir au moins 2 lettres...');
-				addField('ide','date de naissance','Votre date de naissance doit être indiquée au format 26/03/1987...');
-				addField('ide','adresse','Votre adresse doit être du type : "13 rue des Lavandières"...');
-				addField('ide','code postal','Votre code postal doit être composé de 5 chiffres...');
-				addField('ide','ville','Votre ville doit être écrite en majuscules...');
-				addField('ide','telephone','Votre numéro de téléphone n\'est pas au bon format... Il doit être de la forme : 06 07 08 09 10. Pensez aux espaces !');
-				addField('ide','mail','Votre mail n\'est pas au bon format...');
-				?>
-				<tr>
-					<td><label for="permis">Permis de conduire :</label></td>
-					<td><select name="ide_permis" id="ide_permis"><option selected="selected">Pas de permis</option><option>Permis B</option><option>Permis D</option></select></td>
-					<td><span class="lerreur lerreurstyle1">Champ à renseigner...</span></td>
-				</tr>
-				<tr>
-					<td><label for="vehicule">Véhicule :</label></td>
-					<td><select name="ide_vehicule" id="ide_vehicule"><option selected="selected">Non</option><option>Oui</option><option>Moto / Scooter</option></select></td>
-					<td><span class="lerreur lerreurstyle1">Champ à renseigner...</span></td>
-				</tr>
-			</table>
-		</div>
-
 
 		
-		<!-- RUBRIQUE TITRE "ACTIVE" -->
-		<div class="rubrique" id="tit">
-			<h3>Titre<span class="help">?<span class="cache-help">Le titre du CV doit correspondre à l'intitulé du poste recherché ou à votre demande.</span></span></h3>
-			<table class="table_type2">
-				<?php
-				addField('tit','titre du CV','Votre titre doit commencer par une majuscule et contenir au moins 2 lettres...');
-				?>
-			</table>
-		</div>
-
-		
-		
-		<!-- RUBRIQUE OBJECTIF "ACTIVE" -->
-		<div class="rubrique" id="obj">
-			<h3>Objectif<span class="help">?<span class="cache-help">L'objectif permet de clarifier votre CV en résumant succintement votre demande...</span></span></h3>
-			<table class="table_type2">
-				<tr>
-					<td>Objectif :</td>
-					<td>
-						<select name="obj_objectif" id="obj_objectif">
-							<option value="Emploi" selected="selected">Emploi</option>
-							<option value="Stage">Stage</option>
-							<option value="Perso" disabled="disabled">Personnalisé</option>
-						</select>
-						<!--
-						<p><br /><textarea cols="" rows="5" id="objectif" name="" disabled="disabled">Veuillez écrire ici votre objectif...</textarea></p>
-						-->
-					</td>
-					<td><span></span></td>
-				</tr>
-			</table>
-		</div>
-		
-		
-		
-		<!-- RUBRIQUE COMPETENCES "INACTIVE" -->
-		<div class="rubrique_hidden" id="com">
-			<h3>Compétences</h3>
-			<p><input type="button" id="bouton_competences" value="Ajouter une compétence"></p>
-		</div>
-		<!-- RUBRIQUE QUALITES "INACTIVE" -->
-		<div class="rubrique_hidden" id="qua">
-			<h3>Qualités</h3>
-			<p>Choisissez 3 qualités vous correspondant :</p>
-			<div id="zonedequals">
-				<?php
-					$lesquals = array("Dynamique", "Consciencieux", "Motivé", "Sociable", "Ponctuel", "Sens du contact", "Bon relationnel", "Sérieux", "A l'écoute", "Créatif", "Sang-froid", "Bienveillance", "Patient", "Appliqué", "Soigné", "Minutieux");
-					$nbqual = 0;
-					foreach ($lesquals as $onequal)
-					{
-						echo '<input type="checkbox" id="qua_' . $nbqual . '" name="qua_' . $nbqual . '" value="' . $onequal . '" /> ' . $onequal . '<br />';
-						$nbqual++;
-					}
-				?>
-			</div>
-		</div>
-		
-		
-		
-		<!-- RUBRIQUE EXPERIENCE PROFESSIONNELLE "ACTIVE" -->
-		<div class="rubrique" id="exp">
-			<h3>Expériences professionnelles<span class="help">?<span class="cache-help">Indiquez dans cette partie toutes vos expériences de travail (emplois, stage...).</span></span></h3>
-			<p class="commandes">
-				<!--<span class="compte_el"><span id="nbre_de_xp">0</span> expérience(s)</span>-->
-				<input type="button" id="bouton_experiences" value="Ajouter une expérience" class="bouton_add">				
-			</p>
-			<?php
-				if (isset($_SESSION['data']['exp']) AND !empty($_SESSION['data']['exp']))
-				{				
-					foreach($_SESSION['data']['exp'] as $one_xp)
-					{
-						//var_dump($one_xp);
-						$nb_xp_session++;
-						addFieldTwo($one_xp, $nb_xp_session, null);					
-					}
-				}
-			?>
-		</div>
-		
-		
-		
-		<!-- RUBRIQUE FORMATION "ACTIVE" -->
-		<div class="rubrique" id="for">
-			<h3>Formation<span class="help">?<span class="cache-help">Indiquez ici toutes les formations que vous avez effectuées (cursus scolaire, formations continues...).</span></span></h3>
-			<p class="commandes">
-				<!--<span class="compte_el"><span id="nbre_de_for">0</span> expérience(s)</span>-->
-				<input type="button" id="bouton_formations" value="Ajouter une formation" class="bouton_add">
-			</p>
-			<?php
-				if (isset($_SESSION['data']['for']) AND !empty($_SESSION['data']['for']))
-				{				
-					foreach($_SESSION['data']['for'] as $one_for)
-					{
-						//var_dump($one_xp);
-						$nb_for_session++;
-						addFieldTwo($one_for, $nb_for_session, true);
-					}
-				}
-			?>
-		</div>
-		
-		
-		
-		<!-- RUBRIQUE INFOS COMPLEMENTAIRES "ACTIVE" -->
-		<div class="rubrique" id="inf">
-			<h3>Informations complémentaires<span class="help">?<span class="cache-help">Vous pouvez mentionner ici des éléments qui vous semblent importants (exemple : Langues -> Anglais (niveau scolaire)).</span></span></h3>
-			<p class="commandes"><input type="button" id="bouton_informations" value="Ajouter une information" class="bouton_add"></p>
-			<?php
-				if (isset($_SESSION['data']['inf']) AND !empty($_SESSION['data']['inf']))
-				{				
-					foreach($_SESSION['data']['inf'] as $one_inf)
-					{
-						//var_dump($one_xp);
-						$nb_inf_session++;
-						addFieldThree($nb_inf_session, $one_inf);					
-					}
-				}
-			?>
-		</div>
-		
-		
-		
-		<nav class="go-dispo">
-			<input type="submit" value="Générer le CV" id="envoi" class="btn-form-p1" /> <input type="reset" value="Recommencer"  class="btn-form-p1" />
-		</nav>
-		
-		</form>
-
-		</section>
-
-		<?php require ('js/test.js.php'); ?>
-
-		</div>
-
-		<?php include('includes/bas.php'); ?>
-
-	</body>
+/*
+<span id="ide-pre">Prénom</span><input type="text" id="inp-ide-pre" /><br />
+		<td width='50%' >01/01/2016 - 01/07/2017</td>
+		<td>Chanteur de blues</td>
+		<tr>
+		<td></td>
+		<td>CNAM, PARIS (75)</td>
+	*/
 	
+		function leswitch(elem) {
+				// console.log("test");
+				var em_name = elem.id.substr(5, elem.id.length)+'_content'; // calcule le nom de l'em
+				var style = window.getComputedStyle(eval(em_name)).getPropertyValue("z-index");
+				// console.log(style);
+				eval(em_name).style.zIndex = style+2;
+		}
+		
+		var reglages = document.getElementById('haut-lesreglages');
+		var lesreglages_content = document.getElementById('lesreglages');
+		var disposition = document.getElementById('haut-disposition');
+		var disposition_content = document.getElementById('ladisposition');
+		
+		disposition.addEventListener('click', function() {
+			leswitch(this);
+		});
+		reglages.addEventListener('click', function() {
+			leswitch(this);
+		});
+		
+
+		
+		
+		
+	</script>
+	
+	<!-- PARTIE jQUERY -->
+	<script>
+		$(function() {
+			console.log( "ready!" );
+		});
+
+		$( ".affmanuel" ).click(function() {
+			if($("#manuel").is(":hidden")) {
+				$("#manuel").slideDown("slow", function() {
+					//Anim complete.
+					});
+			} else {
+				$( "#manuel" ).slideUp( "slow", function() {
+				// Animation complete.
+				});
+			}
+		});
+	</script>
+	
+</body>
 </html>

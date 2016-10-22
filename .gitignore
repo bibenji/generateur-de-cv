@@ -1,6 +1,3 @@
-/archives/*
-/font/*
-/ressources/*
-/tests/*
-/tmp/*
-/TO_DEL/*
+/js/*
+.gitignore
+gogit.bat

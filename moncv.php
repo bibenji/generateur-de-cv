@@ -132,7 +132,7 @@ else // génération du pdf
 
 	// début de génération du pdf
 	
-	define('FPDF_FONTPATH','/font');
+	define('FPDF_FONTPATH','./fonts/');
 	require('lib-gencv/fpdf.php');
 	
 	if ($_POST['_modeleCV'] == 'cv_type1')
@@ -151,7 +151,7 @@ else // génération du pdf
 	{
 		require('lib-gencv/classpdf/pdf0.php');
 	}
-
+		
 	$pdf = new PDF();
 	$pdf->SetTitle($_SESSION['data']['ide']['nom'].' '.$_SESSION['data']['ide']['pre'].' CV - '.$_SESSION['data']['tit']['tit']);
 	

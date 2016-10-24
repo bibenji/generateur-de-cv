@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>CURRICULUM vite fait - Le générateur de CVs</title>
 <meta charset="UTF-8">
 	
 	<link rel="stylesheet" href="stylesheets/styles.css" />	
 
+	<!--
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
 	<link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+	-->
+	
 	<!--[if IE]>
 		<link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
 	<![endif]-->

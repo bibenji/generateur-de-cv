@@ -3,7 +3,7 @@ session_start();
 
 /* RECUPERATION DES DONNEES POSTEES */
 // tout stocker dans la variable $_SESSION['DATA']
-$_SESSION = array(); // pour éviter les problèmes
+$_SESSION = array(); // pour Ã©viter les problÃ¨mes
 $spe = array('exp','for','inf');
 foreach ($_POST as $key => $val)
 {
@@ -13,18 +13,18 @@ foreach ($_POST as $key => $val)
 	else $_SESSION['data'][$key1][substr($key, strlen($key)-1, strlen($key))][substr(substr($key, 0, -2), 4)] = $val;
 }
 
-// détermination de l'objet du CV
-// voir les cas où pas de titre au CV...
+// dÃ©termination de l'objet du CV
+// voir les cas oÃ¹ pas de titre au CV...
 if (isset($_SESSION['data']['obj']['obj']))
 {
 	if ($_SESSION['data']['obj']['obj'] == 'Emploi')
 	{
-		// $_SESSION['data']['obj']['obj'] = 'Actuellement à la recherche d\'un emploi, je vous fais part de ma candidature pour un poste au sein de votre structure.';
+		// $_SESSION['data']['obj']['obj'] = 'Actuellement Ã  la recherche d\'un emploi, je vous fais part de ma candidature pour un poste au sein de votre structure.';
 		$_SESSION['data']['obj']['obj'] = 'Demande d\'emploi';
 	}
 	else
 	{
-		// $_SESSION['data']['obj']['obj'] = 'Dans le cadre d\'une démarche de ré-orientation professionnelle, je souhaiterais effectuer un stage au sein de votre structure.';$_SESSION['data']['obj']['obj'] = 'Dans le cadre d\'une démarche de ré-orientation professionnelle, je souhaiterais effectuer un stage au sein de votre structure.';
+		// $_SESSION['data']['obj']['obj'] = 'Dans le cadre d\'une dÃ©marche de rÃ©-orientation professionnelle, je souhaiterais effectuer un stage au sein de votre structure.';$_SESSION['data']['obj']['obj'] = 'Dans le cadre d\'une dÃ©marche de rÃ©-orientation professionnelle, je souhaiterais effectuer un stage au sein de votre structure.';
 		$_SESSION['data']['obj']['obj'] = 'Demande de stage';
 	}
 }
@@ -58,7 +58,7 @@ if (1 == 2)
 
 // --------------------------------------------------------------------------------
 
-else // génération du pdf
+else // gÃ©nÃ©ration du pdf
 {
 	include('lib-gencv/config-gencv.php'); // fichier de configuration, index et valeurs de base
 	
@@ -106,31 +106,23 @@ else // génération du pdf
 
 // --------------------------------------------------------------------------------	
 
-	if ($_SESSION['data']['ide']['nom'] == '') $_SESSION['data']['ide']['nom'] = 'DOE';
-	if ($_SESSION['data']['ide']['pre'] == '') $_SESSION['data']['ide']['pre'] = 'John';
-	if ($_SESSION['data']['ide']['adr'] == '') $_SESSION['data']['ide']['adr'] = '1, rue de Nulle Part';
-	if ($_SESSION['data']['ide']['cod'] == '') $_SESSION['data']['ide']['cod'] = '12345';
-	if ($_SESSION['data']['ide']['tel'] == '') $_SESSION['data']['ide']['tel'] = '01 23 45 67 89';
-	if ($_SESSION['data']['ide']['mai'] == '') $_SESSION['data']['ide']['mai'] = 'john@doe.com';
-	if ($_SESSION['data']['ide']['vil'] == '') $_SESSION['data']['ide']['vil'] = 'NOWHERE';
-	if ($_SESSION['data']['tit']['tit'] == '') $_SESSION['data']['tit']['tit'] = utf8_decode('Expert en Vie privée');
+	if ($_SESSION['data']['ide']['nom'] == 'NOM') $_SESSION['data']['ide']['nom'] = 'DOE';
+	if ($_SESSION['data']['ide']['pre'] == 'PrÃ©nom') $_SESSION['data']['ide']['pre'] = 'John';
+	if ($_SESSION['data']['ide']['adr'] == 'Adresse') $_SESSION['data']['ide']['adr'] = '1, rue de Nulle Part';
+	if ($_SESSION['data']['ide']['cod'] == '00000') $_SESSION['data']['ide']['cod'] = '12345';
+	if ($_SESSION['data']['ide']['tel'] == '00 00 00 00 00') $_SESSION['data']['ide']['tel'] = '01 23 45 67 89';
+	if ($_SESSION['data']['ide']['mai'] == 'adresse@adresse.xx') $_SESSION['data']['ide']['mai'] = 'john@doe.com';
+	if ($_SESSION['data']['ide']['vil'] == 'VILLE') $_SESSION['data']['ide']['vil'] = 'NOWHERE';
+	if ($_SESSION['data']['ide']['nai'] == '00/00/0000') $_SESSION['data']['ide']['nai'] = '01/01/1975';
+	if ($_SESSION['data']['tit']['tit'] == 'Titre du CV') $_SESSION['data']['tit']['tit'] = 'Expert en vie privÃ©e';	
 	
-	foreach ($_SESSION['data'] as $one_rub) {
-		foreach ($one_rub as $one_elem) {
-			if (is_string($one_elem)) {
-				$one_elem = utf8_decode($one_elem);				
-			}			
-			else {
-				foreach ($one_elem as $one) {
-					$one = utf8_decode($one);					
-				}
-			}
-		}
+	foreach ($_SESSION['data']['ide'] as $key => $em) {
+		$_SESSION['data']['ide'][$key] = utf8_decode($em);
 	}
 
 // --------------------------------------------------------------------------------	
 
-	// début de génération du pdf
+	// dÃ©but de gÃ©nÃ©ration du pdf
 	
 	define('FPDF_FONTPATH','./fonts/');
 	require('lib-gencv/fpdf.php');
@@ -156,7 +148,7 @@ else // génération du pdf
 	$pdf->SetTitle($_SESSION['data']['ide']['nom'].' '.$_SESSION['data']['ide']['pre'].' CV - '.$_SESSION['data']['tit']['tit']);
 	
 
-	/* AJOUT DE FONTS */ // fonction à créer pour simplifier...
+	/* AJOUT DE FONTS */ // fonction Ã  crÃ©er pour simplifier...
 	$pdf->AddFont('comic','','comic.php');
 	$pdf->AddFont('comic','B','comicbd.php');
 	$pdf->AddFont('comic','I','comici.php');
@@ -170,7 +162,7 @@ else // génération du pdf
 	if ($_POST['_bordureCV'] == 'black solid 1px') $pdf->Rect(5,5,200,287);
 
 	$pdf->SetTextColor($colors['texte'][0],$colors['texte'][1],$colors['texte'][2]);
-
+	
 	$pdf->AjouterCoordos($taille_coordos, $_SESSION['data']['ide'], $police_texte, $espaces_g);
 
 	$pdf->AjouterTitre($espaces_g, $taille_titre, utf8_decode($_SESSION['data']['tit']['tit']),

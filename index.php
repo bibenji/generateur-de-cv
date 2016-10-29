@@ -1,3 +1,11 @@
+<?php
+session_start();
+// var_dump($_SESSION);
+
+// initialiser ici les $_SESSION si ils n'existent pas...
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,34 +61,60 @@
 			
 	<div id="gauche">
 	<div id="lesronds"><span class="rd-rose"></span><span class="rd-bleu"></span><span class="rd-noir"></div>
+	<div id="reset"><img src="images/reset2.png" /></div>
 	<div id="download"><img src="images/download2.png" /></div>
 	
 	<div id="lecv" class="cv_type0">
 	<div id="ide">
-		<span id="ide-nom" class=''>NOM</span><input type="hidden" id="inp-ide-nom" name="ide-nom" /> 
-		<span id="ide-pre" class=''>Prénom</span><input type="hidden" id="inp-ide-pre" name="ide-pre" /><br />
-		<span id="ide-adr">Adresse</span><input type="hidden" id="inp-ide-adr" name="ide-adr" /><br />
-		<span id="ide-cod">75001</span><input type="hidden" id="inp-ide-cod" name="ide-cod" />  
-		<span id="ide-vil">PARIS</span><input type="hidden" id="inp-ide-vil" name="ide-vil" /><br />
-		<span id="ide-tel">06 00 00 00 00</span><input type="hidden" id="inp-ide-tel" name="ide-tel" /><br />
-		<span id="ide-mai">john.doe@gmail.com</span><input type="hidden" id="inp_ide_mai" name="ide-mai" /><br />
-		<span id="ide-nai">26/03/1987</span><input type="hidden" id="inp_ide_nai" name="ide-nai" /><br />
+		<span id="ide-nom" class=''><?php echo ((isset($_SESSION['data']['ide']['nom'])) ? $_SESSION['data']['ide']['nom'] : 'NOM'); ?></span><input type="hidden" id="inp-ide-nom" name="ide-nom" value="" />
+		<span id="ide-pre" class=''><?php echo ((isset($_SESSION['data']['ide']['pre'])) ? $_SESSION['data']['ide']['pre'] : 'Prénom'); ?></span><input type="hidden" id="inp-ide-pre" name="ide-pre" /><br />
+		<span id="ide-adr"><?php echo ((isset($_SESSION['data']['ide']['adr'])) ? $_SESSION['data']['ide']['adr'] : 'Adresse'); ?></span><input type="hidden" id="inp-ide-adr" name="ide-adr" /><br />
+		<span id="ide-cod"><?php echo ((isset($_SESSION['data']['ide']['cod'])) ? $_SESSION['data']['ide']['cod'] : '00000'); ?></span><input type="hidden" id="inp-ide-cod" name="ide-cod" />  
+		<span id="ide-vil"><?php echo ((isset($_SESSION['data']['ide']['vil'])) ? $_SESSION['data']['ide']['vil'] : 'VILLE'); ?></span><input type="hidden" id="inp-ide-vil" name="ide-vil" /><br />
+		<span id="ide-tel"><?php echo ((isset($_SESSION['data']['ide']['tel'])) ? $_SESSION['data']['ide']['tel'] : '00 00 00 00 00'); ?></span><input type="hidden" id="inp-ide-tel" name="ide-tel" /><br />
+		<span id="ide-mai"><?php echo ((isset($_SESSION['data']['ide']['mai'])) ? $_SESSION['data']['ide']['mai'] : 'adresse@adresse.xx'); ?></span><input type="hidden" id="inp_ide_mai" name="ide-mai" /><br />
+		Né(e) le : <span id="ide-nai"><?php echo ((isset($_SESSION['data']['ide']['nai'])) ? $_SESSION['data']['ide']['nai'] : '00/00/0000'); ?></span><input type="hidden" id="inp_ide_nai" name="ide-nai" /><br />
 	</div>
 	
 	<div id="titetsous">
 	<div id="tit">
-		<span id="tit-tit">Titre du CV</span><input type="hidden" id="inp-tit-tit" name="tit-tit" />	
+		<span id="tit-tit"><?php echo ((isset($_SESSION['data']['tit']['tit'])) ? $_SESSION['data']['tit']['tit'] : 'Titre du CV'); ?></span><input type="hidden" id="inp-tit-tit" name="tit-tit" />	
 	</div>
 	
 	<div id="obj">
-		Objectif : Trouver un <select id="obj-obj" name="obj-obj"><option>Emploi</option><option>Stage</option></select>
+		Objectif : Trouver un <select id="obj-obj" name="obj-obj">
+			<option>Emploi</option>
+			<option<?php if (isset($_SESSION['data']['obj']['obj']) AND $_SESSION['data']['obj']['obj'] == 'Stage') echo ' selected="selected"'; ?>>Stage</option>
+		</select>
 	</div>
 	</div>
-	
-	
+		
 	<div id="exp">
 	<h3><img src="images/experiences.png" /> Expériences professionnelles</h3>
+	<?php
+		$nb_xp = 0;
+		if (isset($_SESSION['data']['exp'][0])) {
+			foreach ($_SESSION['data']['exp'] as $xp) {
+				?>
+					<table><tr>
+						<td class="col1"><mark onclick="suppr(this);">X</mark></td>
+						<td class="col2"><span id="exp-ddb-<?php echo $nb_xp; ?>" class="cl-ddb" contenteditable="true"><?php echo $xp['ddb']; ?></span><input name="exp-ddb-<?php echo $nb_xp; ?>" id="inp-exp-ddb-<?php echo $nb_xp; ?>" type="hidden"> - <span id="exp-ddf-<?php echo $nb_xp; ?>" class="cl-ddf" contenteditable="true"><?php echo $xp['ddf']; ?></span><input name="exp-ddf-<?php echo $nb_xp; ?>" id="inp-exp-ddf-<?php echo $nb_xp; ?>" type="hidden"></td>
+						<td class="col3"><span id="exp-int-<?php echo $nb_xp; ?>" class="cl-int" contenteditable="true"><?php echo $xp['int']; ?></span><input name="exp-int-<?php echo $nb_xp; ?>" id="inp-exp-int-<?php echo $nb_xp; ?>" type="hidden"></td>
+					</tr><tr>
+						<td class="col1"></td>
+						<td class="col2"></td>
+						<td class="col3"><span id="exp-str-<?php echo $nb_xp; ?>" class="cl-str" contenteditable="true"><?php echo $xp['str']; ?></span><input name="exp-str-<?php echo $nb_xp; ?>" id="inp-exp-str-<?php echo $nb_xp; ?>" type="hidden">, <span id="exp-vil-<?php echo $nb_xp; ?>" class="cl-vil" contenteditable="true"><?php echo $xp['vil']; ?></span><input name="exp-vil-<?php echo $nb_xp; ?>" id="inp-exp-vil-<?php echo $nb_xp; ?>" type="hidden"> (<span id="exp-cod-0" class="cl-cod" contenteditable="true"><?php echo $xp['cod']; ?></span><input name="exp-cod-<?php echo $nb_xp; ?>" id="inp-exp-cod-<?php echo $nb_xp; ?>" type="hidden">)</td>
+					</tr></table>				
+				<?php
+				$nb_xp++;
+			}
+		}
+		
+	?>
+	<input type="hidden" id="compte_xp" value="<?php echo $nb_xp; ?>" />
 	</div>
+	
+	
 	
 	
 	<div id="for">
@@ -117,15 +151,12 @@
 	<div class="one-reglage">
 	<p>
 	Quelles parties souhaitez-vous intégrer à votre CV ?
-	<ul>
-		<li><input type="checkbox" /> Identité</li>
-		<li><input type="checkbox" /> Titre</li>
-		<li><input type="checkbox" /> Objectif</li>
-		<li><input type="checkbox" /> Compétences</li>
-		<li><input type="checkbox" /> Expériences professionnelles</li>
-		<li><input type="checkbox" /> Formation</li>
-		<li><input type="checkbox" /> Informations complémentaires</li>
-		<li><input type="checkbox" /> Qualités (LM)</li>
+	<ul>				
+		<li><input type="checkbox" checked="checked" id="check_obj" class="to_check" /><label for="check_obj"> Objectif</label></li>		
+		<li><input type="checkbox" checked="checked" id="check_exp" class="to_check" /><label for="check_exp"> Expériences professionnelles</label></li>
+		<li><input type="checkbox" checked="checked" id="check_for" class="to_check" /><label for="check_for"> Formation</label></li>
+		<li><input type="checkbox" checked="checked" id="check_inf" class="to_check" /><label for="check_inf"> Informations complémentaires</label></li>
+		<li><input type="checkbox" disabled="disabled" /> Qualités (LM) (à venir)</li>
 	</ul>
 	</p>
 	</div>
@@ -151,6 +182,28 @@
 		<div class="module-affmanuel">
 			<!--<span><img class="affmanuel" src="images/manual.png" /></span>-->
 			<p class="affmanuel">Perdu ? Consultez le mode d'emploi !</p>		
+		</div>
+	</div>
+	
+	<div class="one-reglage">
+		<div class="module-affmanuel">
+			<!--<span><img class="affmanuel" src="images/manual.png" /></span>-->
+			<ul style="text-align: left;">
+				<li>En cours : Saisie peu intuitive</li>
+				
+				<li>message pour savoir plus facilement qu'on peut taper directement le texte sur la page</li>
+				
+				<li>En cours : Données enregistrées par le nav dans les hidden à vider</li>
+				
+				<li>En cours : Sauver les données du CV</li>
+				
+				<li>En cours : Paramétrer le truc des parties</li>
+								
+				<li> OK : 10 secondes de latence avant remise du texte quand champ vide</li>
+				
+				<li>OK : Onglets buguent</li>								
+				
+			</ul>
 		</div>
 	</div>
 	
@@ -205,6 +258,7 @@
 	</div>
 	</form>
 	
+	<script>var sid = "<?php echo session_id(); ?>";</script>
 	<script type="text/javascript" src="js/mainjs.js"></script>
 	<script type="text/javascript" src="js/jqueryjs.js"></script>
 	

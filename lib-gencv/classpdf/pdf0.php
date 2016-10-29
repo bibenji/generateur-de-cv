@@ -4,14 +4,14 @@ class PDF extends FPDF
 	function AjouterCoordos($taille_c, $data_ide, $police, $esp_g)
 	{
 		$this->SetFont($police,'B',$taille_c+2);
-		$this->Cell(80,$esp_g,$data_ide['nom'] . ' ' .  $data_ide['pre'],0,1);
+		$this->Cell(80,$esp_g,$data_ide['nom'] . ' ' . $data_ide['pre'],0,1);
 	
 		$this->SetFont($police,'',$taille_c);
 		$this->Cell(80,$esp_g,$data_ide['adr'],0,1);
 		$this->Cell(80,$esp_g,$data_ide['cod'] . ' ' . $data_ide['vil'],0,1);
 		$this->Cell(80,$esp_g,$data_ide['tel'],0,1);
 		$this->Cell(80,$esp_g,$data_ide['mai'],0,1);
-		$this->Cell(80,$esp_g,'Né le ' . $data_ide['nai'],0,1);
+		$this->Cell(80,$esp_g,'Né(e) le ' . $data_ide['nai'],0,1);
 	}
 
 	function AjouterTitre($esp_g, $taille_t, $titre, $taille_ss_t, $objectif, $police, $coltitre, $colsoustitre)

@@ -43,15 +43,18 @@
 	
 	// INITIALISE LES SPANS ET LE MODE DE SAISIE
 	function forEvent(elem, valatstart) {
-		elem.setAttribute('contenteditable', 'true');
+		if (elem.nextSibling) elem.nextSibling.value = elem.innerText;
+		elem.setAttribute('contenteditable', 'true');		
 		elem.addEventListener('keypress', function(event) {
 			// console.log(event.charCode);
 			if ((this.innerText == valatstart) && (event.charCode != 0)) { this.innerText = '';}
 		});
 		elem.addEventListener('keyup', function() {
 			this.nextSibling.value = this.innerText;
-			verifSaisie(this, this.innerText);
-			if (this.nextSibling.value == '') { this.innerText = valatstart;}
+			verifSaisie(this, this.innerText);			
+		});
+		elem.addEventListener('blur', function() {
+			if (this.nextSibling.value == '') this.innerText = valatstart;
 		});
 	}
 	// INITIALISATION DES CHAMPS INITIAUX (ide, tit, obj)
@@ -66,16 +69,21 @@
 	// FONCTION D'AJOUT DE FONCTION DE SUPPRESSION
 	function addSuppr(elem) {
 		elem.addEventListener('click', function() {
-			var found = false;
-			while (found == false) {
-				elem = elem.parentNode;
-				console.log(elem.nodeName);
-				if (elem.nodeName == 'TABLE') {
-					found = true;
-					elem.parentNode.removeChild(elem);
-				}
-			}
+			suppr(this);
 		});
+	}
+	
+	// FONCTION DE SUPPRESSION
+	function suppr(elem) {
+		var found = false;
+		while (found == false) {
+			elem = elem.parentNode;
+			// console.log(elem.nodeName);
+			if (elem.nodeName == 'TABLE') {
+				found = true;
+				elem.parentNode.removeChild(elem);
+			}
+		}
 	}
 	
 	
@@ -93,7 +101,7 @@
 		newTd = document.createElement('td');
 		var newSpan = document.createElement('span');
 		newSpan.id = cat+'-int-'+nb;
-		newSpan.innerText = 'Design';
+		newSpan.innerText = 'Rubrique';
 		forEvent(newSpan, newSpan.innerText);
 		newTd.appendChild(newSpan);
 		var newInput = document.createElement('input');
@@ -105,7 +113,7 @@
 		
 		newSpan = document.createElement('span');
 		newSpan.id = cat+'-con-'+nb;
-		newSpan.innerText = 'Pas très très bon encore LOL !';
+		newSpan.innerText = 'Contenu...';
 		forEvent(newSpan, newSpan.innerText);
 		newTd.appendChild(newSpan);
 		newInput = document.createElement('input');
@@ -193,7 +201,7 @@
 		document.getElementById(cat).appendChild(newTable);
 	}
 	
-	var nb_xp = 0;
+	var nb_xp = document.getElementById('compte_xp').value;
 	var nb_for = 0;
 	var nb_inf = 0;
 	var add_exp = document.getElementById('exp-but-more');
@@ -262,33 +270,73 @@
 		});
 	}
 	
-
+	// GESTION DES ONGLETS
+	function leswitch(elem) {
+		// console.log("test");
+		var em_name = elem.id.substr(5, elem.id.length)+'_content'; // calcule le nom de l'em
+		var style = window.getComputedStyle(eval(em_name)).getPropertyValue("z-index");
+		// console.log(style);
+		eval(em_name).style.zIndex = style+2;
+	}
 		
-/*
-<span id="ide-pre">Prénom</span><input type="text" id="inp-ide-pre" /><br />
-		<td width='50%' >01/01/2016 - 01/07/2017</td>
-		<td>Chanteur de blues</td>
-		<tr>
-		<td></td>
-		<td>CNAM, PARIS (75)</td>
-	*/
+	var reglages = document.getElementById('haut-lesreglages');
+	var lesreglages_content = document.getElementById('lesreglages');
+	var disposition = document.getElementById('haut-disposition');
+	var disposition_content = document.getElementById('ladisposition');
+		
+	disposition.addEventListener('click', function() {
+		disposition_content.style.zIndex = 2;
+		lesreglages_content.style.zIndex = 1;
+	});
+	reglages.addEventListener('click', function() {
+		lesreglages_content.style.zIndex = 2;
+		disposition_content.style.zIndex = 1;
+	});
 	
-		function leswitch(elem) {
-				// console.log("test");
-				var em_name = elem.id.substr(5, elem.id.length)+'_content'; // calcule le nom de l'em
-				var style = window.getComputedStyle(eval(em_name)).getPropertyValue("z-index");
-				// console.log(style);
-				eval(em_name).style.zIndex = style+2;
-		}
+	// TEST DE REFRESH
+	var lereset = document.getElementById('reset');
+	lereset.addEventListener('click', function() {
+		console.log(sid);
 		
-		var reglages = document.getElementById('haut-lesreglages');
-		var lesreglages_content = document.getElementById('lesreglages');
-		var disposition = document.getElementById('haut-disposition');
-		var disposition_content = document.getElementById('ladisposition');
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', './ajax/reset.php');
+        
+        // If specified, responseType must be empty string or "document"
+        // xhr.responseType = 'document';
+        // overrideMimeType() can be used to force the response to be parsed as XML
+        // xhr.overrideMimeType('text/xml');
+        
+        xhr.onreadystatechange = function() {            
+            console.log('xhr.readyState : ' + xhr.readyState);
+            console.log('xhr.status : ' + xhr.status);
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // Le code une fois la requête terminée et réussie…
+                console.log(xhr.responseText);
+                // console.log(xhr.response);
+                // displayResults(xhr.responseXML);
+				location.reload();
+                
+            }
+        };
+        
+		xhr.setRequestHeader( 'Set-Cookie' , 'PHPSESSID=' + sid );
+        xhr.send(null);
+        
+		// return xhr;        
 		
-		disposition.addEventListener('click', function() {
-			leswitch(this);
+		// location.reload();
+    	
+	});
+	
+	// INITIALISATION DES CHECKBOXES
+	var checkboxes = document.getElementsByClassName('to_check');
+	for (var i = 0, imax = checkboxes.length; i < imax; i++) {
+		checkboxes[i].addEventListener('change', function() {
+			// console.log(this.id.substring(6));
+			var cible = document.getElementById(this.id.substring(6));
+			// console.log(cible);
+			if (cible.style.display == "none") cible.style.display = "block";
+			else cible.style.display = "none";
+						
 		});
-		reglages.addEventListener('click', function() {
-			leswitch(this);
-		});
+	}

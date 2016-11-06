@@ -11,7 +11,7 @@ class PDF extends FPDF
 		$this->Cell(80,$esp_g,$data_ide['cod'] . ' ' . $data_ide['vil'],0,1);
 		$this->Cell(80,$esp_g,$data_ide['tel'],0,1);
 		$this->Cell(80,$esp_g,$data_ide['mai'],0,1);
-		$this->Cell(80,$esp_g,'Né le ' . $data_ide['nai'],0,1);
+		$this->Cell(80,$esp_g,'Né(e) le ' . $data_ide['nai'],0,1);
 	}
 
 	function AjouterTitre($espaces_g, $taille_t, $titre, $taille_ss_t, $objectif, $police, $coltitre, $colsoustitre)
@@ -39,13 +39,13 @@ class PDF extends FPDF
 	{
 		// déterminer l'icone à afficher
 		$icones = array(
-			"EXPERIENCE PROFESSIONNELLE" => "images/experiences.png",
-			"FORMATION" => "images/formation.png",
-			"INFORMATIONS COMPLEMENTAIRES" => "images/infos.jpg"
+			"exp" => "images/experiences.png",
+			"for" => "images/formation.png",
+			"inf" => "images/infos.jpg"
 		);
 			
 		$this->Ln($espaces_g);
-		$this->Image($icones[$rub],null,null,$taille_b*0.40);
+		$this->Image($icones[substr($rub,0,3)],null,null,$taille_b*0.40);
 		
 		$this->setY($this->getY()-5);
 		$this->setX($this->getX()+13);
@@ -56,7 +56,7 @@ class PDF extends FPDF
 		$this->SetFillColor($colband[0],$colband[1],$colband[2]);
 		$this->SetDrawColor(255,255,255);
 			
-		$this->Cell(0,$espaces_g,ucfirst(strtolower($rub)),1,1,'',true);
+		$this->Cell(0,$espaces_g,ucfirst(strtolower(utf8_decode($rub))),1,1,'',true);
 		$this->SetFillColor($colbrdband[0],$colbrdband[1],$colbrdband[2]);
 		$this->Cell(0,1,'',1,1,'',true);
 		// Saut de ligne

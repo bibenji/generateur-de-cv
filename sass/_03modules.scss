@@ -1,5 +1,9 @@
 #disposition-content select {
     margin-bottom: 10px;
+	min-width: 40%;
+	line-height: 25px;
+	height: 25px;
+	font-size: 90%;
 }
 
 #droite p {
@@ -43,9 +47,12 @@
 	    text-align: center;
 }
     p {
-	    text-indent: 30px;
+	    text-indent: 10px;
 	    text-align: justify;
     }
+	.affmanuel {
+		color: grey;
+	}
 }
 
 .affmanuel {
@@ -69,7 +76,7 @@
 	border: solid 1px white;
 	padding: 20px 0px;
 	display: block;
-	margin: -10px auto 0px;
+	margin: 20px auto 0px;
 	width: 100%;
 	text-align: center;
 	border-radius: 3px;

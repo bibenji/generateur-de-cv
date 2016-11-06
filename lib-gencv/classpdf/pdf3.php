@@ -11,7 +11,7 @@ class PDF extends FPDF
 		$this->SetFont($police,'',$taille_c);
 		$this->Cell(0,$esp_g,$data_ide['adr'] . ', ' . $data_ide['cod'] . ' ' . $data_ide['vil'],0,1,'C');
 		$this->Cell(0,$esp_g,$data_ide['tel'].' - '.$data_ide['mai'],0,1,'C');
-		$this->Cell(0,$esp_g,'Né le ' . $data_ide['nai'],0,1,'C');
+		$this->Cell(0,$esp_g,'Né(e) le ' . $data_ide['nai'],0,1,'C');
 	}
 
 	function AjouterTitre($espaces_g, $taille_t, $titre, $taille_ss_t, $objectif, $police, $coltitre, $colsoustitre)
@@ -33,18 +33,18 @@ class PDF extends FPDF
 		$this->SetLeftMargin(10);
 		$this->Ln($espaces_g);
 		$this->Cell(0,0.5,'',1,1,'',true);
-		$this->Ln($espaces_g);
+		// $this->Ln($espaces_g);
 		$save_y = $this->GetY();
 	}
 
 	function AjouterRuSpe($rub, $espaces_g, $taille_b, $colband, $coltxtband, $colbrdband, $coltexte, $align, $police)
-	{
+	{		
 		$this->Ln($espaces_g);
 		$this->SetFont($police,'B',$taille_b);		
 		$this->SetTextColor($coltexte[0],$coltexte[1],$coltexte[2]);		
 		$this->SetFillColor($colband[0],$colband[1],$colband[2]);
 		$this->SetDrawColor(255,255,255);		
-		$ex_rub = explode('-', $rub);
+		$ex_rub = explode('-', strtoupper($rub));
 		$this->Cell(80,$espaces_g,$ex_rub[0],1,1,$align,true);
 		$this->Cell(80,$espaces_g,$ex_rub[1],1,1,$align,true);
 		$this->SetFillColor(0,0,0);		
@@ -59,13 +59,13 @@ class PDF extends FPDF
 	function AjouterRu($rub, $espaces_g, $taille_b, $colband, $coltxtband, $colbrdband, $coltexte, $police) // faire un héritage ou un trait... à voir demain !!!
 	{	
 		global $align, $save_y, $save_xp_y;
-		if ($rub == 'EXPERIENCE PROFESSIONNELLE')
+		if (substr($rub,0,3) == 'exp')
 		{
-			$this->AjouterRuSpe("EXPERIENCE-PROFESSIONNELLE", $espaces_g, $taille_b, $colband, $coltxtband, $colbrdband, $coltexte, 'R', $police);
+			$this->AjouterRuSpe("expériences-professionnelles", $espaces_g, $taille_b, $colband, $coltxtband, $colbrdband, $coltexte, 'R', $police);
 		}
 		else
 		{
-		if ($rub == 'FORMATION')
+		if (substr($rub,0,3) == 'for')
 		{
 			$this->SetLeftMargin(110);
 			$save_xp_y = $this->GetY();
@@ -96,7 +96,7 @@ class PDF extends FPDF
 		$this->SetDrawColor($colbrdband[0],$colbrdband[1],$colbrdband[2]);
 		$this->SetFillColor(255,255,255);
 		$this->SetDrawColor(255,255,255);
-		$this->Cell(0,$espaces_g,$rub,1,1,$align,true);
+		$this->Cell(0,$espaces_g,strtoupper(utf8_decode($rub)),1,1,$align,true);
 		$this->SetFillColor($colband[0],$colband[1],$colband[2]);
 		$this->SetFillColor(0,0,0);				
 		// $this->Ln($espaces_g);

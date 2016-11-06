@@ -41,7 +41,7 @@ class PDF extends FPDF
 		
 		
 		
-		$this->Cell('',$espaces_g*1.5,ucfirst(strtolower($rub)),'',1,'L',true);
+		$this->Cell('',$espaces_g*1.5,ucfirst(strtolower(utf8_decode($rub))),'',1,'L',true);
 		// $underline = $this->Cell('',0.5,'',1,1,'',true);
 		
 		

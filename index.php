@@ -148,6 +148,7 @@ session_start();
 	<div id="lesreglages">
 	<div id="lesreglages-content" class="droite-content">
 	
+	<!--
 	<div class="one-reglage">
 	<p>
 	Quelles parties souhaitez-vous intégrer à votre CV ?
@@ -160,10 +161,18 @@ session_start();
 	</ul>
 	</p>
 	</div>
+	-->
 	
 	<div class="one-reglage">
 	<p>
-		Cliquez ici pour ajouter des éléments :<br /><br />
+	1) Editez votre CV<br /><br />
+	Commencez à éditer de suite votre nouveau CV en le modifiant directement dans la partie de gauche comme vous le feriez dans un logiciel de traitement de texte normal.
+	</p>
+	</div>
+	
+	<div class="one-reglage">
+	<p>
+	2) Ajoutez des éléments à votre CV<br /><br />
 		<span id="exp-but-more" class="but-more"><img src="images/plus.png" />Expérience</span>
 		<span id="for-but-more" class="but-more"><img src="images/plus.png" />Formation</span>
 		<span id="inf-but-more" class="but-more"><img src="images/plus.png" />Information</span>
@@ -172,9 +181,13 @@ session_start();
 	</p>
 	</div>
 	
+	<div class="one-reglage">
+	<p>3) Choisissez un modèle de CV dans l'onglet disposition</p>
+	</div>
 	
 	
 	<div class="one-reglage">
+	<p>4) Générez votre CV</p>
 	<span id="genlecv">Générer le CV</span>
 	</div>
 	
@@ -185,33 +198,12 @@ session_start();
 		</div>
 	</div>
 	
-	<div class="one-reglage">
-		<div class="module-affmanuel">
-			<!--<span><img class="affmanuel" src="images/manual.png" /></span>-->
-			<ul style="text-align: left;">
-				<li>En cours : Saisie peu intuitive</li>
-				
-				<li>message pour savoir plus facilement qu'on peut taper directement le texte sur la page</li>
-				
-				<li>En cours : Données enregistrées par le nav dans les hidden à vider</li>
-				
-				<li>En cours : Sauver les données du CV</li>
-				
-				<li>En cours : Paramétrer le truc des parties</li>
-								
-				<li> OK : 10 secondes de latence avant remise du texte quand champ vide</li>
-				
-				<li>OK : Onglets buguent</li>								
-				
-			</ul>
-		</div>
-	</div>
-	
 	</div>
 	</div>
 	
 	<div id="ladisposition">
 	<div id="disposition-content" class="droite-content">
+	<p>Choisir un modèle de CV :</p>
 	<ul>
 		<li>Modèle de CV<br />
 			<div class="bloc-select">
@@ -223,11 +215,16 @@ session_start();
 			</select>
 			</div>
 		</li>
+		<!--
 		<li>Sous-modèle<br />
 			<select>
 				<option>-</option>
 			</select>
 		</li>
+		-->
+	</ul>
+	<p>Réglages spécifiques :</p>
+	<ul>
 		<li>Espacement du CV<br />
 			<select id="sel-espcv-#lecv-style.lineHeight" name="_espacesCV">
 				<option value="16pt">-</option>

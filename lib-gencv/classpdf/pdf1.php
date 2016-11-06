@@ -11,7 +11,7 @@ class PDF extends FPDF
 		$this->Cell(80,$esp_g,$data_ide['cod'] . ' ' . $data_ide['vil'],0,1);
 		$this->Cell(80,$esp_g,$data_ide['tel'],0,1);
 		$this->Cell(80,$esp_g,$data_ide['mai'],0,1);
-		$this->Cell(80,$esp_g,'Né le ' . $data_ide['nai'],0,1);
+		$this->Cell(80,$esp_g,'Né(e) le ' . $data_ide['nai'],0,1);
 	}
 
 	function AjouterTitre($esp_g, $taille_t, $titre, $taille_ss_t, $objectif, $police, $coltitre, $colsoustitre)
@@ -37,7 +37,7 @@ class PDF extends FPDF
 		// $test = explode(',', $test);
 		$this->SetFillColor($colband[0],$colband[1],$colband[2]);
 		$this->SetDrawColor($colbrdband[0],$colbrdband[1],$colbrdband[2]);
-		$this->Cell(0,$espaces_g*1.5,$rub,1,1,'C',true);
+		$this->Cell(0,$espaces_g*1.5,strtoupper(utf8_decode($rub)),1,1,'C',true);
 		// Saut de ligne
 		// $this->Ln($espaces_g);
 		$this->SetTextColor($coltexte[0],$coltexte[1],$coltexte[2]);

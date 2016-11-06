@@ -169,7 +169,7 @@ else // génération du pdf
 		$taille_ss_titre, $_SESSION['data']['obj']['obj'], $police_titre,
 		$colors['titre'], $colors['soustitre']);
 
-	$pdf->AjouterRu("EXPERIENCE PROFESSIONNELLE", $espaces_g, $taille_bandeaux,
+	$pdf->AjouterRu("expériences professionnelles", $espaces_g, $taille_bandeaux,
 		$colors['fondbandeau'], $colors['bandeau'], $colors['bordurebandeau'],
 		$colors['texte'], $police_bandeau);
 
@@ -182,7 +182,7 @@ else // génération du pdf
 			);
 	}
 
-	$pdf->AjouterRu("FORMATION", $espaces_g, $taille_bandeaux,
+	$pdf->AjouterRu("formation", $espaces_g, $taille_bandeaux,
 		$colors['fondbandeau'], $colors['bandeau'], $colors['bordurebandeau'],
 		$colors['texte'], $police_bandeau);
 
@@ -195,7 +195,7 @@ else // génération du pdf
 			);
 	}
 
-	$pdf->AjouterRu("INFORMATIONS COMPLEMENTAIRES", $espaces_g, $taille_bandeaux,
+	$pdf->AjouterRu("informations complémentaires", $espaces_g, $taille_bandeaux,
 		$colors['fondbandeau'], $colors['bandeau'], $colors['bordurebandeau'],
 		$colors['texte'], $police_bandeau);
 					

@@ -152,25 +152,29 @@ body {
 /* line 1, ../sass/_03modules.scss */
 #disposition-content select {
   margin-bottom: 10px;
+  min-width: 40%;
+  line-height: 25px;
+  height: 25px;
+  font-size: 90%;
 }
 
-/* line 5, ../sass/_03modules.scss */
+/* line 9, ../sass/_03modules.scss */
 #droite p {
   margin: 0px;
 }
 
-/* line 9, ../sass/_03modules.scss */
+/* line 13, ../sass/_03modules.scss */
 #droite ul {
   padding: 0px;
   list-style-type: none;
 }
 
-/* line 13, ../sass/_03modules.scss */
+/* line 17, ../sass/_03modules.scss */
 #droite li {
   margin-left: 0px;
 }
 
-/* line 17, ../sass/_03modules.scss */
+/* line 21, ../sass/_03modules.scss */
 #manuel {
   display: none;
   z-index: 1000;
@@ -183,7 +187,7 @@ body {
   font-family: Arial;
 }
 
-/* line 29, ../sass/_03modules.scss */
+/* line 33, ../sass/_03modules.scss */
 #texte-manuel {
   padding: 1% 0%;
   width: 90%;
@@ -192,7 +196,7 @@ body {
   font-size: 125%;
   position: relative;
 }
-/* line 36, ../sass/_03modules.scss */
+/* line 40, ../sass/_03modules.scss */
 #texte-manuel img {
   position: absolute;
   top: 2%;
@@ -200,17 +204,21 @@ body {
   width: 25px;
   cursor: pointer;
 }
-/* line 42, ../sass/_03modules.scss */
+/* line 46, ../sass/_03modules.scss */
 #texte-manuel h1 {
   text-align: center;
 }
-/* line 45, ../sass/_03modules.scss */
+/* line 49, ../sass/_03modules.scss */
 #texte-manuel p {
-  text-indent: 30px;
+  text-indent: 10px;
   text-align: justify;
 }
+/* line 53, ../sass/_03modules.scss */
+#texte-manuel .affmanuel {
+  color: grey;
+}
 
-/* line 51, ../sass/_03modules.scss */
+/* line 58, ../sass/_03modules.scss */
 .affmanuel {
   text-align: center;
   cursor: pointer;
@@ -219,7 +227,7 @@ body {
   margin: 0px auto;
 }
 
-/* line 59, ../sass/_03modules.scss */
+/* line 66, ../sass/_03modules.scss */
 .module-affmanuel {
   width: 300px;
   max-width: 100%;
@@ -228,14 +236,14 @@ body {
   text-align: center;
 }
 
-/* line 66, ../sass/_03modules.scss */
+/* line 73, ../sass/_03modules.scss */
 #genlecv {
   background-color: white;
   color: #202221;
   border: solid 1px white;
   padding: 20px 0px;
   display: block;
-  margin: -10px auto 0px;
+  margin: 20px auto 0px;
   width: 100%;
   text-align: center;
   border-radius: 3px;
@@ -244,24 +252,24 @@ body {
   letter-spacing: 2px;
   text-transform: uppercase;
 }
-/* line 80, ../sass/_03modules.scss */
+/* line 87, ../sass/_03modules.scss */
 #genlecv:hover {
   color: white;
   background-color: #202221;
 }
 
-/* line 86, ../sass/_03modules.scss */
+/* line 93, ../sass/_03modules.scss */
 #obj-obj {
   border: none;
   font-size: 90%;
 }
 
-/* line 91, ../sass/_03modules.scss */
+/* line 98, ../sass/_03modules.scss */
 .one-reglage {
   margin-bottom: 30px;
 }
 
-/* line 95, ../sass/_03modules.scss */
+/* line 102, ../sass/_03modules.scss */
 .but-more {
   width: 33%;
   display: inline-block;
@@ -276,11 +284,11 @@ body {
   /*margin-top: -10px;*/
   border-radius: 3px;
 }
-/* line 108, ../sass/_03modules.scss */
+/* line 115, ../sass/_03modules.scss */
 .but-more:hover {
   background-color: rgba(255, 255, 255, 0.25);
 }
-/* line 111, ../sass/_03modules.scss */
+/* line 118, ../sass/_03modules.scss */
 .but-more img {
   width: 35%;
   position: static;
@@ -289,44 +297,44 @@ body {
   margin-bottom: 5px;
 }
 
-/* line 120, ../sass/_03modules.scss */
+/* line 127, ../sass/_03modules.scss */
 .one-clear {
   clear: both;
 }
 
-/* line 124, ../sass/_03modules.scss */
+/* line 131, ../sass/_03modules.scss */
 #test-ph {
   margin: 0px;
   border: none;
 }
 
-/* line 128, ../sass/_03modules.scss */
+/* line 135, ../sass/_03modules.scss */
 table {
   width: 100%;
   margin-bottom: 10px;
 }
 
-/* line 129, ../sass/_03modules.scss */
+/* line 136, ../sass/_03modules.scss */
 td {
   width: 50%;
 }
 
-/* line 130, ../sass/_03modules.scss */
+/* line 137, ../sass/_03modules.scss */
 .col1 {
   width: 5%;
 }
 
-/* line 131, ../sass/_03modules.scss */
+/* line 138, ../sass/_03modules.scss */
 .col2 {
   width: 40%;
 }
 
-/* line 132, ../sass/_03modules.scss */
+/* line 139, ../sass/_03modules.scss */
 .col3 {
   width: 55%;
 }
 
-/* line 134, ../sass/_03modules.scss */
+/* line 141, ../sass/_03modules.scss */
 #lesronds {
   width: 45px;
   height: 150px;
@@ -334,7 +342,7 @@ td {
   left: -47px;
   top: -1px;
 }
-/* line 138, ../sass/_03modules.scss */
+/* line 145, ../sass/_03modules.scss */
 #lesronds span {
   margin-bottom: 5px;
   width: 35px;
@@ -345,22 +353,22 @@ td {
   cursor: pointer;
 }
 
-/* line 148, ../sass/_03modules.scss */
+/* line 155, ../sass/_03modules.scss */
 .rd-rose {
   background-color: #f67c83;
 }
 
-/* line 149, ../sass/_03modules.scss */
+/* line 156, ../sass/_03modules.scss */
 .rd-bleu {
   background-color: #27368e;
 }
 
-/* line 150, ../sass/_03modules.scss */
+/* line 157, ../sass/_03modules.scss */
 .rd-noir {
   background-color: #161616;
 }
 
-/* line 152, ../sass/_03modules.scss */
+/* line 159, ../sass/_03modules.scss */
 #download, #reset {
   position: absolute;
   top: -45px;
@@ -369,23 +377,23 @@ td {
   cursor: pointer;
   z-index: 1;
 }
-/* line 158, ../sass/_03modules.scss */
+/* line 165, ../sass/_03modules.scss */
 #download img, #reset img {
   width: 100%;
   height: 90%;
 }
 
-/* line 164, ../sass/_03modules.scss */
+/* line 171, ../sass/_03modules.scss */
 #download {
   right: 0px;
 }
 
-/* line 165, ../sass/_03modules.scss */
+/* line 172, ../sass/_03modules.scss */
 #reset {
   right: 50px;
 }
 
-/* line 167, ../sass/_03modules.scss */
+/* line 174, ../sass/_03modules.scss */
 mark {
   cursor: pointer;
   background-color: white;
@@ -393,7 +401,7 @@ mark {
   padding: 5px 10px;
   border-radius: 15px;
 }
-/* line 173, ../sass/_03modules.scss */
+/* line 180, ../sass/_03modules.scss */
 mark:hover {
   background-color: red;
   color: white;

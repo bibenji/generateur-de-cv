@@ -113,7 +113,8 @@ class PDF extends FPDF
 		$this->SetFont($police,'B',$taille_t);
 		$this->Cell(80,$esp_g,$quoi,0,1,$align);
 		$this->SetFont($police,'',$taille_t);
-		$this->Cell(80,$esp_g,$ou,0,1,$align);
+		$this->MultiCell('',$esp_g,utf8_decode($ou),0,$align);
+		
 	}
 
 	function AjouterrrRu($rub, $espaces_g, $taille_b, $align, $police)

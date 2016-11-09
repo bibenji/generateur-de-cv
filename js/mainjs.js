@@ -16,22 +16,29 @@
 		//ddf: this.dat,
 		ddb : '^\\d{2}\\/\\d{2}\\/\\d{4}$',
 		ddf: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
-		int: '[A-Z].+', // ATTENTION !
+		int: '^[A-Z]\\D+$', // ATTENTION !
 		str: '[A-Z].+', 
 		
-		con: '[A-Z].+'
+		con: '^[A-Z]\\D+$'
 		};
+		
+	var basevals = [ '987456321', 'NOM', 'Prénom', 'Adresse', '00000', 'VILLE', '00 00 00 00 00', 'adresse@adresse.xx', '00/00/0000', 'Intitulé', 'Structure', '00000', 'Rubrique', 'Contenu...' ];
 		
 	// fonction vérifiant la saisie en direct
 	function verifSaisie(elem, val) {
 		var unereg = tabregs[elem.id.substr(4,3)];
 		if (unereg) {
-			console.log(elem.className.substr(0,6));
-			if(elem.className.substr(0,6) == 'cl-int') elem.className = 'cl-int ';
+			
+			if(elem.className.substr(0,3) == 'cl-') elem.className = elem.className.substr(0,6) + ' ';
 			else elem.className = '';
 						
 			var testreg = new RegExp(unereg);
 			var resultat = testreg.test(val);
+			
+			// console.log('le testreg : ' + testreg);
+			// console.log('la val : ' + val);
+			// console.log('le resultat :' + resultat);
+			
 			if (!resultat) elem.className += 'error';
 			
 			
@@ -45,16 +52,25 @@
 	function forEvent(elem, valatstart) {
 		if (elem.nextSibling) elem.nextSibling.value = elem.innerText;
 		elem.setAttribute('contenteditable', 'true');		
+				
 		elem.addEventListener('keypress', function(event) {
 			// console.log(event.charCode);
-			if ((this.innerText == valatstart) && (event.charCode != 0)) { this.innerText = '';}
+			if ((this.innerText == valatstart) && (basevals.indexOf(this.innerText)) && (event.charCode != 0)) {
+				this.innerText = '';
+				// console.log(basevals.indexOf(this.innerText));
+			}
 		});
+		
+		
 		elem.addEventListener('keyup', function() {
 			this.nextSibling.value = this.innerText;
 			verifSaisie(this, this.innerText);			
 		});
 		elem.addEventListener('blur', function() {
-			if (this.nextSibling.value == '') this.innerText = valatstart;
+			if (this.nextSibling.value == '') {
+				this.innerText = valatstart;
+				verifSaisie(this, this.innerText);
+			} 
 		});
 	}
 	// INITIALISATION DES CHAMPS INITIAUX (ide, tit, obj)
@@ -202,8 +218,8 @@
 	}
 	
 	var nb_xp = document.getElementById('compte_xp').value;
-	var nb_for = 0;
-	var nb_inf = 0;
+	var nb_for = document.getElementById('compte_for').value;
+	var nb_inf = document.getElementById('compte_inf').value;
 	var add_exp = document.getElementById('exp-but-more');
 	add_exp.addEventListener('click', function() {
 			addOne('exp', nb_xp);

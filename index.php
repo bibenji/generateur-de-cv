@@ -119,10 +119,47 @@ session_start();
 	
 	<div id="for">
 	<h3><img src="images/formation.png" /> Formation</h3>
+	<?php
+		$nb_for = 0;
+		if (isset($_SESSION['data']['for'][0])) {
+			foreach ($_SESSION['data']['for'] as $for) {
+				?>
+					<table><tr>
+						<td class="col1"><mark onclick="suppr(this);">X</mark></td>
+						<td class="col2"><span id="for-ddb-<?php echo $nb_for; ?>" class="cl-ddb" contenteditable="true"><?php echo $for['ddb']; ?></span><input name="for-ddb-<?php echo $nb_for; ?>" id="inp-for-ddb-<?php echo $nb_for; ?>" type="hidden"> - <span id="for-ddf-<?php echo $nb_for; ?>" class="cl-ddf" contenteditable="true"><?php echo $for['ddf']; ?></span><input name="for-ddf-<?php echo $nb_for; ?>" id="inp-for-ddf-<?php echo $nb_for; ?>" type="hidden"></td>
+						<td class="col3"><span id="for-int-<?php echo $nb_for; ?>" class="cl-int" contenteditable="true"><?php echo $for['int']; ?></span><input name="for-int-<?php echo $nb_for; ?>" id="inp-for-int-<?php echo $nb_for; ?>" type="hidden"></td>
+					</tr><tr>
+						<td class="col1"></td>
+						<td class="col2"></td>
+						<td class="col3"><span id="for-str-<?php echo $nb_for; ?>" class="cl-str" contenteditable="true"><?php echo $for['str']; ?></span><input name="for-str-<?php echo $nb_for; ?>" id="inp-for-str-<?php echo $nb_for; ?>" type="hidden">, <span id="for-vil-<?php echo $nb_for; ?>" class="cl-vil" contenteditable="true"><?php echo $for['vil']; ?></span><input name="for-vil-<?php echo $nb_for; ?>" id="inp-for-vil-<?php echo $nb_for; ?>" type="hidden"> (<span id="for-cod-0" class="cl-cod" contenteditable="true"><?php echo $for['cod']; ?></span><input name="for-cod-<?php echo $nb_for; ?>" id="inp-for-cod-<?php echo $nb_for; ?>" type="hidden">)</td>
+					</tr></table>				
+				<?php
+				$nb_for++;
+			}
+		}
+		
+	?>
+	<input type="hidden" id="compte_for" value="<?php echo $nb_for; ?>" />
 	</div>
 	
 	<div id="inf">
-	<h3><img src="images/infos.jpg" /> Informations complémentaires</h3>	
+	<h3><img src="images/infos.jpg" /> Informations complémentaires</h3>
+	<?php
+		$nb_inf = 0;
+		if (isset($_SESSION['data']['inf'][0])) {
+			foreach ($_SESSION['data']['inf'] as $inf) {
+				?>					
+					<table><tr>
+					<td class="col1"><mark onclick="suppr(this);">X</mark></td>
+					<td><span id="inf-int-<?php echo $nb_inf; ?>" class="" contenteditable="true"><?php echo $inf['int']; ?></span><input name="inf-int-<?php echo $nb_inf; ?>" id="inp-inf-int-<?php echo $nb_inf; ?>" type="hidden"> : <span id="inf-con-<?php echo $nb_inf; ?>" class="" contenteditable="true"><?php echo $inf['con']; ?></span><input name="inf-con-<?php echo $nb_inf; ?>" id="inp-inf-con-<?php echo $nb_inf; ?>" type="hidden"></td>
+					</tr></table>
+				<?php
+				$nb_inf++;
+			}
+		}
+		
+	?>
+	<input type="hidden" id="compte_inf" value="<?php echo $nb_inf; ?>" />
 	</div>
 	
 	</div>

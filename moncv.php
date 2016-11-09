@@ -141,6 +141,9 @@ else // génération du pdf
 	}
 	else
 	{
+		$police_titre = "Times";		
+		$police_texte = "Times";	
+		$police_bandeau = "Times";
 		require('lib-gencv/classpdf/pdf0.php');
 	}
 		

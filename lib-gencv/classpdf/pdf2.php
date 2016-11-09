@@ -72,12 +72,13 @@ class PDF extends FPDF
 		$this->Ln($esp_g);
 		$this->SetFont($police,'',$taille_t);
 		$this->SetLeftMargin(20);
-		$this->Cell(85,$esp_g,$quand,0,0);
+		$this->Cell(70,$esp_g,$quand,0,0);
 		$this->SetFont($police,'B',$taille_t);
 		$this->Cell(0,$esp_g,$quoi,0,1);
 		$this->SetFont($police,'',$taille_t);
-		$this->Cell(85,$esp_g,'',0,0);
-		$this->Cell(0,$esp_g,$ou,0,1);
+		$this->Cell(70,$esp_g,'',0,0);
+		$this->Cell(0,$esp_g,utf8_decode($ou),0,1);
+		// $this->MultiCell(0,$esp_g,utf8_decode($ou),0, 'L');
 		$this->SetLeftMargin(10);
 	}
 

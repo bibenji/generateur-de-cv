@@ -31,7 +31,7 @@ class PDF extends FPDF
 	function AjouterRu($rub, $espaces_g, $taille_b, $colband, $coltxtband, $colbrdband, $coltexte, $police) // faire un héritage ou un trait... à voir demain !!!
 	{
 		$this->Ln($espaces_g);
-		$this->SetFont($police,'U',$taille_b);
+		$this->SetFont($police,'BU',$taille_b+2);
 		$this->SetTextColor($coltxtband[0],$coltxtband[1],$coltxtband[2]);
 		// $test = '0,200,100';
 		// $test = explode(',', $test);
@@ -57,7 +57,7 @@ class PDF extends FPDF
 		$this->Cell(0,$esp_g,$quoi,0,1);
 		$this->SetFont($police,'',$taille_t);
 		$this->Cell(80,$esp_g,'',0,0);
-		$this->Cell(0,$esp_g,$ou,0,1);
+		$this->Cell(0,$esp_g,utf8_decode($ou),0,1);
 		
 	}
 }

@@ -10,8 +10,7 @@
 		tel: '0\\d \\d{2} \\d{2} \\d{2} \\d{2}',
 		mai: '.+@.+\\..+',
 		nai: '^\\d{2}\\/\\d{2}\\/\\d{4}$',
-		tit: '[A-Z].+',
-		
+		tit: '[A-Z].+',		
 		//ddb: this.dat,
 		//ddf: this.dat,
 		ddb : '^\\d{2}\\/\\d{2}\\/\\d{4}$',
@@ -23,7 +22,9 @@
 		};
 		
 	var basevals = [ '987456321', 'NOM', 'Prénom', 'Adresse', '00000', 'VILLE', '00 00 00 00 00', 'adresse@adresse.xx', '00/00/0000', 'Intitulé', 'Structure', '00000', 'Rubrique', 'Contenu...' ];
-		
+	
+
+	
 	// fonction vérifiant la saisie en direct
 	function verifSaisie(elem, val) {
 		var unereg = tabregs[elem.id.substr(4,3)];
@@ -41,11 +42,9 @@
 			
 			if (!resultat) elem.className += 'error';
 			
-			
-			
 		}
-	}
-		
+	}	
+	
 	
 	
 	// INITIALISE LES SPANS ET LE MODE DE SAISIE
@@ -59,8 +58,7 @@
 				this.innerText = '';
 				// console.log(basevals.indexOf(this.innerText));
 			}
-		});
-		
+		});		
 		
 		elem.addEventListener('keyup', function() {
 			this.nextSibling.value = this.innerText;
@@ -73,6 +71,9 @@
 			} 
 		});
 	}
+	
+	
+	
 	// INITIALISATION DES CHAMPS INITIAUX (ide, tit, obj)
 	var lecv = document.getElementById('lecv');
 	var lesspans = lecv.getElementsByTagName('span');
@@ -82,12 +83,16 @@
 		forEvent(lesspans[i], atstart[i]);
 	}
 	
+	
+	
 	// FONCTION D'AJOUT DE FONCTION DE SUPPRESSION
 	function addSuppr(elem) {
 		elem.addEventListener('click', function() {
 			suppr(this);
 		});
 	}
+	
+	
 	
 	// FONCTION DE SUPPRESSION
 	function suppr(elem) {
@@ -101,6 +106,7 @@
 			}
 		}
 	}
+	
 	
 	
 	// INITIALISE LES BOUTONS D'AJOUT
@@ -141,9 +147,10 @@
 		newTr.appendChild(newTd);
 		newTable.appendChild(newTr);
 		document.getElementById(cat).appendChild(newTable);
-		
-		// <span id="inf-1-con">Pas très très bon encore LOL !</span><input type="text" id="inp-inf-1-con"></p>
 	}
+	
+	
+	
 	function addOne(cat, nb) {
 		var base = [
 			['ddb', '01/01/2016'],
@@ -217,6 +224,8 @@
 		document.getElementById(cat).appendChild(newTable);
 	}
 	
+	
+	
 	var nb_xp = document.getElementById('compte_xp').value;
 	var nb_for = document.getElementById('compte_for').value;
 	var nb_inf = document.getElementById('compte_inf').value;
@@ -249,19 +258,26 @@
 		});
 	}
 	
+	
+	
 	// INITIALISE LE BOUTON DE DOWNLOAD
 	var down = document.getElementById('download');
 	down.addEventListener('click', function() {
-			document.getElementById('main-form').submit();
+			document.getElementById('form-main').submit();
 	});
+	
+	
+	
 	// INITIALISE LE BOUTON GENLECV
 	var genlecv = document.getElementById('genlecv');
 	genlecv.addEventListener('click', function() {
-			document.getElementById('main-form').submit();
+			document.getElementById('form-main').submit();
 	});
 
+	
+	
 	// INITIALISE LES SELECTS DE DISPOSITION MISE EN PAGE
-	var zone_cv = document.getElementById('gauche');
+	var zone_cv = document.getElementById('main-left');
 	var zone_dispo = document.getElementById('disposition-content');
 	var lesselects = zone_dispo.getElementsByTagName('select');	
 	for (var i = 0, imax = lesselects.length; i < imax; i++) {
@@ -270,21 +286,16 @@
 			var init_cible = this.id.split("-");
 			var cibles = document.querySelectorAll(init_cible[2]);
 			var prop = init_cible[3];
-			for (var i = 0, imax = cibles.length; i < imax; i++) {
-					
+			for (var i = 0, imax = cibles.length; i < imax; i++) {					
 				// cibles[i].className = this.value;
 				console.log(prop);
 				eval('cibles['+i+'].'+prop+' = "'+this.value+'"');
-			}
-			
-			
-			
-			
-			
-			// console.log('ça change' + cible);
-			
+			}			
+			// console.log('ça change' + cible);			
 		});
 	}
+	
+	
 	
 	// GESTION DES ONGLETS
 	function leswitch(elem) {
@@ -308,6 +319,8 @@
 		lesreglages_content.style.zIndex = 2;
 		disposition_content.style.zIndex = 1;
 	});
+	
+	
 	
 	// TEST DE REFRESH
 	var lereset = document.getElementById('reset');
@@ -343,6 +356,8 @@
 		// location.reload();
     	
 	});
+	
+	
 	
 	// INITIALISATION DES CHECKBOXES
 	var checkboxes = document.getElementsByClassName('to_check');

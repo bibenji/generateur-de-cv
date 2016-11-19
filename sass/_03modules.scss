@@ -18,7 +18,7 @@
     margin-left: 0px;
 }
 
-#manuel {
+#manuel-main {
 	display: none;
 	z-index: 1000;
 	position: absolute;
@@ -30,7 +30,7 @@
 	font-family: Arial;	
 }
 
-#texte-manuel {
+#manuel-text {
     padding: 1% 0%;
 	width: 90%;
 	max-width: 500px;
@@ -53,12 +53,12 @@
 	    text-indent: 10px;
 	    text-align: justify;
     }
-	.affmanuel {
+	.manuel-close {
 		color: grey;
 	}
 }
 
-.affmanuel {
+.manuel-show {
 	text-align: center;
 	cursor: pointer;
 	text-decoration: underline;	

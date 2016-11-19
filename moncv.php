@@ -1,10 +1,13 @@
 <?php
+
 session_start();
 
 /* RECUPERATION DES DONNEES POSTEES */
-// tout stocker dans la variable $_SESSION['DATA']
-$_SESSION = array(); // pour éviter les problèmes
+
+$_SESSION = array();
 $spe = array('exp','for','inf');
+
+// stockage auto dans $_SESSION['data']
 foreach ($_POST as $key => $val)
 {
 	$key1 = substr($key, 0, 3);
@@ -14,17 +17,12 @@ foreach ($_POST as $key => $val)
 }
 
 // détermination de l'objet du CV
-// voir les cas où pas de titre au CV...
 if (isset($_SESSION['data']['obj']['obj']))
 {
-	if ($_SESSION['data']['obj']['obj'] == 'Emploi')
-	{
-		// $_SESSION['data']['obj']['obj'] = 'Actuellement à la recherche d\'un emploi, je vous fais part de ma candidature pour un poste au sein de votre structure.';
+	if ($_SESSION['data']['obj']['obj'] == 'Emploi') {
 		$_SESSION['data']['obj']['obj'] = 'Demande d\'emploi';
 	}
-	else
-	{
-		// $_SESSION['data']['obj']['obj'] = 'Dans le cadre d\'une démarche de ré-orientation professionnelle, je souhaiterais effectuer un stage au sein de votre structure.';$_SESSION['data']['obj']['obj'] = 'Dans le cadre d\'une démarche de ré-orientation professionnelle, je souhaiterais effectuer un stage au sein de votre structure.';
+	else {		
 		$_SESSION['data']['obj']['obj'] = 'Demande de stage';
 	}
 }
@@ -43,7 +41,7 @@ else $_SESSION['data']['inf'] = array();
 
 // --------------------------------------------------------------------------------
 
-if (1 == 2)
+if (1 == 2) // à utiliser pour le débuggage
 {	
 	echo basename($_SERVER['PHP_SELF']);
 	
@@ -150,7 +148,6 @@ else // génération du pdf
 	$pdf = new PDF();
 	$pdf->SetTitle($_SESSION['data']['ide']['nom'].' '.$_SESSION['data']['ide']['pre'].' CV - '.$_SESSION['data']['tit']['tit']);
 	
-
 	/* AJOUT DE FONTS */ // fonction à créer pour simplifier...
 	$pdf->AddFont('comic','','comic.php');
 	$pdf->AddFont('comic','B','comicbd.php');

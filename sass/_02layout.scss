@@ -5,7 +5,7 @@ body {
     background-size: 100% 150%;
 }
 
-#main {
+#main-main {
     z-index: 10;
     position: relative;
     width: 75%;
@@ -13,7 +13,7 @@ body {
     font-family: Tahoma, Verdana;
 }
 
-#top {
+#main-top {
     position: relative;
     z-index: 0;
     width: 80%;
@@ -31,7 +31,7 @@ body {
     }
 }
 
-#gauche {
+#main-left {
 	position: relative;
 	width: 700px;
 	max-width: 80%;
@@ -45,7 +45,7 @@ body {
     margin-bottom: 40px;
 }
 
-#droite {	
+#main-right {	
 	position: fixed;
     top: 0; right: 0;
 	width: 25%; height: 100%;

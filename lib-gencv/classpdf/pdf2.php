@@ -4,8 +4,7 @@ class PDF extends FPDF
 	function AjouterCoordos($taille_c, $data_ide, $police, $esp_g)
 	{
 		$this->SetFont( $police,'B',$taille_c+2);
-		$this->Cell(80,$esp_g,$data_ide['nom'] . ' ' .  $data_ide['pre'],0,1);
-		
+		$this->Cell(80,$esp_g,$data_ide['nom'] . ' ' .  $data_ide['pre'],0,1);		
 		$this->SetFont($police,'',$taille_c);
 		$this->Cell(80,$esp_g,utf8_decode($data_ide['adr']),0,1);
 		$this->Cell(80,$esp_g,$data_ide['cod'] . ' ' . $data_ide['vil'],0,1);
@@ -37,7 +36,7 @@ class PDF extends FPDF
 
 	function AjouterRu($rub, $espaces_g, $taille_b, $colband, $coltxtband, $colbrdband, $coltexte, $police) // faire un héritage ou un trait... à voir demain !!!
 	{
-		// déterminer l'icone à afficher
+		// détermine l'icone à afficher
 		$icones = array(
 			"exp" => "images/experiences.png",
 			"for" => "images/formation.png",
@@ -48,8 +47,7 @@ class PDF extends FPDF
 		$this->Image($icones[substr($rub,0,3)],null,null,$taille_b*0.40);
 		
 		$this->setY($this->getY()-5);
-		$this->setX($this->getX()+13);
-		
+		$this->setX($this->getX()+13);		
 		
 		$this->SetFont($police,'B',$taille_b);
 		$this->SetTextColor($coltxtband[0],$coltxtband[1],$coltxtband[2]);		
@@ -58,13 +56,10 @@ class PDF extends FPDF
 			
 		$this->Cell(0,$espaces_g,ucfirst(strtolower(utf8_decode($rub))),1,1,'',true);
 		$this->SetFillColor($colbrdband[0],$colbrdband[1],$colbrdband[2]);
-		$this->Cell(0,1,'',1,1,'',true);
-		// Saut de ligne
-		// $this->Ln($espaces_g);
+		$this->Cell(0,1,'',1,1,'',true);		
 		$this->SetTextColor($coltexte[0],$coltexte[1],$coltexte[2]);
 		
-		$this->setX($this->getX()-14);
-		// $this->setY($this->getY()+10);
+		$this->setX($this->getX()-14);		
 	}
 
 	function AjouterItem($quand, $quoi, $ou, $taille_t, $police, $esp_g)
@@ -81,5 +76,4 @@ class PDF extends FPDF
 		// $this->MultiCell(0,$esp_g,utf8_decode($ou),0, 'L');
 		$this->SetLeftMargin(10);
 	}
-
 }

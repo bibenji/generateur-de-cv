@@ -4,8 +4,7 @@ class PDF extends FPDF
 	function AjouterCoordos($taille_c, $data_ide, $police, $esp_g)
 	{
 		$this->SetFont($police,'B',$taille_c+2);
-		$this->Cell(80,$esp_g,$data_ide['nom'] . ' ' . $data_ide['pre'],0,1);
-	
+		$this->Cell(80,$esp_g,$data_ide['nom'] . ' ' . $data_ide['pre'],0,1);	
 		$this->SetFont($police,'',$taille_c);
 		$this->Cell(80,$esp_g,$data_ide['adr'],0,1);
 		$this->Cell(80,$esp_g,$data_ide['cod'] . ' ' . $data_ide['vil'],0,1);
@@ -32,19 +31,13 @@ class PDF extends FPDF
 	{
 		$this->Ln($espaces_g);
 		$this->SetFont($police,'BU',$taille_b+2);
-		$this->SetTextColor($coltxtband[0],$coltxtband[1],$coltxtband[2]);
-		// $test = '0,200,100';
-		// $test = explode(',', $test);
+		$this->SetTextColor($coltxtband[0],$coltxtband[1],$coltxtband[2]);		
 		$this->SetFillColor($colband[0],$colband[1],$colband[2]);
 		$this->SetDrawColor($colbrdband[0],$colbrdband[1],$colbrdband[2]);
-		
-		
-		
-		
+				
 		$this->Cell('',$espaces_g*1.5,ucfirst(strtolower(utf8_decode($rub))),'',1,'L',true);
 		// $underline = $this->Cell('',0.5,'',1,1,'',true);
-		
-		
+				
 		$this->SetTextColor($coltexte[0],$coltexte[1],$coltexte[2]);
 	}
 
@@ -57,7 +50,6 @@ class PDF extends FPDF
 		$this->Cell(0,$esp_g,$quoi,0,1);
 		$this->SetFont($police,'',$taille_t);
 		$this->Cell(80,$esp_g,'',0,0);
-		$this->Cell(0,$esp_g,utf8_decode($ou),0,1);
-		
-	}
+		$this->Cell(0,$esp_g,utf8_decode($ou),0,1);		
+	}	
 }

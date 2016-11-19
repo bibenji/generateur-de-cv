@@ -6,8 +6,7 @@ class PDF extends FPDF
 	function AjouterCoordos($taille_c, $data_ide, $police, $esp_g)
 	{
 		$this->SetFont( $police,'B',$taille_c+2);
-		$this->Cell(0,$esp_g,$data_ide['nom'] . ' ' .  $data_ide['pre'],0,1,'C');
-		
+		$this->Cell(0,$esp_g,$data_ide['nom'] . ' ' .  $data_ide['pre'],0,1,'C');		
 		$this->SetFont($police,'',$taille_c);
 		$this->Cell(0,$esp_g,$data_ide['adr'] . ', ' . $data_ide['cod'] . ' ' . $data_ide['vil'],0,1,'C');
 		$this->Cell(0,$esp_g,$data_ide['tel'].' - '.$data_ide['mai'],0,1,'C');
@@ -33,7 +32,7 @@ class PDF extends FPDF
 		$this->SetLeftMargin(10);
 		$this->Ln($espaces_g);
 		$this->Cell(0,0.5,'',1,1,'',true);
-		// $this->Ln($espaces_g);
+		
 		$save_y = $this->GetY();
 	}
 
@@ -48,8 +47,7 @@ class PDF extends FPDF
 		$this->Cell(80,$espaces_g,$ex_rub[0],1,1,$align,true);
 		$this->Cell(80,$espaces_g,$ex_rub[1],1,1,$align,true);
 		$this->SetFillColor(0,0,0);		
-		
-		// $this->Ln($espaces_g);
+
 		$this->SetTextColor($coltexte[0],$coltexte[1],$coltexte[2]);
 		
 		global $align;
@@ -99,7 +97,6 @@ class PDF extends FPDF
 		$this->Cell(0,$espaces_g,strtoupper(utf8_decode($rub)),1,1,$align,true);
 		$this->SetFillColor($colband[0],$colband[1],$colband[2]);
 		$this->SetFillColor(0,0,0);				
-		// $this->Ln($espaces_g);
 		$this->SetTextColor(0,0,0);
 		}
 	}
@@ -113,7 +110,7 @@ class PDF extends FPDF
 		$this->SetFont($police,'B',$taille_t);
 		$this->Cell(80,$esp_g,$quoi,0,1,$align);
 		$this->SetFont($police,'',$taille_t);
-		$this->MultiCell('',$esp_g,utf8_decode($ou),0,$align);
+		$this->MultiCell(80,$esp_g,utf8_decode($ou),0,$align);
 		
 	}
 
@@ -121,5 +118,4 @@ class PDF extends FPDF
 	{		
 		$this->TitreRu($rub, $espaces_g, $taille_b, $align);	
 	}
-
 }

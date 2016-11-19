@@ -13,7 +13,7 @@ body {
 }
 
 /* line 8, ../sass/_02layout.scss */
-#main {
+#main-main {
   z-index: 10;
   position: relative;
   width: 75%;
@@ -22,7 +22,7 @@ body {
 }
 
 /* line 16, ../sass/_02layout.scss */
-#top {
+#main-top {
   position: relative;
   z-index: 0;
   width: 80%;
@@ -35,14 +35,14 @@ body {
   */
 }
 /* line 27, ../sass/_02layout.scss */
-#top img {
+#main-top img {
   width: 400px;
   position: static;
   margin: 20px 0px 40px;
 }
 
 /* line 34, ../sass/_02layout.scss */
-#gauche {
+#main-left {
   position: relative;
   width: 700px;
   max-width: 80%;
@@ -57,7 +57,7 @@ body {
 }
 
 /* line 48, ../sass/_02layout.scss */
-#droite {
+#main-right {
   position: fixed;
   top: 0;
   right: 0;
@@ -175,7 +175,7 @@ body {
 }
 
 /* line 21, ../sass/_03modules.scss */
-#manuel {
+#manuel-main {
   display: none;
   z-index: 1000;
   position: absolute;
@@ -188,7 +188,7 @@ body {
 }
 
 /* line 33, ../sass/_03modules.scss */
-#texte-manuel {
+#manuel-text {
   padding: 1% 0%;
   width: 90%;
   max-width: 500px;
@@ -200,7 +200,7 @@ body {
   height: 98%;
 }
 /* line 43, ../sass/_03modules.scss */
-#texte-manuel img {
+#manuel-text img {
   position: absolute;
   top: 1%;
   right: 10px;
@@ -208,21 +208,21 @@ body {
   cursor: pointer;
 }
 /* line 49, ../sass/_03modules.scss */
-#texte-manuel h1 {
+#manuel-text h1 {
   text-align: center;
 }
 /* line 52, ../sass/_03modules.scss */
-#texte-manuel p {
+#manuel-text p {
   text-indent: 10px;
   text-align: justify;
 }
 /* line 56, ../sass/_03modules.scss */
-#texte-manuel .affmanuel {
+#manuel-text .manuel-close {
   color: grey;
 }
 
 /* line 61, ../sass/_03modules.scss */
-.affmanuel {
+.manuel-show {
   text-align: center;
   cursor: pointer;
   text-decoration: underline;
